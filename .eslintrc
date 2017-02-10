@@ -6,7 +6,7 @@
       "jsx": true
     }
   },
-  "plugins": [],
+  "plugins": ["react"],
   "extends": [
     "google"
   ],
@@ -20,6 +20,8 @@
     "no-param-reassign": ["error", {"props": true}],
     "one-var": ["error", "never"],
     "quotes": ["error", "single", {"allowTemplateLiterals": true}],
+    "react/jsx-uses-react": ["error"],
+    "react/jsx-uses-vars": ["error"],
     "require-jsdoc": ["off"],
     "space-before-function-paren": ["error", "always"]
   }
