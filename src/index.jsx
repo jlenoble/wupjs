@@ -1,5 +1,7 @@
 import React from 'react';
 import {render} from 'react-dom';
-import Wupjs from './wupjs';
+import AppRoutes from './components/app-routes';
 
-render(<Wupjs/>, document.getElementById('app'));
+window.onload = () => {
+  render(<AppRoutes/>, document.getElementById('app'));
+};
