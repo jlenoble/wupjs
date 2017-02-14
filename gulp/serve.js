@@ -10,10 +10,10 @@ let p;
 
 export const serve = done => {
   if (p) {
-    p.kill();
+    p.kill('SIGINT');
   }
 
-  p = spawn('node', ['build/src/server.js'], {detached: true});
+  p = spawn('node', ['build/src/server.js'], {stdio: 'pipe'});
 
   if (done) {
     done();
@@ -33,7 +33,13 @@ export const sync = done => {
 
   gulp.watch([path.join(srcDir, 'index.html'),
     bundleBuildGlob]).on('change', (...args) => {
-      bs.reload(...args);
+      serve();
+
+      p.stdout.on('data', data => {
+        if (data.toString().match(/[Ss]tart/)) {
+          bs.reload(...args);
+        }
+      });
     });
 };
 

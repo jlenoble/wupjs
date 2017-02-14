@@ -40,4 +40,10 @@ app.get('*', (req, res) => {
   );
 });
 
-app.listen(5000);
+app.listen(5000, err => {
+  if (err) {
+    console.log(err);
+  } else {
+    console.log('Server started on port 5000');
+  }
+});
