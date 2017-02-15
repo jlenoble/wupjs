@@ -3,7 +3,7 @@ import {Link} from 'react-router';
 
 export default class Menu extends Component {
   render () {
-    return <nav className="menu">
+    return <nav>
       <Link key="test" to="/test" activeClassName="active">
         Test
       </Link>
