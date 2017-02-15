@@ -1,13 +1,14 @@
 import React, {Component} from 'react';
-import List from './list';
-
-const items = [];
+import AddItem from './test/add-item';
+import VisibleList from './test/visible-list';
+import Footer from './test/footer';
 
 export default class TestPage extends Component {
   render () {
     return <div>
-      <h1>Test</h1>
-      <List items={items}/>
+      <AddItem/>
+      <VisibleList/>
+      <Footer/>
     </div>;
   }
 }

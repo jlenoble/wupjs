@@ -1,7 +1,7 @@
 import React from 'react';
 import {render} from 'react-dom';
-import AppRoutes from './components/app-routes';
+import Store from './store';
 
 window.onload = () => {
-  render(<AppRoutes/>, document.getElementById('app'));
+  render(<Store/>, document.getElementById('app'));
 };
