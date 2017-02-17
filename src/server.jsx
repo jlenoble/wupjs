@@ -7,13 +7,10 @@ import {match, RouterContext} from 'react-router';
 import routes from './routes';
 import PageNotFound from './components/page-not-found';
 
-import {createStore} from 'redux';
 import {Provider} from 'react-redux';
-import reducers from './reducers';
+import store from './server/store';
 
 app.get('*', (req, res) => {
-  const store = createStore(reducers);
-
   match(
     {routes, location: req.url},
     (err, redirectLocation, renderProps) => {
