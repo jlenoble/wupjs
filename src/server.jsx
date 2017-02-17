@@ -1,5 +1,5 @@
-import path from 'path';
-import Express from 'express';
+import app from './server/express-instance';
+
 import React from 'react';
 import {renderToString} from 'react-dom/server';
 import {match, RouterContext} from 'react-router';
@@ -10,14 +10,6 @@ import PageNotFound from './components/page-not-found';
 import {createStore} from 'redux';
 import {Provider} from 'react-redux';
 import reducers from './reducers';
-
-const app = new Express();
-app.set('view engine', 'ejs');
-app.set('views', path.join(__dirname, '../../src/views'));
-
-app.use(Express.static(__dirname));
-app.use(Express.static(path.join(__dirname, '..')));
-app.use(Express.static(path.join(__dirname, '../../src')));
 
 app.get('*', (req, res) => {
   const store = createStore(reducers);
