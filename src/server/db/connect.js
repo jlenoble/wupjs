@@ -1,3 +1,4 @@
 import mongoose from './mongoose';
+import {mongoUri} from '../config';
 
-mongoose.connect('mongodb://localhost/wup');
+mongoose.connect(mongoUri);
