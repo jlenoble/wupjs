@@ -20,9 +20,7 @@ class TestPage extends Component {
         <h2>Empty.</h2>
       }
       {items.length > 0 &&
-        <div style={{opacity: isFetching ? 0.5 : 1}}>
-          <List items={items}/>
-        </div>
+        <List items={items}/>
       }
     </div>;
   }
