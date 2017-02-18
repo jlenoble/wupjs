@@ -28,12 +28,14 @@ function fetchItems () {
     dispatch(requestItems());
 
     return fetch('/api/items')
-      .then(
-        response => response.json(),
-        err => dispatch(receiveItemsError(err))
-      ).then(
-        json => dispatch(receiveItemsSuccess(json))
-      );
+      .then(response => response.json())
+      .then(json => {
+        if (!Array.isArray(json)) {
+          dispatch(receiveItemsError(json));
+        } else {
+          dispatch(receiveItemsSuccess(json));
+        }
+      });
   };
 }
 
