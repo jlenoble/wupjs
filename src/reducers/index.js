@@ -2,6 +2,7 @@ import {combineReducers} from 'redux';
 import {
   REQUEST_ITEMS, RECEIVE_ITEMS_SUCCESS, RECEIVE_ITEMS_ERROR,
   CREATE_ITEM, CREATE_ITEM_SUCCESS, CREATE_ITEM_ERROR,
+  DELETE_ITEM, DELETE_ITEM_SUCCESS, DELETE_ITEM_ERROR,
 } from '../actions';
 
 export function items (state = {
@@ -47,6 +48,25 @@ export function items (state = {
       items: state.items.filter(item => {
         return item._id !== action._id;
       }),
+    });
+
+  case DELETE_ITEM:
+    return Object.assign({}, state, {
+      isFetching: true,
+      items: state.items.filter(item => {
+        return item._id !== action._id;
+      }),
+    });
+
+  case DELETE_ITEM_SUCCESS:
+    return Object.assign({}, state, {
+      isFetching: false,
+    });
+
+  case DELETE_ITEM_ERROR:
+    return Object.assign({}, state, {
+      isFetching: false,
+      items: state.items.concat(action.item),
     });
 
   default:
