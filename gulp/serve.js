@@ -15,6 +15,15 @@ export const serve = done => {
 
   p = spawn('node', ['build/src/server.js'], {stdio: 'pipe'});
 
+  p.stdout.on('data', data => {
+    process.stdout.write('[Express] ');
+    process.stdout.write(data.toString());
+  });
+  p.stderr.on('data', data => {
+    process.stderr.write('[Express] ');
+    process.stderr.write(data.toString());
+  });
+
   if (done) {
     done();
   }
@@ -36,7 +45,7 @@ export const sync = done => {
       serve();
 
       p.stdout.on('data', data => {
-        if (data.toString().match(/[Ss]tart/)) {
+        if (data.toString().match(/Server started on port 5000/)) {
           bs.reload(...args);
         }
       });
