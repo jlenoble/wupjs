@@ -1,6 +1,7 @@
 import {combineReducers} from 'redux';
 import {
   REQUEST_ITEMS, RECEIVE_ITEMS_SUCCESS, RECEIVE_ITEMS_ERROR,
+  CREATE_ITEM,
 } from '../actions';
 
 export function items (state = {
@@ -22,6 +23,12 @@ export function items (state = {
   case RECEIVE_ITEMS_ERROR:
     return Object.assign({}, state, {
       isFetching: false,
+    });
+
+  case CREATE_ITEM:
+    return Object.assign({}, state, {
+      isFetching: true,
+      items: state.items.concat(action.item),
     });
 
   default:
