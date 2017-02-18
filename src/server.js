@@ -1,5 +1,6 @@
 import app from './server/express-instance';
 
+import './server/rest';
 import './server/catch-all-get';
 
 app.listen(5000, err => {
