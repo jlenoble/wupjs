@@ -43,7 +43,7 @@ export function newItem (title) {
     })
       .then(response => response.json())
       .then(json => {
-        if (!json._id || !json._title) {
+        if (!json._id || !json.title) {
           dispatch(createItemError(item, _id, json));
         } else {
           dispatch(createItemSuccess(json, _id));
