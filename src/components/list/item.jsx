@@ -5,7 +5,6 @@ const Item = ({title}) => <li>
 </li>;
 
 Item.propTypes = {
-  _id: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
 };
 

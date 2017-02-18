@@ -4,7 +4,10 @@ import {Item} from '../db';
 app.get('/api/items', (req, res) => {
   Item.find({}, (err, items) => {
     if (err) {
-      res.send(err);
+      return res.json({
+        status: err.status || 500,
+        message: err.message || 'Internal server error',
+      });
     }
 
     res.json(items);

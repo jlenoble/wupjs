@@ -7,7 +7,10 @@ app.post('/api/items', (req, res) => {
 
   item.save(err => {
     if (err) {
-      res.send(err);
+      return res.json({
+        status: err.status || 500,
+        message: err.message || 'Internal server error',
+      });
     }
 
     res.json(item);
