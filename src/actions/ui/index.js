@@ -1,5 +1,5 @@
 export const EDIT_ITEM = 'EDIT_ITEM';
-export function editItem (_id) {
+export function editItem ({_id}) {
   return dispatch => {
     dispatch({
       type: EDIT_ITEM,

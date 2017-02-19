@@ -1,9 +1,7 @@
 import React, {Component, PropTypes} from 'react';
-import EditItem from './edit-item';
-import RemoveItem from './remove-item';
+import {EditItemButton, RemoveItemButton} from './item-buttons';
 import ModifyItem from './modify-item';
-import {updateItem, unfocusCurrentItem}
-  from '../../actions';
+import {updateItem, unfocusCurrentItem} from '../../actions';
 
 class Item extends Component {
   renderEdited () {
@@ -38,8 +36,8 @@ class Item extends Component {
       </span>
 
       <span className="pull-right">
-        <EditItem item={{title, _id}}/>
-        <RemoveItem item={{title, _id}}/>
+        <EditItemButton item={{title, _id}}/>
+        <RemoveItemButton item={{title, _id}}/>
       </span>
     </li>;
   }
