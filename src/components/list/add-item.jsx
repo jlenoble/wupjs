@@ -1,19 +1,24 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {newItem} from '../../actions';
+import {newItem, unfocusCurrentItem} from '../../actions';
 
 let AddItem = ({dispatch}) => {
   let input;
 
   return <div>
-    <form onSubmit={e => {
-      e.preventDefault();
-      if (!input.value.trim()) {
-        return;
-      }
-      dispatch(newItem(input.value));
-      input.value = '';
-    }}>
+    <form
+      onFocus={() => {
+        dispatch(unfocusCurrentItem());
+      }}
+      onSubmit={e => {
+        e.preventDefault();
+        if (!input.value.trim()) {
+          return;
+        }
+        dispatch(newItem(input.value));
+        input.value = '';
+      }}
+    >
       <input ref={node => {
         input = node;
       }}/>

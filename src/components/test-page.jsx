@@ -33,10 +33,26 @@ TestPage.propTypes = {
 };
 
 function mapStateToProps (state) {
-  return Object.assign({
+  const mappedState = Object.assign({
     items: [],
     isFetching: false,
-  }, state.items);
+    itemId: '',
+    isBeingEdited: false,
+  }, state.items, state.currentItem);
+
+  const isBeingEdited = mappedState.isBeingEdited;
+
+  if (isBeingEdited) {
+    const itemId = mappedState.itemId;
+
+    mappedState.items = mappedState.items.map(item => {
+      return item._id !== itemId ? item : Object.assign({
+        isBeingEdited,
+      }, item);
+    });
+  }
+
+  return mappedState;
 }
 
 export default connect(mapStateToProps)(TestPage);
