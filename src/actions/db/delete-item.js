@@ -1,4 +1,4 @@
-import fetch from '../server/fetch';
+import fetch from '../../server/fetch';
 
 export const DELETE_ITEM = 'DELETE_ITEM';
 function requestDeleteItem (_id) {

@@ -1,4 +1,4 @@
-import fetch from '../server/fetch';
+import fetch from '../../server/fetch';
 
 let _tmpId = 0;
 const tmpId = () => 'itemTmpId' + (_tmpId++);

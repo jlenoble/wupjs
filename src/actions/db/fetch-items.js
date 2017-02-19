@@ -1,4 +1,4 @@
-import fetch from '../server/fetch';
+import fetch from '../../server/fetch';
 
 export const REQUEST_ITEMS = 'REQUEST_ITEMS';
 function requestItems () {
