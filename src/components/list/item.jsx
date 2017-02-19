@@ -2,7 +2,7 @@ import React, {Component, PropTypes} from 'react';
 import EditItem from './edit-item';
 import RemoveItem from './remove-item';
 import ModifyItem from './modify-item';
-import {updateItem, editItem, unfocusCurrentItem}
+import {updateItem, unfocusCurrentItem}
   from '../../actions';
 
 class Item extends Component {
@@ -38,11 +38,7 @@ class Item extends Component {
       </span>
 
       <span className="pull-right">
-        <EditItem edit={dispatch => {
-          dispatch(unfocusCurrentItem());
-          dispatch(editItem(_id));
-        }}/>
-
+        <EditItem item={{title, _id}}/>
         <RemoveItem item={{title, _id}}/>
       </span>
     </li>;

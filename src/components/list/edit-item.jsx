@@ -1,25 +1,19 @@
-import React, {Component, PropTypes} from 'react';
-import {connect} from 'react-redux';
-import GlyphButton from '../presentational/glyph-button';
+import React, {PropTypes} from 'react';
+import ActionGlyphButton from '../container/action-glyph-button';
+import {editItem, unfocusCurrentItem} from '../../actions';
 
-class EditItem extends Component {
-  componentWillMount () {
-    this.edit = () => {
-      this.props.edit(this.props.dispatch);
-    };
-  }
-
-  render () {
-    return (
-      <span onClick={this.edit}>
-        <GlyphButton glyphiconType="pencil"/>
-      </span>
-    );
-  }
-}
+const EditItem = ({item}) => (
+  <ActionGlyphButton
+    handleClick={dispatch => {
+      dispatch(unfocusCurrentItem());
+      dispatch(editItem(item._id));
+    }}
+    glyphiconType="pencil"
+  />
+);
 
 EditItem.propTypes = {
-  edit: PropTypes.func.isRequired,
+  item: PropTypes.object.isRequired,
 };
 
-export default connect()(EditItem);
+export default EditItem;
