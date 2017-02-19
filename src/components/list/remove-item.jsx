@@ -1,25 +1,19 @@
-import React, {Component, PropTypes} from 'react';
-import {connect} from 'react-redux';
-import GlyphButton from '../presentational/glyph-button';
+import React, {PropTypes} from 'react';
+import ActionGlyphButton from '../container/action-glyph-button';
+import {deleteItem, unfocusCurrentItem} from '../../actions';
 
-class RemoveItem extends Component {
-  componentWillMount () {
-    this.doDelete = () => {
-      this.props.doDelete(this.props.dispatch);
-    };
-  }
-
-  render () {
-    return (
-      <span onClick={this.doDelete}>
-        <GlyphButton glyphiconType="trash"/>
-      </span>
-    );
-  }
-}
+const RemoveItem = ({item}) => (
+  <ActionGlyphButton
+    handleClick={dispatch => {
+      dispatch(unfocusCurrentItem());
+      dispatch(deleteItem(item));
+    }}
+    glyphiconType="trash"
+  />
+);
 
 RemoveItem.propTypes = {
-  doDelete: PropTypes.func.isRequired,
+  item: PropTypes.object.isRequired,
 };
 
-export default connect()(RemoveItem);
+export default RemoveItem;

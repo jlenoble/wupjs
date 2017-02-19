@@ -2,7 +2,7 @@ import React, {Component, PropTypes} from 'react';
 import EditItem from './edit-item';
 import RemoveItem from './remove-item';
 import ModifyItem from './modify-item';
-import {updateItem, editItem, deleteItem, unfocusCurrentItem}
+import {updateItem, editItem, unfocusCurrentItem}
   from '../../actions';
 
 class Item extends Component {
@@ -43,10 +43,7 @@ class Item extends Component {
           dispatch(editItem(_id));
         }}/>
 
-        <RemoveItem doDelete={dispatch => {
-          dispatch(unfocusCurrentItem());
-          dispatch(deleteItem({title, _id}));
-        }}/>
+        <RemoveItem item={{title, _id}}/>
       </span>
     </li>;
   }
