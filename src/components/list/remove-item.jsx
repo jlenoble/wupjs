@@ -1,22 +1,20 @@
 import React, {Component, PropTypes} from 'react';
 import {connect} from 'react-redux';
+import GlyphButton from '../presentational/glyph-button';
 
 class RemoveItem extends Component {
-  constructor (props) {
-    super(props);
-    this.doDelete = this.props.doDelete.bind(undefined, this.props.dispatch);
+  componentWillMount () {
+    this.doDelete = () => {
+      this.props.doDelete(this.props.dispatch);
+    };
   }
 
   render () {
-    return <button
-      className="btn btn-default"
-      onClick={this.doDelete}
-    >
-      <span
-        className="glyphicon glyphicon-trash"
-        aria-hidden="true"
-      ></span>
-    </button>;
+    return (
+      <span onClick={this.doDelete}>
+        <GlyphButton glyphiconType="trash"/>
+      </span>
+    );
   }
 }
 
