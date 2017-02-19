@@ -7,6 +7,7 @@ let AddItem = ({dispatch}) => {
 
   return <div>
     <form
+      className="input-group"
       onFocus={() => {
         dispatch(unfocusCurrentItem());
       }}
@@ -19,12 +20,22 @@ let AddItem = ({dispatch}) => {
         input.value = '';
       }}
     >
-      <input ref={node => {
-        input = node;
-      }}/>
-      <button type="submit">
-        Add Item
-      </button>
+      <input
+        type="text"
+        className="form-control"
+        placeholder="Enter an item"
+        ref={node => {
+          input = node;
+        }}
+      />
+      <span className="input-group-btn">
+        <button
+          type="submit"
+          className="btn btn-default"
+        >
+          Add Item
+        </button>
+      </span>
     </form>
   </div>;
 };
