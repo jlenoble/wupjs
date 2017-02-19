@@ -9,7 +9,7 @@ class Item extends Component {
   renderEdited () {
     const {title, _id} = this.props;
 
-    return <li>
+    return <li className="list-group-item">
       <ModifyItem
         title={title}
         save={(input, clearInput, dispatch) => {
@@ -32,18 +32,22 @@ class Item extends Component {
   renderViewed () {
     const {title, _id} = this.props;
 
-    return <li>
-      {title}
+    return <li className="list-group-item">
+      <span>
+        {title}
+      </span>
 
-      <EditItem edit={dispatch => {
-        dispatch(unfocusCurrentItem());
-        dispatch(editItem(_id));
-      }}/>
+      <span className="pull-right">
+        <EditItem edit={dispatch => {
+          dispatch(unfocusCurrentItem());
+          dispatch(editItem(_id));
+        }}/>
 
-      <RemoveItem doDelete={dispatch => {
-        dispatch(unfocusCurrentItem());
-        dispatch(deleteItem({title, _id}));
-      }}/>
+        <RemoveItem doDelete={dispatch => {
+          dispatch(unfocusCurrentItem());
+          dispatch(deleteItem({title, _id}));
+        }}/>
+      </span>
     </li>;
   }
 

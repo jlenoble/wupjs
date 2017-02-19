@@ -10,7 +10,6 @@ class RemoveItem extends Component {
   render () {
     return <button
       className="btn btn-default"
-      aria-label="Left Align"
       onClick={this.doDelete}
     >
       <span

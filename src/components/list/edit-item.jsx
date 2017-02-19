@@ -10,7 +10,6 @@ class EditItem extends Component {
   render () {
     return <button
       className="btn btn-default"
-      aria-label="Left Align"
       onClick={this.edit}
     >
       <span

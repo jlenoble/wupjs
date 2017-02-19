@@ -19,23 +19,29 @@ class ModifyItem extends Component {
   }
 
   render () {
-    return <form onSubmit={this.save}>
+    return <form
+      className="input-group"
+      onSubmit={this.save}
+    >
       <input
+        type="text"
+        className="form-control"
         ref={node => {
           this.textInput = node;
         }}
         defaultValue={this.props.title}
       />
-      <button
-        className="btn btn-default"
-        aria-label="Left Align"
-        type="submit"
-      >
-        <span
-          className="glyphicon glyphicon-floppy-disk"
-          aria-hidden="true"
-        ></span>
-      </button>
+      <span className="input-group-btn">
+        <button
+          className="btn btn-default"
+          type="submit"
+        >
+          <span
+            className="glyphicon glyphicon-floppy-disk"
+            aria-hidden="true"
+          ></span>
+        </button>
+      </span>
     </form>;
   }
 }
