@@ -9,9 +9,20 @@ class RemoveItem extends Component {
 
   render () {
     return <button
+      className="btn btn-default"
+      aria-label="Left Align"
       onClick={this.doDelete}
-    >✖</button>;
+    >
+      <span
+        className="glyphicon glyphicon-trash"
+        aria-hidden="true"
+      ></span>
+    </button>;
   }
 }
+
+RemoveItem.propTypes = {
+  doDelete: PropTypes.func.isRequired,
+};
 
 export default connect()(RemoveItem);

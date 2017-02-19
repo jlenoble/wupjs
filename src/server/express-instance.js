@@ -13,5 +13,6 @@ app.use(bodyParser.json());
 app.use(Express.static(path.join(__dirname, '..')));
 app.use(Express.static(path.join(__dirname, '../..')));
 app.use(Express.static(path.join(__dirname, '../../../src')));
+app.use(Express.static(path.join(__dirname, '../../../node_modules')));
 
 export default app;
