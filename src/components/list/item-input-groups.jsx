@@ -4,12 +4,12 @@ import {newItem, updateItem, unfocusCurrentItem} from '../../actions';
 import ActionGlyphInputGroup from '../container/action-glyph-input-group';
 
 const makeItemInputGroup = ({
-  glyphiconType, autoFocus, placeholder, handleFocus, makeHandleSubmit,
+  glyphicon, autoFocus, placeholder, handleFocus, makeHandleSubmit,
 }) => {
   const ItemInputGroup = ({item = {}, dispatch}) => {
     return (
       <ActionGlyphInputGroup
-        glyphiconType={glyphiconType}
+        glyphicon={glyphicon}
         autoFocus={autoFocus}
         placeholder={placeholder}
         handleFocus={handleFocus}
@@ -34,7 +34,7 @@ const makeItemInputGroup = ({
 export default makeItemInputGroup;
 
 const ModifyItemInputGroup = makeItemInputGroup({
-  glyphiconType: 'floppy-disk',
+  glyphicon: 'floppy-disk',
   autoFocus: true,
   makeHandleSubmit: item => (input, clearInput, dispatch) => {
     const trimmed = input.value.trim();
@@ -51,7 +51,7 @@ const ModifyItemInputGroup = makeItemInputGroup({
 });
 
 const AddItemInputGroup = makeItemInputGroup({
-  glyphiconType: 'plus',
+  glyphicon: 'plus',
   placeholder: 'Enter an item',
   handleFocus: dispatch => dispatch(unfocusCurrentItem()),
   makeHandleSubmit: () => (input, clearInput, dispatch) => {

@@ -12,7 +12,7 @@ class ActionGlyphButton extends Component {
   render () {
     return (
       <GlyphButton
-        glyphiconType={this.props.glyphiconType}
+        glyphicon={this.props.glyphicon}
         onClick={this._handleClick}
       />
     );
@@ -21,7 +21,7 @@ class ActionGlyphButton extends Component {
 
 ActionGlyphButton.propTypes = {
   handleClick: PropTypes.func.isRequired,
-  glyphiconType: PropTypes.string.isRequired,
+  glyphicon: PropTypes.string.isRequired,
 };
 
 export default connect()(ActionGlyphButton);

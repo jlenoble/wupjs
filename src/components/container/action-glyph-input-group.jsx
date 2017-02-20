@@ -23,7 +23,7 @@ class ActionGlyphInputGroup extends Component {
     return (
       <GlyphInputGroup
         placeholder={this.props.placeholder}
-        glyphiconType={this.props.glyphiconType}
+        glyphicon={this.props.glyphicon}
         exposeInputNode={inputNode => {
           this._inputNode = inputNode;
         }}
@@ -38,7 +38,7 @@ class ActionGlyphInputGroup extends Component {
 
 ActionGlyphInputGroup.propTypes = {
   handleSubmit: PropTypes.func.isRequired,
-  glyphiconType: PropTypes.string.isRequired,
+  glyphicon: PropTypes.string.isRequired,
   handleFocus: PropTypes.func,
   placeholder: PropTypes.string,
   autoFocus: PropTypes.bool,
