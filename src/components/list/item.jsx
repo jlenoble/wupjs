@@ -1,6 +1,7 @@
 import React, {Component, PropTypes} from 'react';
 import {EditItemButton, RemoveItemButton} from './item-buttons';
 import {ModifyItemInputGroup} from './item-input-groups';
+import GlyphButtonGroup from '../presentational/glyph-button-group';
 
 class Item extends Component {
   renderEdited () {
@@ -19,10 +20,10 @@ class Item extends Component {
         {title}
       </span>
 
-      <span className="pull-right">
+      <GlyphButtonGroup>
         <EditItemButton item={{title, _id}}/>
         <RemoveItemButton item={{title, _id}}/>
-      </span>
+      </GlyphButtonGroup>
     </li>;
   }
 
