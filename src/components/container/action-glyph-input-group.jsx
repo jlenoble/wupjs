@@ -4,9 +4,11 @@ import GlyphInputGroup from '../presentational/glyph-input-group';
 
 class ActionGlyphInputGroup extends Component {
   componentWillMount () {
-    this._handleFocus = () => {
-      this.props.handleFocus(this.props.dispatch);
-    };
+    if (this.props.handleFocus) {
+      this._handleFocus = () => {
+        this.props.handleFocus(this.props.dispatch);
+      };
+    }
 
     this._handleSubmit = e => {
       e.preventDefault();
@@ -25,6 +27,8 @@ class ActionGlyphInputGroup extends Component {
         exposeInputNode={inputNode => {
           this._inputNode = inputNode;
         }}
+        autoFocus={this.props.autoFocus}
+        defaultValue={this.props.defaultValue}
         onFocus={this._handleFocus}
         onSubmit={this._handleSubmit}
       />
@@ -33,10 +37,12 @@ class ActionGlyphInputGroup extends Component {
 }
 
 ActionGlyphInputGroup.propTypes = {
-  handleFocus: PropTypes.func.isRequired,
   handleSubmit: PropTypes.func.isRequired,
   glyphiconType: PropTypes.string.isRequired,
+  handleFocus: PropTypes.func,
   placeholder: PropTypes.string,
+  autoFocus: PropTypes.bool,
+  defaultValue: PropTypes.string,
 };
 
 export default connect()(ActionGlyphInputGroup);
