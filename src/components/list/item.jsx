@@ -1,4 +1,4 @@
-import React, {PropTypes} from 'react';
+import React from 'react';
 import ViewItemGroup from './view-item-group';
 import {ModifyItemInputGroup} from './item-input-groups';
 import {itemPropType} from './proptypes';
@@ -15,7 +15,6 @@ const Item = ({item, isBeingEdited}) => (
 
 Item.propTypes = {
   item: itemPropType.isRequired,
-  // isBeingEdited: PropTypes.bool.isRequired,
 };
 
 export default Item;
