@@ -1,13 +1,13 @@
 import React, {Component, PropTypes} from 'react';
 import {EditItemButton, RemoveItemButton} from './item-buttons';
-import ModifyItem from './modify-item';
+import {ModifyItemInputGroup} from './item-input-groups';
 
 class Item extends Component {
   renderEdited () {
     const {title, _id} = this.props;
 
     return <li className="list-group-item">
-      <ModifyItem item={{title, _id}}/>
+      <ModifyItemInputGroup item={{title, _id}}/>
     </li>;
   }
 

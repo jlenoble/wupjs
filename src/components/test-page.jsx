@@ -1,7 +1,7 @@
 import React, {Component, PropTypes} from 'react';
 import {connect} from 'react-redux';
 import {fetchItemsIfNeeded} from '../actions';
-import List, {AddItem} from './list';
+import List, {AddItemInputGroup} from './list';
 
 class TestPage extends Component {
   componentDidMount () {
@@ -12,7 +12,7 @@ class TestPage extends Component {
     const {items, isFetching} = this.props;
 
     return <div>
-      <AddItem/>
+      <AddItemInputGroup/>
       {isFetching && items.length === 0 &&
         <h2>Loading...</h2>
       }
