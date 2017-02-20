@@ -1,7 +1,8 @@
-import React, {PropTypes} from 'react';
+import React from 'react';
 import {connect} from 'react-redux';
 import {newItem, updateItem, unfocusCurrentItem} from '../../actions';
 import ActionGlyphInputGroup from '../container/action-glyph-input-group';
+import {itemPropType} from './proptypes';
 
 const makeItemInputGroup = ({
   glyphicon, autoFocus, placeholder, handleFocus, makeHandleSubmit,
@@ -20,7 +21,7 @@ const makeItemInputGroup = ({
   };
 
   ItemInputGroup.propTypes = {
-    item: PropTypes.object.isRequired,
+    item: itemPropType.isRequired,
   };
 
   const mapStateToProps = state => {

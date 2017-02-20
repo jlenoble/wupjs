@@ -1,42 +1,20 @@
-import React, {Component, PropTypes} from 'react';
-import {EditItemButton, RemoveItemButton} from './item-buttons';
+import React, {PropTypes} from 'react';
+import ViewItemGroup from './view-item-group';
 import {ModifyItemInputGroup} from './item-input-groups';
-import GlyphButtonGroup from '../presentational/glyph-button-group';
+import {itemPropType} from './proptypes';
 
-class Item extends Component {
-  renderEdited () {
-    const {title, _id} = this.props;
-
-    return <li className="list-group-item">
-      <ModifyItemInputGroup item={{title, _id}}/>
-    </li>;
-  }
-
-  renderViewed () {
-    const {title, _id} = this.props;
-
-    return <li className="list-group-item">
-      <span>
-        {title}
-      </span>
-
-      <GlyphButtonGroup>
-        <EditItemButton item={{title, _id}}/>
-        <RemoveItemButton item={{title, _id}}/>
-      </GlyphButtonGroup>
-    </li>;
-  }
-
-  render () {
-    const {isBeingEdited} = this.props;
-
-    return isBeingEdited ? this.renderEdited() : this.renderViewed();
-  }
-}
+const Item = ({item, isBeingEdited}) => (
+  <li className="list-group-item">
+    {
+      isBeingEdited ?
+        <ModifyItemInputGroup item={item}/> :
+        <ViewItemGroup item={item}/>
+    }
+  </li>
+);
 
 Item.propTypes = {
-  _id: PropTypes.string.isRequired,
-  title: PropTypes.string.isRequired,
+  item: itemPropType.isRequired,
   // isBeingEdited: PropTypes.bool.isRequired,
 };
 

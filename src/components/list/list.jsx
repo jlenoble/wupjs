@@ -1,19 +1,21 @@
-import React, {PropTypes} from 'react';
+import React from 'react';
 import Item from './item';
+import {itemsPropType} from './proptypes';
 
-const List = ({items}) => <ul className="list-group">
-  {items.map(item =>
-    <Item
-      key={item._id}
-      {...item}
-    />
-  )}
-</ul>;
+const List = ({items}) => (
+  <ul className="list-group">
+    {items.map(item =>
+      <Item
+        key={item._id}
+        item={item}
+        isBeingEdited={item.isBeingEdited}
+      />
+    )}
+  </ul>
+);
 
 List.propTypes = {
-  items: PropTypes.arrayOf(PropTypes.shape({
-    title: PropTypes.string.isRequired,
-  }).isRequired).isRequired,
+  items: itemsPropType.isRequired,
 };
 
 export default List;

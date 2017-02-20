@@ -1,6 +1,7 @@
 import React, {PropTypes} from 'react';
 import ActionGlyphButton from '../container/action-glyph-button';
 import {editItem, deleteItem, unfocusCurrentItem} from '../../actions';
+import {itemPropType} from './proptypes';
 
 const makeItemButton = (applyToItem, glyphicon) => {
   const ItemButton = ({item}) => (
@@ -14,7 +15,7 @@ const makeItemButton = (applyToItem, glyphicon) => {
   );
 
   ItemButton.propTypes = {
-    item: PropTypes.object.isRequired,
+    item: itemPropType.isRequired,
   };
 
   return ItemButton;
