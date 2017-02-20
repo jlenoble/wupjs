@@ -1,7 +1,13 @@
 import React, {PropTypes} from 'react';
 
-const GlyphInputGroup = ({glyphiconType, placeholder, exposeInputNode}) => (
-  <div className="input-group">
+const GlyphInputGroup = ({
+  glyphiconType, placeholder, exposeInputNode, onFocus, onSubmit,
+}) => (
+  <form
+    className="input-group"
+    onFocus={onFocus}
+    onSubmit={onSubmit}
+  >
     <input
       type="text"
       className="form-control"
@@ -18,12 +24,14 @@ const GlyphInputGroup = ({glyphiconType, placeholder, exposeInputNode}) => (
         <span className={`glyphicon glyphicon-${glyphiconType}`}></span>
       </button>
     </span>
-  </div>
+  </form>
 );
 
 GlyphInputGroup.propTypes = {
   glyphiconType: PropTypes.string.isRequired,
   exposeInputNode: PropTypes.func.isRequired,
+  onFocus: PropTypes.func.isRequired,
+  onSubmit: PropTypes.func.isRequired,
   placeholder: PropTypes.string,
 };
 

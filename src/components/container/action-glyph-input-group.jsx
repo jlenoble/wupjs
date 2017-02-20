@@ -19,18 +19,15 @@ class ActionGlyphInputGroup extends Component {
 
   render () {
     return (
-      <form
+      <GlyphInputGroup
+        placeholder={this.props.placeholder}
+        glyphiconType={this.props.glyphiconType}
+        exposeInputNode={inputNode => {
+          this._inputNode = inputNode;
+        }}
         onFocus={this._handleFocus}
         onSubmit={this._handleSubmit}
-      >
-        <GlyphInputGroup
-          placeholder={this.props.placeholder}
-          glyphiconType={this.props.glyphiconType}
-          exposeInputNode={inputNode => {
-            this._inputNode = inputNode;
-          }}
-        />
-      </form>
+      />
     );
   }
 }
