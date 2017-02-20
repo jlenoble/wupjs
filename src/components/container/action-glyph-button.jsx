@@ -11,9 +11,10 @@ class ActionGlyphButton extends Component {
 
   render () {
     return (
-      <span onClick={this._handleClick}>
-        <GlyphButton glyphiconType={this.props.glyphiconType}/>
-      </span>
+      <GlyphButton
+        glyphiconType={this.props.glyphiconType}
+        onClick={this._handleClick}
+      />
     );
   }
 }
