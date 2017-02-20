@@ -40,16 +40,19 @@ export const sync = done => {
     },
   }, done);
 
-  gulp.watch([path.join(srcDir, 'index.html'),
-    bundleBuildGlob]).on('change', (...args) => {
-      serve();
+  gulp.watch([
+    path.join(srcDir, 'index.html'),
+    path.join(srcDir, 'static/css/style.css'),
+    bundleBuildGlob,
+  ]).on('change', (...args) => {
+    serve();
 
-      p.stdout.on('data', data => {
-        if (data.toString().match(/Server started on port 5000/)) {
-          bs.reload(...args);
-        }
-      });
+    p.stdout.on('data', data => {
+      if (data.toString().match(/Server started on port 5000/)) {
+        bs.reload(...args);
+      }
     });
+  });
 };
 
 gulp.task('serve', gulp.series(serve, sync));
