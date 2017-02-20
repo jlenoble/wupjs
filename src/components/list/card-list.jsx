@@ -1,9 +1,10 @@
 import React, {Component, PropTypes} from 'react';
 import {connect} from 'react-redux';
-import {fetchItemsIfNeeded} from '../actions';
-import List, {AddItemInputGroup} from './list';
+import {fetchItemsIfNeeded} from '../../actions';
+import List from './list';
+import {AddItemInputGroup} from './item-input-groups';
 
-class TestPage extends Component {
+class CardList extends Component {
   componentDidMount () {
     this.props.dispatch(fetchItemsIfNeeded());
   }
@@ -11,22 +12,26 @@ class TestPage extends Component {
   render () {
     const {items, isFetching} = this.props;
 
-    return <div className="container-fluid">
-      <AddItemInputGroup/>
-      {isFetching && items.length === 0 &&
-        <h2>Loading...</h2>
-      }
-      {!isFetching && items.length === 0 &&
-        <h2>Empty.</h2>
-      }
-      {items.length > 0 &&
-        <List items={items}/>
-      }
+    return <div className="card">
+      <div className="card-header">
+        <AddItemInputGroup/>
+      </div>
+      <div className="card-block">
+        {isFetching && items.length === 0 &&
+          <h2>Loading...</h2>
+        }
+        {!isFetching && items.length === 0 &&
+          <h2>Empty.</h2>
+        }
+        {items.length > 0 &&
+          <List items={items}/>
+        }
+      </div>
     </div>;
   }
 }
 
-TestPage.propTypes = {
+CardList.propTypes = {
   items: PropTypes.array.isRequired,
   isFetching: PropTypes.bool.isRequired,
   dispatch: PropTypes.func.isRequired,
@@ -55,4 +60,4 @@ function mapStateToProps (state) {
   return props;
 }
 
-export default connect(mapStateToProps)(TestPage);
+export default connect(mapStateToProps)(CardList);
