@@ -1,29 +1,13 @@
 import React, {Component, PropTypes} from 'react';
 import {EditItemButton, RemoveItemButton} from './item-buttons';
 import ModifyItem from './modify-item';
-import {updateItem, unfocusCurrentItem} from '../../actions';
 
 class Item extends Component {
   renderEdited () {
     const {title, _id} = this.props;
 
     return <li className="list-group-item">
-      <ModifyItem
-        title={title}
-        save={(input, clearInput, dispatch) => {
-          dispatch(unfocusCurrentItem());
-
-          const trimmedValue = input.value.trim();
-
-          if (!trimmedValue || trimmedValue === title) {
-            return;
-          }
-
-          dispatch(updateItem({title: trimmedValue, _id}, {title, _id}));
-
-          clearInput();
-        }}
-      />
+      <ModifyItem item={{title, _id}}/>
     </li>;
   }
 
@@ -52,6 +36,7 @@ class Item extends Component {
 Item.propTypes = {
   _id: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
+  // isBeingEdited: PropTypes.bool.isRequired,
 };
 
 export default Item;
