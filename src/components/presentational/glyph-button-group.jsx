@@ -1,7 +1,8 @@
+import classnames from 'classnames';
 import React, {PropTypes} from 'react';
 
-const GlyphButtonGroup = ({children}) => (
-  <div className="btn-group" role="group">
+const GlyphButtonGroup = ({children, addClass}) => (
+  <div className={classnames('btn-group', addClass)} role="group">
     {children}
   </div>
 );

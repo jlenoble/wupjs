@@ -4,7 +4,7 @@ import {ModifyItemInputGroup} from './item-input-groups';
 import {itemPropType} from './proptypes';
 
 const Item = ({item, isBeingEdited}) => (
-  <li className="list-group-item">
+  <li className="list-group-item row">
     {
       isBeingEdited ?
         <ModifyItemInputGroup item={item}/> :

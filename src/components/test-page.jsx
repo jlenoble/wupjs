@@ -11,7 +11,7 @@ class TestPage extends Component {
   render () {
     const {items, isFetching} = this.props;
 
-    return <div>
+    return <div className="container-fluid">
       <AddItemInputGroup/>
       {isFetching && items.length === 0 &&
         <h2>Loading...</h2>
