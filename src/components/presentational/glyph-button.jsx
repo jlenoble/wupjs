@@ -2,10 +2,10 @@ import React, {PropTypes} from 'react';
 
 const GlyphButton = ({glyphicon, onClick}) => (
   <button
-    className="btn btn-default"
+    className="btn btn-secondary"
     onClick={onClick}
   >
-    <span className={`glyphicon glyphicon-${glyphicon}`}></span>
+    <i className={`fa fa-${glyphicon}`}></i>
   </button>
 );
 

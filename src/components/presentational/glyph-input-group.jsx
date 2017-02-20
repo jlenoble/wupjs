@@ -22,9 +22,9 @@ const GlyphInputGroup = ({
     <span className="input-group-btn">
       <button
         type="submit"
-        className="btn btn-default"
+        className="btn btn-secondary"
       >
-        <span className={`glyphicon glyphicon-${glyphicon}`}></span>
+        <i className={`fa fa-${glyphicon}`}></i>
       </button>
     </span>
   </form>

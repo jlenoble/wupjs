@@ -34,7 +34,7 @@ const makeItemInputGroup = ({
 export default makeItemInputGroup;
 
 const ModifyItemInputGroup = makeItemInputGroup({
-  glyphicon: 'floppy-disk',
+  glyphicon: 'save',
   autoFocus: true,
   makeHandleSubmit: item => (input, clearInput, dispatch) => {
     const trimmed = input.value.trim();

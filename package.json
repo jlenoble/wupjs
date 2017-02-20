@@ -56,8 +56,9 @@
   },
   "dependencies": {
     "body-parser": "^1.16.1",
-    "bootstrap": "^3.3.7",
+    "bootstrap": "^4.0.0-alpha",
     "express": "^4.14.1",
+    "font-awesome": "^4.7.0",
     "isomorphic-fetch": "^2.2.1",
     "jquery": "^3.1.1",
     "mongoose": "^4.8.2",
