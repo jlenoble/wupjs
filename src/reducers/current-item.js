@@ -4,19 +4,22 @@ import {
 
 export function currentItem (state = {
   isBeingEdited: false,
-  itemId: '',
+  _id: '',
+  title: '',
 }, action) {
   switch (action.type) {
   case EDIT_ITEM:
     return Object.assign({}, state, {
       isBeingEdited: true,
-      itemId: action._id,
+      _id: action._id,
+      title: action.title,
     });
 
   case UNFOCUS_CURRENT_ITEM:
     return Object.assign({}, state, {
       isBeingEdited: false,
-      itemId: '',
+      _id: '',
+      title: '',
     });
 
   default:
