@@ -9,6 +9,7 @@ const GlyphButtonGroup = ({children, addClass}) => (
 
 GlyphButtonGroup.propTypes = {
   children: PropTypes.arrayOf(PropTypes.element.isRequired).isRequired,
+  addClass: PropTypes.string,
 };
 
 export default GlyphButtonGroup;
