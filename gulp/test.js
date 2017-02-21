@@ -1,8 +1,8 @@
 import gulp from 'gulp';
 import mocha from 'gulp-mocha-phantomjs';
 
-import './build';
 import './bundle';
+import './sass';
 
 export const test = done => {
   return gulp.src('test/runner.html')
@@ -12,4 +12,4 @@ export const test = done => {
     });
 };
 
-gulp.task('test', gulp.series('bundle', test));
+gulp.task('test', gulp.series(gulp.parallel('sass', 'bundle'), test));

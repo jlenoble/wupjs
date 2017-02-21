@@ -3,7 +3,7 @@ import path from 'path';
 import browserSync from 'browser-sync';
 import {spawn} from 'child_process';
 
-import {srcDir, bundleBuildGlob} from './globs';
+import {srcDir, bundleBuildGlob, cssBuildGlob} from './globs';
 import './bundle';
 
 let p;
@@ -42,7 +42,7 @@ export const sync = done => {
 
   gulp.watch([
     path.join(srcDir, 'index.html'),
-    path.join(srcDir, 'static/css/style.css'),
+    cssBuildGlob,
     bundleBuildGlob,
   ]).on('change', (...args) => {
     serve();
