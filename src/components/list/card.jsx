@@ -4,7 +4,7 @@ import {fetchItemsIfNeeded} from '../../actions';
 import List from './list';
 import {AddItemInputGroup} from './item-input-groups';
 
-class CardList extends Component {
+class Card extends Component {
   componentDidMount () {
     this.props.dispatch(fetchItemsIfNeeded());
   }
@@ -31,7 +31,7 @@ class CardList extends Component {
   }
 }
 
-CardList.propTypes = {
+Card.propTypes = {
   items: PropTypes.array.isRequired,
   isFetching: PropTypes.bool.isRequired,
   dispatch: PropTypes.func.isRequired,
@@ -60,4 +60,4 @@ function mapStateToProps (state) {
   return props;
 }
 
-export default connect(mapStateToProps)(CardList);
+export default connect(mapStateToProps)(Card);
