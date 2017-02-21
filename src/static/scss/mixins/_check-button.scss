@@ -1,0 +1,30 @@
+@import "compass/css3/transition";
+@import "compass/css3/appearance";
+@import "compass/css3/transform";
+
+@mixin checkButton($parent-selector, $button-selector, $text) {
+  #{$parent-selector} {
+    #{$button-selector} {
+      padding: 0;
+      outline: none;
+      font-size: 1.35em;
+      color: rgba(40, 40, 40, 0.4);
+      background-color: transparent;
+      @include transition(all .1s);
+      @include appearance(none);
+
+      &:before {
+        content: $text;
+      }
+
+      &:checked {
+        color: rgba(40, 40, 40, 1);
+        @include scale(1.3);
+      }
+
+      &:hover {
+        cursor: pointer;
+      }
+    }
+  }
+}
