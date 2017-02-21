@@ -1,4 +1,4 @@
-import React, {PropTypes} from 'react';
+import React from 'react';
 import ActionGlyphButton from '../container/action-glyph-button';
 import {editItem, deleteItem, unfocusCurrentItem} from '../../actions';
 import {itemPropType} from './proptypes';
