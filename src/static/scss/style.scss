@@ -1,18 +1,18 @@
 @import "mixins/_check-button";
 
-.vertical-align {
-  display: flex;
-  align-items: center;
-}
-
 li {
+  .vertical-align {
+    display: flex;
+    align-items: center;
+  }
+
   @include checkButton(
-    $parent-selector: "span",
+    $parent-selector: ".glyph-checkbox",
     $button-selector: ".toggle-selected",
     $text: "✓"
   );
   @include checkButton(
-    $parent-selector: "span",
+    $parent-selector: ".glyph-checkbox",
     $button-selector: ".toggle-scheduled",
     $text: "⌚"
   );
