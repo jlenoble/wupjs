@@ -12,22 +12,24 @@ class Card extends Component {
   render () {
     const {items, isFetching} = this.props;
 
-    return <div className="card">
-      <div className="card-header">
-        <AddItemInputGroup/>
+    return (
+      <div className="card">
+        <div className="card-header">
+          <AddItemInputGroup/>
+        </div>
+        <div className="card-block">
+          {isFetching && items.length === 0 &&
+            <h2>Loading...</h2>
+          }
+          {!isFetching && items.length === 0 &&
+            <h2>Empty.</h2>
+          }
+          {items.length > 0 &&
+            <List items={items}/>
+          }
+        </div>
       </div>
-      <div className="card-block">
-        {isFetching && items.length === 0 &&
-          <h2>Loading...</h2>
-        }
-        {!isFetching && items.length === 0 &&
-          <h2>Empty.</h2>
-        }
-        {items.length > 0 &&
-          <List items={items}/>
-        }
-      </div>
-    </div>;
+    );
   }
 }
 
