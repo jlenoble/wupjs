@@ -40,24 +40,24 @@ Card.propTypes = {
 };
 
 function mapStateToProps (state) {
-  const props = Object.assign({
-    items: [],
-    isFetching: false,
-    _id: '',
-    isBeingEdited: false,
-  }, state.items, state.currentItem);
+  const props = Object.assign({}, state.items);
 
-  const isBeingEdited = props.isBeingEdited;
+  const {_id, isBeingEdited} = state.currentItem;
+  const selection = state.currentSelection.items;
 
   if (isBeingEdited) {
-    const _id = props._id;
-
     props.items = props.items.map(item => {
       return item._id !== _id ? item : Object.assign({
         isBeingEdited,
       }, item);
     });
   }
+
+  props.items = props.items.map(item => {
+    return Object.assign({}, item, {
+      isSelected: selection[item._id] ? true : false,
+    });
+  });
 
   return props;
 }
