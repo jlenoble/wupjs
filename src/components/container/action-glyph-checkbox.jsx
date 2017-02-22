@@ -7,7 +7,7 @@ class ActionGlyphCheckbox extends Component {
     const {handleChange, dispatch} = this.props;
 
     this._handleChange = () => {
-      handleChange(dispatch);
+      handleChange(this._inputNode, dispatch);
     };
   }
 
@@ -17,6 +17,9 @@ class ActionGlyphCheckbox extends Component {
     return (
       <GlyphCheckbox
         addClass={addClass}
+        exposeInputNode={inputNode => {
+          this._inputNode = inputNode;
+        }}
         onChange={this._handleChange}
         checked={checked}
       />
