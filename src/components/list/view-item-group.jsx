@@ -7,8 +7,14 @@ import {SelectItemCheckbox, ScheduleItemCkeckbox} from './item-checkboxes';
 const ViewItemGroup = ({item}) => (
   <div className="col">
     <span className="row vertical-align">
-      <SelectItemCheckbox addClass="col toggle-selected"/>
-      <ScheduleItemCkeckbox addClass="col toggle-scheduled"/>
+      <SelectItemCheckbox
+        addClass="col toggle-selected"
+        item={item}
+      />
+      <ScheduleItemCkeckbox
+        addClass="col toggle-scheduled"
+        item={item}
+      />
       <span className="col">
         {item.title}
       </span>
