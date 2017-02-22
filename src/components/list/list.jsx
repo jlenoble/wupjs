@@ -8,7 +8,6 @@ const List = ({items}) => (
       <Item
         key={item._id}
         item={item}
-        isBeingEdited={item.isBeingEdited}
       />
     )}
   </ul>
