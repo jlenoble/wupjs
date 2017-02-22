@@ -1,21 +1,14 @@
 import React from 'react';
-import {EditItemButton, RemoveItemButton} from './item-buttons';
-import GlyphButtonGroup from '../presentational/glyph-button-group';
 import {itemPropType} from './proptypes';
-
-import GlyphCheckbox from '../presentational/glyph-checkbox';
+import GlyphButtonGroup from '../presentational/glyph-button-group';
+import {EditItemButton, RemoveItemButton} from './item-buttons';
+import {SelectItemCheckbox, ScheduleItemCkeckbox} from './item-checkboxes';
 
 const ViewItemGroup = ({item}) => (
   <div className="col">
     <span className="row vertical-align">
-      <GlyphCheckbox
-        addClass="col toggle-selected"
-        onChange={() => {}}
-      />
-      <GlyphCheckbox
-        addClass="col toggle-scheduled"
-        onChange={() => {}}
-      />
+      <SelectItemCheckbox addClass="col toggle-selected"/>
+      <ScheduleItemCkeckbox addClass="col toggle-scheduled"/>
       <span className="col">
         {item.title}
       </span>
