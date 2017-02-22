@@ -4,17 +4,21 @@ import GlyphCheckbox from '../presentational/glyph-checkbox';
 
 class ActionGlyphCheckbox extends Component {
   componentWillMount () {
+    const {handleChange, dispatch} = this.props;
+
     this._handleChange = () => {
-      this.props.handleChange(this.props.dispatch);
+      handleChange(dispatch);
     };
   }
 
   render () {
+    const {addClass, checked} = this.props;
+
     return (
       <GlyphCheckbox
-        addClass={this.props.addClass}
+        addClass={addClass}
         onChange={this._handleChange}
-        checked={this.props.checked}
+        checked={checked}
       />
     );
   }

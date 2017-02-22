@@ -4,8 +4,10 @@ import GlyphButton from '../presentational/glyph-button';
 
 class ActionGlyphButton extends Component {
   componentWillMount () {
+    const {handleClick, dispatch} = this.props;
+
     this._handleClick = () => {
-      this.props.handleClick(this.props.dispatch);
+      handleClick(dispatch);
     };
   }
 

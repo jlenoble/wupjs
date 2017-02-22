@@ -4,31 +4,35 @@ import GlyphInputGroup from '../presentational/glyph-input-group';
 
 class ActionGlyphInputGroup extends Component {
   componentWillMount () {
-    if (this.props.handleFocus) {
+    const {handleFocus, handleSubmit, dispatch} = this.props;
+
+    if (handleFocus) {
       this._handleFocus = () => {
-        this.props.handleFocus(this.props.dispatch);
+        handleFocus(dispatch);
       };
     }
 
     this._handleSubmit = e => {
       e.preventDefault();
 
-      this.props.handleSubmit(this._inputNode, () => {
+      handleSubmit(this._inputNode, () => {
         this._inputNode.value = '';
-      }, this.props.dispatch);
+      }, dispatch);
     };
   }
 
   render () {
+    const {placeholder, glyphicon, autoFocus, defaultValue} = this.props;
+
     return (
       <GlyphInputGroup
-        placeholder={this.props.placeholder}
-        glyphicon={this.props.glyphicon}
+        placeholder={placeholder}
+        glyphicon={glyphicon}
         exposeInputNode={inputNode => {
           this._inputNode = inputNode;
         }}
-        autoFocus={this.props.autoFocus}
-        defaultValue={this.props.defaultValue}
+        autoFocus={autoFocus}
+        defaultValue={defaultValue}
         onFocus={this._handleFocus}
         onSubmit={this._handleSubmit}
       />
