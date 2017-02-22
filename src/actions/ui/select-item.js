@@ -1,19 +1,19 @@
 export const SELECT_ITEM = 'SELECT_ITEM';
-export function selectItem ({_id}) {
+export function selectItem (item) {
   return dispatch => {
     dispatch({
       type: SELECT_ITEM,
-      _id,
+      item,
     });
   };
 }
 
 export const UNSELECT_ITEM = 'UNSELECT_ITEM';
-export function unselectItem ({_id}) {
+export function unselectItem (item) {
   return dispatch => {
     dispatch({
       type: UNSELECT_ITEM,
-      _id,
+      item,
     });
   };
 }
