@@ -3,20 +3,28 @@ import {
 } from '../actions';
 
 export function currentSelection (state = {
-  items: [],
+  items: {},
 }, action) {
+  const _id = action.item ? action.item._id : '';
+  const items = {};
+
   switch (action.type) {
   case SELECT_ITEM:
-    return Object.assign({}, state, {
-      items: state.items.concat(Object.assign({}, action.item)),
-    });
+    if (state.items[_id]) {
+      return state;
+    }
+    items[_id] = action.item;
+    return {
+      items: Object.assign({}, state.items, items),
+    };
 
   case UNSELECT_ITEM:
-    return Object.assign({}, state, {
-      items: state.items.filter(item => {
-        return item._id !== action._id;
-      }),
-    });
+    if (!state.items[_id]) {
+      return state;
+    }
+    Object.assign(items, state.items);
+    delete items[_id];
+    return {items};
 
   default:
     return state;
