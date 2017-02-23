@@ -1,3 +1,4 @@
 import './connect';
 
-export {default as Item} from './items';
+export {Item} from './items';
+export {Selection} from './selections';
