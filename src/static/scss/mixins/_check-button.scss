@@ -2,20 +2,16 @@
 @import "compass/css3/appearance";
 @import "compass/css3/transform";
 
-@mixin checkButton($parent-selector, $button-selector, $text) {
+@mixin checkButton($parent-selector, $button-selector) {
   #{$parent-selector} {
     #{$button-selector} {
-      padding: 0;
+      padding: 0 .1em;
       outline: none;
       font-size: 1.35em;
       color: rgba(40, 40, 40, 0.4);
       background-color: transparent;
       @include transition(all .1s);
       @include appearance(none);
-
-      &:before {
-        content: $text;
-      }
 
       &:checked {
         color: rgba(40, 40, 40, 1);

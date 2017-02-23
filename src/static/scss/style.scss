@@ -1,6 +1,6 @@
 @import "mixins/_check-button";
 
-li {
+button, li {
   .vertical-align {
     display: flex;
     align-items: center;
@@ -8,12 +8,26 @@ li {
 
   @include checkButton(
     $parent-selector: ".glyph-checkbox",
-    $button-selector: ".toggle-selected",
-    $text: "✓"
+    $button-selector: ".fa-check"
   );
   @include checkButton(
     $parent-selector: ".glyph-checkbox",
-    $button-selector: ".toggle-scheduled",
-    $text: "⌚"
+    $button-selector: ".fa-pencil"
+  );
+  @include checkButton(
+    $parent-selector: ".glyph-checkbox",
+    $button-selector: ".fa-trash-o"
+  );
+  @include checkButton(
+    $parent-selector: ".glyph-checkbox",
+    $button-selector: ".fa-bomb"
+  );
+  @include checkButton(
+    $parent-selector: ".glyph-checkbox",
+    $button-selector: ".fa-close"
+  );
+  @include checkButton(
+    $parent-selector: ".glyph-checkbox",
+    $button-selector: ".fa-clock-o"
   );
 }
