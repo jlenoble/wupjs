@@ -2,6 +2,7 @@ import React, {Component, PropTypes} from 'react';
 import {connect} from 'react-redux';
 import {fetchItemsIfNeeded} from '../../actions';
 import List from './list';
+import ActionGlyphButton from '../container/action-glyph-button';
 
 class Card extends Component {
   componentDidMount () {
@@ -13,6 +14,13 @@ class Card extends Component {
 
     return (
       <div className="card">
+        <div className="card-header">
+          <ActionGlyphButton
+            glyphicon="save"
+            handleClick={dispatch => {
+            }}
+          />
+        </div>
         <div className="card-block">
           {isFetching && items.length === 0 &&
             <h2>Loading...</h2>
