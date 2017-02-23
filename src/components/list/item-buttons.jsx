@@ -26,6 +26,6 @@ const makeItemButton = (applyToItem, glyphicon) => {
 export default makeItemButton;
 
 const EditItemButton = makeItemButton(editItem, 'pencil');
-const RemoveItemButton = makeItemButton(deleteItem, 'trash');
+const RemoveItemButton = makeItemButton(deleteItem, 'trash-o');
 
 export {EditItemButton, RemoveItemButton};
