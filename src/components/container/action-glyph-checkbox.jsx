@@ -12,10 +12,11 @@ class ActionGlyphCheckbox extends Component {
   }
 
   render () {
-    const {addClass, checked} = this.props;
+    const {addClass, glyphicon, checked} = this.props;
 
     return (
       <GlyphCheckbox
+        glyphicon={glyphicon}
         addClass={addClass}
         exposeInputNode={inputNode => {
           this._inputNode = inputNode;
@@ -29,7 +30,8 @@ class ActionGlyphCheckbox extends Component {
 
 ActionGlyphCheckbox.propTypes = {
   handleChange: PropTypes.func.isRequired,
-  addClass: PropTypes.string.isRequired,
+  glyphicon: PropTypes.string.isRequired,
+  addClass: PropTypes.string,
   checked: PropTypes.bool,
 };
 
