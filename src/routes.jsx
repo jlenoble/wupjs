@@ -1,6 +1,6 @@
 import React from 'react';
 import {Route, IndexRoute} from 'react-router';
-import Layout from './components/layouts/main';
+import Layout from './components/layouts/page';
 import IndexPage from './components/pages/index-page';
 import TestPage from './components/pages/test-page';
 import PageNotFound from './components/pages/page-not-found';

@@ -3,7 +3,7 @@ import {renderToString} from 'react-dom/server';
 import {RouterContext} from 'react-router';
 import {Provider} from 'react-redux';
 
-import PageNotFound from '../components/page-not-found';
+import PageNotFound from '../components/pages/page-not-found';
 import store from './store';
 
 export default function makeMarkup (renderProps) {
