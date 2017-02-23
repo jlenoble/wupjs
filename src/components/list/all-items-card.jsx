@@ -3,6 +3,8 @@ import {connect} from 'react-redux';
 import {fetchItemsIfNeeded} from '../../actions';
 import List from './list';
 import {AddItemInputGroup} from './item-input-groups';
+import ActionGlyphCheckbox from '../container/action-glyph-checkbox';
+import ButtonGroup from '../presentational/button-group';
 
 class Card extends Component {
   componentDidMount () {
@@ -15,6 +17,50 @@ class Card extends Component {
     return (
       <div className="card">
         <div className="card-header">
+          <ButtonGroup>
+            <button className="btn btn-secondary">
+              <ActionGlyphCheckbox
+                glyphicon="clock-o"
+                handleChange={dispatch => {
+                }}
+              />
+            </button>
+            <button className="btn btn-secondary">
+              <ActionGlyphCheckbox
+                glyphicon="check"
+                handleChange={dispatch => {
+                }}
+              />
+            </button>
+            <button className="btn btn-secondary">
+              <ActionGlyphCheckbox
+                glyphicon="trash-o"
+                handleChange={dispatch => {
+                }}
+              />
+            </button>
+            <button className="btn btn-secondary">
+              <ActionGlyphCheckbox
+                glyphicon="close"
+                handleChange={dispatch => {
+                }}
+              />
+            </button>
+            <button className="btn btn-secondary">
+              <ActionGlyphCheckbox
+                glyphicon="pencil"
+                handleChange={dispatch => {
+                }}
+              />
+            </button>
+            <button className="btn btn-secondary">
+              <ActionGlyphCheckbox
+                glyphicon="bomb"
+                handleChange={dispatch => {
+                }}
+              />
+            </button>
+          </ButtonGroup>
           <AddItemInputGroup/>
         </div>
         <div className="card-block">
