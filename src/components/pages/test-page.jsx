@@ -1,6 +1,6 @@
 import React from 'react';
-import AllItemsCard from './list/all-items-card';
-import CurrentSelectionCard from './list/current-selection-card';
+import AllItemsCard from '../list/all-items-card';
+import CurrentSelectionCard from '../list/current-selection-card';
 
 export default () => (
   <div className="container-fluid">

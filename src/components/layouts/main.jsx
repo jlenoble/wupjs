@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
-import PageHeader from './page-header';
-import PageFooter from './page-footer';
+import PageHeader from '../pages/page-header';
+import PageFooter from '../pages/page-footer';
 
 export default class Layout extends Component {
   render () {
