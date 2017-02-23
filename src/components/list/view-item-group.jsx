@@ -1,6 +1,6 @@
 import React, {PropTypes} from 'react';
 import {itemPropType} from './proptypes';
-import GlyphButtonGroup from '../presentational/glyph-button-group';
+import ButtonGroup from '../presentational/button-group';
 
 const makeButtonComponent = (Component, item, key) => (
   <Component
@@ -39,9 +39,9 @@ const ViewItemGroup = ({item, ui: {buttons, checkboxes}}) => {
         <span className="col">
           {_item.title}
         </span>
-        <GlyphButtonGroup addClass="col justify-content-end">
+        <ButtonGroup addClass="col justify-content-end">
           {buttonComponents}
-        </GlyphButtonGroup>
+        </ButtonGroup>
       </span>
     </div>
   );
