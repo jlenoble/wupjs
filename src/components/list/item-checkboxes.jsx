@@ -1,17 +1,43 @@
 import React from 'react';
-import classnames from 'classnames';
 import ActionGlyphCheckbox from '../container/action-glyph-checkbox';
 import {selectItem, unselectItem, unfocusCurrentItem} from '../../actions';
 import {itemWithRequiredProps} from './proptypes';
 import makeIsProp from '../../helpers/make-is-prop';
 
-const makeItemCheckbox = ({classHint, makeHandleChange}) => {
+const getClassHintFromGlyph = glyphicon => {
+  switch (glyphicon) {
+  case 'trash-o':
+    return 'deleted';
+
+  case 'edit':
+    return 'edited';
+
+  case 'close':
+    return 'removed';
+
+  case 'clock-o':
+    return 'scheduled';
+
+  case 'check':
+    return 'selected';
+
+  case 'bomb':
+    return 'shredded';
+
+  default:
+    return 'undefined';
+  }
+};
+
+const makeItemCheckbox = ({glyphicon, makeHandleChange}) => {
+  const classHint = getClassHintFromGlyph(glyphicon);
   const isProp = makeIsProp(classHint);
 
   const ItemCheckbox = ({item, addClass}) => (
     <ActionGlyphCheckbox
       handleChange={makeHandleChange(item)}
-      addClass={classnames('toggle-' + classHint, addClass)}
+      addClass={addClass}
+      glyphicon={glyphicon}
       checked={item[isProp]}
     />
   );
@@ -28,7 +54,7 @@ const makeItemCheckbox = ({classHint, makeHandleChange}) => {
 export default makeItemCheckbox;
 
 const SelectItemCheckbox = makeItemCheckbox({
-  classHint: 'selected',
+  glyphicon: 'check',
   makeHandleChange: item => (input, dispatch) => {
     dispatch(unfocusCurrentItem());
 
@@ -41,7 +67,7 @@ const SelectItemCheckbox = makeItemCheckbox({
 });
 
 const ScheduleItemCkeckbox = makeItemCheckbox({
-  classHint: 'scheduled',
+  glyphicon: 'clock-o',
   makeHandleChange: item => (input, dispatch) => {
     dispatch(unfocusCurrentItem());
   },
