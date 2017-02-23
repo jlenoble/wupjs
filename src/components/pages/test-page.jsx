@@ -1,16 +1,11 @@
 import React from 'react';
+import Content from '../layouts/content';
 import AllItemsCard from '../list/all-items-card';
 import CurrentSelectionCard from '../list/current-selection-card';
 
 export default () => (
-  <div className="container-fluid">
-    <div className="row">
-      <div className="col">
-        <AllItemsCard/>
-      </div>
-      <div className="col">
-        <CurrentSelectionCard/>
-      </div>
-    </div>
-  </div>
+  <Content>
+    <AllItemsCard/>
+    <CurrentSelectionCard/>
+  </Content>
 );
