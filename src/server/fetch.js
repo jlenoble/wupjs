@@ -3,7 +3,7 @@ import urlParse from 'url-parse';
 
 import {protocol, host, port} from './config';
 
-export default function fetch(path, options) {
+export default function fetch (path, options) {
   const url = urlParse(path);
 
   if (!url.protocol) {
