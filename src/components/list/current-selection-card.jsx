@@ -44,13 +44,14 @@ Card.propTypes = {
 
 function mapStateToProps (state) {
   const props = Object.assign({}, state.items);
+  const items = props.items;
   const selection = state.currentSelection.items;
 
-  props.items = props.items.filter(item => {
-    return selection[item._id];
-  }).map(item => Object.assign({
+  props.items = Object.keys(items).filter(_id => {
+    return selection[_id];
+  }).map(_id => Object.assign({
     isSelected: true,
-  }, item));
+  }, items[_id]));
 
   return props;
 }

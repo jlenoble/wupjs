@@ -41,7 +41,8 @@ function fetchItems () {
 
 function shouldFetchItems (state) {
   const {items} = state;
-  return !items || (items.items.length === 0 && !items.isFetching);
+  return !items || (Object.keys(items.items).length === 0 &&
+    !items.isFetching);
 }
 
 export function fetchItemsIfNeeded () {

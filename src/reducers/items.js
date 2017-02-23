@@ -7,8 +7,10 @@ import {
 
 export function items (state = {
   isFetching: false,
-  items: [],
+  items: {},
 }, action) {
+  let items;
+
   switch (action.type) {
   case REQUEST_ITEMS:
     return Object.assign({}, state, {
@@ -18,68 +20,70 @@ export function items (state = {
   case RECEIVE_ITEMS_SUCCESS:
     return Object.assign({}, state, {
       isFetching: false,
-      items: action.items,
+      items: action.items.reduce((obj, item) => {
+        obj[item._id] = item; // eslint-disable-line no-param-reassign
+        return obj;
+      }, {}),
     });
 
   case CREATE_ITEM:
     return Object.assign({}, state, {
       isFetching: true,
-      items: state.items.concat(Object.assign({
-        _id: action._id,
-      }, action.item)),
+      items: Object.assign({
+        _id: Object.assign({
+          _id: action._id,
+        }, action.item),
+      }, state.items),
     });
 
   case CREATE_ITEM_SUCCESS:
-    return Object.assign({}, state, {
+    items = Object.assign({}, state.items);
+    delete items[action._id];
+    items[action.item._id] = action.item;
+    return {
       isFetching: false,
-      items: state.items.map(item => {
-        return item._id !== action._id ? item : action.item;
-      }),
-    });
+      items,
+    };
 
   case CREATE_ITEM_ERROR:
-    return Object.assign({}, state, {
+    items = Object.assign({}, state.items);
+    delete items[action._id];
+    return {
       isFetching: false,
-      items: state.items.filter(item => {
-        return item._id !== action._id;
-      }),
-    });
+      items,
+    };
 
   case DELETE_ITEM:
-    return Object.assign({}, state, {
+    items = Object.assign({}, state.items);
+    delete items[action._id];
+    return {
       isFetching: true,
-      items: state.items.filter(item => {
-        return item._id !== action._id;
-      }),
-    });
+      items,
+    };
 
   case DELETE_ITEM_ERROR:
-    return Object.assign({}, state, {
+    items = Object.assign({}, state.items);
+    items[action.item._id] = action.item;
+    return {
       isFetching: false,
-      items: state.items.concat(action.item),
-    });
+      items,
+    };
 
   case UPDATE_ITEM:
-    return Object.assign({}, state, {
+    items = Object.assign({}, state.items);
+    items[action.item._id] = action.item;
+    return {
       isFetching: true,
-      items: state.items.map(item => {
-        return item._id !== action._id ? item : {
-          title: action.title,
-          _id: item._id,
-        };
-      }),
-    });
+      items,
+    };
 
   case UPDATE_ITEM_ERROR:
-    return Object.assign({}, state, {
+    items = Object.assign({}, state.items);
+    items[action.item._id] = action.item;
+    return {
       isFetching: false,
-      items: state.items.map(item => {
-        return item._id !== action._id ? item : {
-          title: action.title,
-          _id: item._id,
-        };
-      }),
-    });
+      items,
+    };
 
   case RECEIVE_ITEMS_ERROR:
   case UPDATE_ITEM_SUCCESS:

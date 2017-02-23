@@ -4,7 +4,7 @@ export const UPDATE_ITEM = 'UPDATE_ITEM';
 function requestUpdateItem ({title, _id}) {
   return {
     type: UPDATE_ITEM,
-    title, _id,
+    item: {title, _id}, _id,
   };
 }
 
@@ -19,7 +19,7 @@ export const UPDATE_ITEM_ERROR = 'UPDATE_ITEM_ERROR';
 function updateItemError ({title, _id}, error) {
   return {
     type: UPDATE_ITEM_ERROR,
-    title, _id, error,
+    item: {title, _id}, _id, error,
   };
 }
 
