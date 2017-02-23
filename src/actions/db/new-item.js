@@ -4,10 +4,10 @@ let _tmpId = 0;
 const tmpId = () => 'itemTmpId' + (_tmpId++);
 
 export const CREATE_ITEM = 'CREATE_ITEM';
-function createItem (item, _id) {
+function createItem (item) {
   return {
     type: CREATE_ITEM,
-    item, _id,
+    item,
   };
 }
 
@@ -29,10 +29,10 @@ function createItemError (item, _id, error) {
 
 export function newItem (title) {
   const _id = tmpId();
-  const item = {title};
+  const item = {title, _id};
 
   return dispatch => {
-    dispatch(createItem(item, _id));
+    dispatch(createItem(item));
 
     return fetch('/api/items', {
       method: 'POST',

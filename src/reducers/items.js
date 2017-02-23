@@ -30,9 +30,7 @@ export function items (state = {
     return Object.assign({}, state, {
       isFetching: true,
       items: Object.assign({
-        _id: Object.assign({
-          _id: action._id,
-        }, action.item),
+        _id: action.item,
       }, state.items),
     });
 
