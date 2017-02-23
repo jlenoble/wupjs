@@ -8,7 +8,10 @@ const GlyphButtonGroup = ({children, addClass}) => (
 );
 
 GlyphButtonGroup.propTypes = {
-  children: PropTypes.arrayOf(PropTypes.element.isRequired).isRequired,
+  children: React.PropTypes.oneOfType([
+    PropTypes.element.isRequired,
+    PropTypes.arrayOf(PropTypes.element.isRequired).isRequired,
+  ]).isRequired,
   addClass: PropTypes.string,
 };
 
