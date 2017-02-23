@@ -1,8 +1,8 @@
 import React from 'react';
 import ActionGlyphCheckbox from '../container/action-glyph-checkbox';
-import {selectItem, unselectItem, unfocusCurrentItem} from '../../actions';
+import {selectItem, unselectItem} from '../../actions';
 import {itemWithRequiredProps} from './proptypes';
-import makeIsProp from '../../helpers/make-is-prop';
+import {makeHandleChange, makeIsProp} from '../../helpers';
 
 const getClassHintFromGlyph = glyphicon => {
   switch (glyphicon) {
@@ -55,15 +55,7 @@ export default makeItemCheckbox;
 
 const SelectItemCheckbox = makeItemCheckbox({
   glyphicon: 'check',
-  makeHandleChange: item => (input, dispatch) => {
-    dispatch(unfocusCurrentItem());
-
-    if (input.checked) {
-      dispatch(selectItem(item));
-    } else {
-      dispatch(unselectItem(item));
-    }
-  },
+  makeHandleChange: makeHandleChange(selectItem, unselectItem),
 });
 
 const ScheduleItemCkeckbox = makeItemCheckbox({

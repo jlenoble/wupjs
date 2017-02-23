@@ -20,13 +20,6 @@ class Card extends Component {
           <ButtonGroup>
             <button className="btn btn-secondary">
               <ActionGlyphCheckbox
-                glyphicon="clock-o"
-                handleChange={dispatch => {
-                }}
-              />
-            </button>
-            <button className="btn btn-secondary">
-              <ActionGlyphCheckbox
                 glyphicon="check"
                 handleChange={dispatch => {
                 }}
@@ -34,14 +27,7 @@ class Card extends Component {
             </button>
             <button className="btn btn-secondary">
               <ActionGlyphCheckbox
-                glyphicon="trash-o"
-                handleChange={dispatch => {
-                }}
-              />
-            </button>
-            <button className="btn btn-secondary">
-              <ActionGlyphCheckbox
-                glyphicon="close"
+                glyphicon="clock-o"
                 handleChange={dispatch => {
                 }}
               />
@@ -55,7 +41,7 @@ class Card extends Component {
             </button>
             <button className="btn btn-secondary">
               <ActionGlyphCheckbox
-                glyphicon="bomb"
+                glyphicon="trash-o"
                 handleChange={dispatch => {
                 }}
               />

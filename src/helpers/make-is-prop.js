@@ -1,4 +1,4 @@
-export default stem => {
+export const makeIsProp = stem => {
   let _stem = stem.toLowerCase();
   let len = stem.length;
 
