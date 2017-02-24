@@ -19,3 +19,8 @@ export const itemWithRequiredProps = props => {
 export const itemsWithRequiredProps = props => {
   return PropTypes.arrayOf(itemWithRequiredProps(props).isRequired);
 };
+
+export const itemUiPropType = PropTypes.shape({
+  buttons: PropTypes.arrayOf(PropTypes.element.isRequired).isRequired,
+  checkboxes: PropTypes.arrayOf(PropTypes.element.isRequired).isRequired,
+});

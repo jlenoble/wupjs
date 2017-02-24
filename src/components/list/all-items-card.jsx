@@ -5,6 +5,8 @@ import List from './list';
 import {AddItemInputGroup} from './item-input-groups';
 import ActionGlyphCheckbox from '../container/action-glyph-checkbox';
 import ButtonGroup from '../presentational/button-group';
+import {EditItemButton, RemoveItemButton} from './item-buttons';
+import {SelectItemCheckbox, ScheduleItemCkeckbox} from './item-checkboxes';
 
 class Card extends Component {
   componentDidMount () {
@@ -57,7 +59,13 @@ class Card extends Component {
             <h2>Empty.</h2>
           }
           {items.length > 0 &&
-            <List items={items}/>
+            <List
+              items={items}
+              ui={{
+                buttons: [EditItemButton, RemoveItemButton],
+                checkboxes: [SelectItemCheckbox, ScheduleItemCkeckbox],
+              }}
+            />
           }
         </div>
       </div>

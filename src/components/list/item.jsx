@@ -1,21 +1,16 @@
 import React from 'react';
 import ViewItemGroup from './view-item-group';
 import {ModifyItemInputGroup} from './item-input-groups';
-import {itemPropType} from './proptypes';
-import {EditItemButton, RemoveItemButton} from './item-buttons';
-import {SelectItemCheckbox, ScheduleItemCkeckbox} from './item-checkboxes';
+import {itemPropType, itemUiPropType} from './proptypes';
 
-const Item = ({item}) => (
+const Item = ({item, ui}) => (
   <li className="list-group-item row">
     {
       item.isBeingEdited ?
         <ModifyItemInputGroup item={item}/> :
         <ViewItemGroup
           item={item}
-          ui={{
-            buttons: [EditItemButton, RemoveItemButton],
-            checkboxes: [SelectItemCheckbox, ScheduleItemCkeckbox],
-          }}
+          ui={ui}
         />
     }
   </li>
@@ -23,6 +18,7 @@ const Item = ({item}) => (
 
 Item.propTypes = {
   item: itemPropType.isRequired,
+  ui: itemUiPropType.isRequired,
 };
 
 export default Item;
