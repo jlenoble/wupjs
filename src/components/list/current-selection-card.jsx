@@ -3,8 +3,7 @@ import {connect} from 'react-redux';
 import {fetchItemsIfNeeded} from '../../actions';
 import List from './list';
 import ActionGlyphButton from '../container/action-glyph-button';
-import {EditItemButton} from './item-buttons';
-import {SelectItemCheckbox} from './item-checkboxes';
+import {EditItemButton, UnselectItemButton} from './item-buttons';
 
 class Card extends Component {
   componentDidMount () {
@@ -34,8 +33,8 @@ class Card extends Component {
             <List
               items={items}
               ui={{
-                buttons: [EditItemButton],
-                checkboxes: [SelectItemCheckbox],
+                buttons: [EditItemButton, UnselectItemButton],
+                checkboxes: [],
               }}
             />
           }
