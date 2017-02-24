@@ -21,6 +21,13 @@ export const itemsWithRequiredProps = props => {
 };
 
 export const itemUiPropType = PropTypes.shape({
-  buttons: PropTypes.arrayOf(PropTypes.element.isRequired).isRequired,
-  checkboxes: PropTypes.arrayOf(PropTypes.element.isRequired).isRequired,
+  buttons: PropTypes.arrayOf(PropTypes.func.isRequired).isRequired,
+  checkboxes: PropTypes.arrayOf(PropTypes.func.isRequired).isRequired,
 });
+
+export const itemUiDefaultProps = {
+  ui: {
+    buttons: [],
+    checkboxes: [],
+  },
+};

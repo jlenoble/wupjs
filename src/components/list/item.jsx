@@ -1,7 +1,7 @@
 import React from 'react';
 import ViewItemGroup from './view-item-group';
 import {ModifyItemInputGroup} from './item-input-groups';
-import {itemPropType, itemUiPropType} from './proptypes';
+import {itemPropType, itemUiPropType, itemUiDefaultProps} from './proptypes';
 
 const Item = ({item, ui}) => (
   <li className="list-group-item row">
@@ -18,7 +18,9 @@ const Item = ({item, ui}) => (
 
 Item.propTypes = {
   item: itemPropType.isRequired,
-  ui: itemUiPropType.isRequired,
+  ui: itemUiPropType,
 };
+
+Item.defaultProps = itemUiDefaultProps;
 
 export default Item;
