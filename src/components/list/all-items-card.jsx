@@ -3,10 +3,11 @@ import {connect} from 'react-redux';
 import {fetchItemsIfNeeded} from '../../actions';
 import CardBlock from './card-block';
 import {AddItemInputGroup} from './item-input-groups';
-import ActionGlyphCheckbox from '../container/action-glyph-checkbox';
 import ButtonGroup from '../presentational/button-group';
 import {EditItemButton, DeleteItemButton} from './item-buttons';
 import {SelectItemCheckbox, ScheduleItemCkeckbox} from './item-checkboxes';
+import {EditSwitchButton, DeleteSwitchButton, SelectSwitchButton,
+  ScheduleSwitchButton} from './switch-buttons';
 
 class Card extends Component {
   componentDidMount () {
@@ -20,34 +21,10 @@ class Card extends Component {
       <div className="card">
         <div className="card-header">
           <ButtonGroup>
-            <button className="btn btn-secondary">
-              <ActionGlyphCheckbox
-                glyphicon="check"
-                handleChange={dispatch => {
-                }}
-              />
-            </button>
-            <button className="btn btn-secondary">
-              <ActionGlyphCheckbox
-                glyphicon="clock-o"
-                handleChange={dispatch => {
-                }}
-              />
-            </button>
-            <button className="btn btn-secondary">
-              <ActionGlyphCheckbox
-                glyphicon="pencil"
-                handleChange={dispatch => {
-                }}
-              />
-            </button>
-            <button className="btn btn-secondary">
-              <ActionGlyphCheckbox
-                glyphicon="trash-o"
-                handleChange={dispatch => {
-                }}
-              />
-            </button>
+            <SelectSwitchButton/>
+            <ScheduleSwitchButton/>
+            <EditSwitchButton/>
+            <DeleteSwitchButton/>
           </ButtonGroup>
           <AddItemInputGroup/>
         </div>
