@@ -1,7 +1,7 @@
 import React from 'react';
 import ActionGlyphCheckbox from '../container/action-glyph-checkbox';
 import {selectItem, unselectItem} from '../../actions';
-import {itemWithRequiredProps} from './proptypes';
+import {extendItemPropType} from './proptypes';
 import {makeHandleChange, makeIsProp} from '../../helpers';
 
 const getClassHintFromGlyph = glyphicon => {
@@ -45,7 +45,7 @@ const makeItemCheckbox = ({glyphicon, makeHandleChange}) => {
   const requiredProps = {};
   requiredProps[isProp] = 'bool';
   ItemCheckbox.propTypes = {
-    item: itemWithRequiredProps(requiredProps).isRequired,
+    item: extendItemPropType(requiredProps).isRequired,
   };
 
   return ItemCheckbox;

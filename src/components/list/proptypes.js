@@ -1,30 +1,72 @@
 import {PropTypes} from 'react';
 
-const requiredPropTypes = {
-  title: PropTypes.string.isRequired,
-  _id: PropTypes.string.isRequired,
+// Schema: {_id: 'string'}
+// Shape: {_id: PropTypes.string}
+// Checker: PropTypes.shape(Shape)
+
+// Helpers
+
+const getChecker = type => {
+  switch (type) {
+  case 'funcs':
+  case 'strings':
+  case 'bools':
+  case 'elements':
+    const cut = type.length - 1;
+    return PropTypes.arrayOf(PropTypes[type.slice(0, cut)].isRequired);
+
+  default:
+    return PropTypes[type];
+  }
 };
 
-export const itemPropType = PropTypes.shape(requiredPropTypes);
-export const itemsPropType = PropTypes.arrayOf(itemPropType.isRequired);
-
-export const itemWithRequiredProps = props => {
-  const _props = Object.assign({}, requiredPropTypes);
-  Object.keys(props).forEach(key => {
-    _props[key] = PropTypes[props[key]].isRequired;
+const schemaToShape = schema => {
+  const shape = {};
+  Object.keys(schema).forEach(key => {
+    shape[key] = getChecker(schema[key]).isRequired;
   });
-  return PropTypes.shape(_props);
+  return shape;
 };
 
-export const itemsWithRequiredProps = props => {
-  return PropTypes.arrayOf(itemWithRequiredProps(props).isRequired);
+const shapeToChecker = shape => PropTypes.shape(shape);
+
+const mergeObjects = (...objects) => objects.reduce((o1, o2) => {
+  return Object.assign(o1, o2);
+}, {});
+
+const makeCheckerFromShapes = (...shapes) => {
+  return shapeToChecker(mergeObjects(...shapes));
 };
 
-export const itemUiPropType = PropTypes.shape({
-  buttons: PropTypes.arrayOf(PropTypes.func.isRequired).isRequired,
-  checkboxes: PropTypes.arrayOf(PropTypes.func.isRequired).isRequired,
-});
+const makeCheckerFromSchemas = (...schemas) => {
+  return makeCheckerFromShapes(...schemas.map(schemaToShape));
+};
 
+// Item
+
+const itemSchema = {
+  title: 'string',
+  _id: 'string',
+};
+
+export const itemPropType = makeCheckerFromSchemas(itemSchema);
+export const extendItemPropType = schema => makeCheckerFromSchemas(
+  itemSchema, schema);
+
+// List of Items
+
+export const itemsPropType = PropTypes.arrayOf(itemPropType.isRequired);
+export const extendItemsPropType = schema => PropTypes.arrayOf(
+  extendItemPropType(schema).isRequired);
+
+// Item UI
+
+const itemUiSchema = {
+  buttons: 'funcs',
+  checkboxes: 'funcs',
+};
+
+export const itemUiPropType = makeCheckerFromSchemas(itemUiSchema);
 export const itemUiDefaultProps = {
   ui: {
     buttons: [],
