@@ -1,7 +1,7 @@
 import React, {Component, PropTypes} from 'react';
 import {connect} from 'react-redux';
 import {fetchItemsIfNeeded} from '../../actions';
-import List from './list';
+import CardBlock from './card-block';
 import {AddItemInputGroup} from './item-input-groups';
 import ActionGlyphCheckbox from '../container/action-glyph-checkbox';
 import ButtonGroup from '../presentational/button-group';
@@ -51,23 +51,14 @@ class Card extends Component {
           </ButtonGroup>
           <AddItemInputGroup/>
         </div>
-        <div className="card-block">
-          {isFetching && items.length === 0 &&
-            <h2>Loading...</h2>
-          }
-          {!isFetching && items.length === 0 &&
-            <h2>Empty.</h2>
-          }
-          {items.length > 0 &&
-            <List
-              items={items}
-              ui={{
-                buttons: [EditItemButton, DeleteItemButton],
-                checkboxes: [SelectItemCheckbox, ScheduleItemCkeckbox],
-              }}
-            />
-          }
-        </div>
+        <CardBlock
+          items={items}
+          isFetching={isFetching}
+          ui={{
+            buttons: [EditItemButton, DeleteItemButton],
+            checkboxes: [SelectItemCheckbox, ScheduleItemCkeckbox],
+          }}
+        />
       </div>
     );
   }

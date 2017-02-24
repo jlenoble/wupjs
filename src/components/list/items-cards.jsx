@@ -1,7 +1,7 @@
 import React, {Component, PropTypes} from 'react';
 import {connect} from 'react-redux';
 import {fetchItemsIfNeeded} from '../../actions';
-import List from './list';
+import CardBlock from './card-block';
 import ActionGlyphButton from '../container/action-glyph-button';
 import {EditItemButton, UnselectItemButton} from './item-buttons';
 
@@ -22,23 +22,14 @@ class Card extends Component {
             }}
           />
         </div>
-        <div className="card-block">
-          {isFetching && items.length === 0 &&
-            <h2>Loading...</h2>
-          }
-          {!isFetching && items.length === 0 &&
-            <h2>Empty.</h2>
-          }
-          {items.length > 0 &&
-            <List
-              items={items}
-              ui={{
-                buttons: [EditItemButton, UnselectItemButton],
-                checkboxes: [],
-              }}
-            />
-          }
-        </div>
+        <CardBlock
+          items={items}
+          isFetching={isFetching}
+          ui={{
+            buttons: [EditItemButton, UnselectItemButton],
+            checkboxes: [],
+          }}
+        />
       </div>
     );
   }
@@ -63,4 +54,9 @@ function mapStateToProps (state) {
   return props;
 }
 
-export default connect(mapStateToProps)(Card);
+export const CurrentSelectionCard = connect(mapStateToProps)(Card);
+
+import {default as AllItemsCard} from './all-items-card';
+import {default as AllSelectionsCard} from './all-selections-card';
+
+export {AllItemsCard, AllSelectionsCard};

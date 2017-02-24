@@ -1,7 +1,7 @@
 import React, {Component, PropTypes} from 'react';
 import {connect} from 'react-redux';
 import {fetchItemsIfNeeded} from '../../actions';
-import List from './list';
+import CardBlock from './card-block';
 
 class Card extends Component {
   componentDidMount () {
@@ -14,17 +14,10 @@ class Card extends Component {
     return (
       <div className="card">
         <div className="card-header"></div>
-        <div className="card-block">
-          {isFetching && items.length === 0 &&
-            <h2>Loading...</h2>
-          }
-          {!isFetching && items.length === 0 &&
-            <h2>Empty.</h2>
-          }
-          {items.length > 0 &&
-            <List items={items}/>
-          }
-        </div>
+        <CardBlock
+          items={items}
+          isFetching={isFetching}
+        />
       </div>
     );
   }
