@@ -30,9 +30,12 @@ export default makeItemButton;
 const EditItemButton = makeItemButton(editItem, 'pencil');
 const UnselectItemButton = makeItemButton(unselectItem, 'close');
 const DeleteItemButton = makeItemButton(deleteItem, 'trash-o');
+const SaveCurrentSelectionButton = makeItemButton(() => {}, 'save');
 
 setFuncName(EditItemButton, 'EditItemButton');
 setFuncName(UnselectItemButton, 'UnselectItemButton');
 setFuncName(DeleteItemButton, 'DeleteItemButton');
+setFuncName(SaveCurrentSelectionButton, 'SaveCurrentSelectionButton');
 
-export {EditItemButton, UnselectItemButton, DeleteItemButton};
+export {EditItemButton, UnselectItemButton, DeleteItemButton,
+  SaveCurrentSelectionButton};

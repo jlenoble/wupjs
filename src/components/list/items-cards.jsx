@@ -3,29 +3,29 @@ import {connect} from 'react-redux';
 import {fetchItemsIfNeeded} from '../../actions';
 import CardBlock from './card-block';
 import {AddItemInputGroup} from './item-input-groups';
-import ButtonGroup from '../presentational/button-group';
-import ActionGlyphButton from '../container/action-glyph-button';
-import {EditItemButton, DeleteItemButton, UnselectItemButton}
-  from './item-buttons';
+import {EditItemButton, DeleteItemButton, UnselectItemButton,
+  SaveCurrentSelectionButton} from './item-buttons';
 import {SelectItemCheckbox, ScheduleItemCkeckbox} from './item-checkboxes';
 import {EditSwitchButton, DeleteSwitchButton, SelectSwitchButton,
   ScheduleSwitchButton} from './switch-buttons';
 import {setFuncName} from '../../helpers';
+import CardHeader from './card-header';
 
-const makeCard = ({mapStateToProps, itemUi, headerContent}) => {
+const makeCard = ({mapStateToProps, headerUi, itemUi}) => {
   class Card extends Component {
     componentDidMount () {
       this.props.dispatch(fetchItemsIfNeeded());
     }
 
     render () {
-      const {items, isFetching} = this.props;
+      const {item, items, isFetching} = this.props;
 
       return (
         <div className="card">
-          <div className="card-header">
-            {headerContent}
-          </div>
+          <CardHeader
+            item={item}
+            ui={headerUi}
+          />
           <CardBlock
             items={items}
             isFetching={isFetching}
@@ -45,13 +45,9 @@ const makeCard = ({mapStateToProps, itemUi, headerContent}) => {
 };
 
 const CurrentSelectionCard = makeCard({
-  headerContent: (
-    <ActionGlyphButton
-      glyphicon="save"
-      handleClick={dispatch => {
-      }}
-    />
-  ),
+  headerUi: {
+    noItemUi: [SaveCurrentSelectionButton],
+  },
   itemUi: {
     buttons: [EditItemButton, UnselectItemButton],
     checkboxes: [],
@@ -72,14 +68,11 @@ const CurrentSelectionCard = makeCard({
 });
 
 const AllItemsCard = makeCard({
-  headerContent: [(
-    <ButtonGroup key="1">
-      <SelectSwitchButton/>
-      <ScheduleSwitchButton/>
-      <EditSwitchButton/>
-      <DeleteSwitchButton/>
-    </ButtonGroup>
-  ), (<AddItemInputGroup key="2"/>)],
+  headerUi: {
+    input: AddItemInputGroup,
+    switches: [SelectSwitchButton, ScheduleSwitchButton, EditSwitchButton,
+      DeleteSwitchButton],
+  },
   itemUi: {
     buttons: [EditItemButton, DeleteItemButton],
     checkboxes: [SelectItemCheckbox, ScheduleItemCkeckbox],
