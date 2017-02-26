@@ -42,6 +42,7 @@
     "gulp": "git://github.com/gulpjs/gulp.git#4.0",
     "gulp-babel": "^6.1.2",
     "gulp-compass": "^2.1.0",
+    "gulp-cucumber": "0.0.22",
     "gulp-eslint": "^3.0.1",
     "gulp-mocha-phantomjs": "^0.12.0",
     "gulp-plumber": "^1.1.0",

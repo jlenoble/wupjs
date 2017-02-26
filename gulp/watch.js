@@ -1,10 +1,10 @@
 import gulp from 'gulp';
 
 import {srcBuildGlob, allSrcGlob, allBuildGlob,
-  testBundleBuildGlob, allSassGlob} from './globs';
+  testBundleBuildGlob, allSassGlob, allCucumberBuildGlob} from './globs';
 import {build} from './build';
 import {bundle, testBundle} from './bundle';
-import {test} from './test';
+import {test, testFeatures} from './test';
 import {sass} from './sass';
 
 export const watch = done => {
@@ -13,6 +13,7 @@ export const watch = done => {
   gulp.watch(allBuildGlob, testBundle);
   gulp.watch(testBundleBuildGlob, test);
   gulp.watch(allSassGlob, sass);
+  gulp.watch(allCucumberBuildGlob, testFeatures);
   done();
 };
 
