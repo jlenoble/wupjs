@@ -3,7 +3,7 @@ import Item from './item';
 import {itemPropType} from './proptypes';
 
 const CardHeader = ({item, ui = {}, addClass}) => {
-  const {switches, input, itemUi, noItemUi} = ui;
+  const {switches, InputComponent, itemUi, noItemUi} = ui;
 
   return (
     <div className="card-header">
@@ -18,7 +18,7 @@ const CardHeader = ({item, ui = {}, addClass}) => {
       {!item && noItemUi && noItemUi.map((Component, i) => <Component
         key={'button-' + i}
       />)}
-      {input && <input/>}
+      {InputComponent && <InputComponent/>}
     </div>
   );
 };

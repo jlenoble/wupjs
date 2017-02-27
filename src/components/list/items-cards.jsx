@@ -69,7 +69,7 @@ const CurrentSelectionCard = makeCard({
 
 const AllItemsCard = makeCard({
   headerUi: {
-    input: AddItemInputGroup,
+    InputComponent: AddItemInputGroup,
     switches: [SelectSwitchButton, ScheduleSwitchButton, EditSwitchButton,
       DeleteSwitchButton],
   },
