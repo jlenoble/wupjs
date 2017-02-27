@@ -1,3 +1,7 @@
 export const setFuncName = (Func, name) => {
-  Object.defineProperty(Func, 'name', {value: name});
+  try {
+    Object.defineProperty(Func, 'name', {value: name});
+  } catch (e) {
+    // Do nothing: recover if readonly property error raised
+  }
 };

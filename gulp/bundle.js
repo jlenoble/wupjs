@@ -21,6 +21,9 @@ export const testBundle = () => {
   return browserify(testBundleRootGlob, {
     debug: true,
   })
+    .external('react/addons')
+    .external('react/lib/ReactContext')
+    .external('react/lib/ExecutionEnvironment')
     .bundle()
     .pipe(source(testBundleGlob))
     .pipe(buffer())
