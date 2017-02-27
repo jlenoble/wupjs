@@ -1,6 +1,11 @@
 import path from 'path';
 
-function join (...args) {
+export const seleniumPath = path.join(process.env.HOME,
+  'local/selenium-server-standalone-3.0.1.jar');
+export const seleniumGeckoDriverPath = path.join(process.env.HOME,
+  'local/geckodriver');
+
+export function join (...args) {
   const len = args.length;
   let glob = args[len - 1];
 
@@ -53,6 +58,7 @@ export const cssBuildGlob = join(buildDir, sassGlob).map(str => {
   return str.replace(/scss/g, 'css');
 });
 
+export const featuresBuildGlob = join(buildDir, featuresGlob);
 export const stepsBuildGlob = join(buildDir, stepsGlob);
 export const stepSupportBuildGlob = join(buildDir, stepSupportGlob);
 export const stepHooksBuildGlob = join(buildDir, stepHooksGlob);

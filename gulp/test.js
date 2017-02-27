@@ -2,10 +2,12 @@ import gulp from 'gulp';
 import mocha from 'gulp-mocha-phantomjs';
 import cucumber from 'gulp-cucumber';
 
+import './copy';
 import './bundle';
 import './sass';
+import './selenium';
 
-import {featuresGlob, stepsBuildGlob, stepSupportBuildGlob,
+import {featuresBuildGlob, stepsBuildGlob, stepSupportBuildGlob,
   stepHooksBuildGlob} from './globs';
 
 export const test = done => {
@@ -17,13 +19,13 @@ export const test = done => {
 };
 
 export const testFeatures = () => {
-  return gulp.src(featuresGlob)
+  return gulp.src(featuresBuildGlob)
     .pipe(cucumber({
       'steps': stepsBuildGlob,
-      'support': [stepSupportBuildGlob, stepHooksBuildGlob],
+      'support': stepSupportBuildGlob.concat(stepHooksBuildGlob),
       'format': 'summary',
     }));
 };
 
-gulp.task('test', gulp.series(gulp.parallel('sass', 'bundle'), gulp.parallel(
-  test, testFeatures)));
+gulp.task('test', gulp.series(gulp.parallel('copy', 'sass', 'bundle',
+  'selenium'), gulp.parallel(test, testFeatures)));

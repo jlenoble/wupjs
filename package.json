@@ -54,7 +54,8 @@
     "ps-tree": "^1.1.0",
     "react-addons-test-utils": "^15.4.2",
     "vinyl-buffer": "^1.0.0",
-    "vinyl-source-stream": "^1.1.0"
+    "vinyl-source-stream": "^1.1.0",
+    "webdriverio": "^4.6.2"
   },
   "dependencies": {
     "body-parser": "^1.16.1",
