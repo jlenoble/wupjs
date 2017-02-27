@@ -39,6 +39,7 @@ const makeItemCheckbox = ({glyphicon, makeHandleChange}) => {
       addClass={addClass}
       glyphicon={glyphicon}
       checked={item[isProp]}
+      itemId={item._id}
     />
   );
 

@@ -11,7 +11,6 @@ const makeButtonComponent = (Component, item, key) => (
 
 const makeCheckboxComponent = (Component, item, key) => (
   <Component
-    addClass="col"
     item={item}
     key={key}
   />
