@@ -5,7 +5,6 @@ import cucumber from 'gulp-cucumber';
 import './copy';
 import './bundle';
 import './sass';
-import './selenium';
 
 import {featuresBuildGlob, stepsBuildGlob, stepSupportBuildGlob,
   stepHooksBuildGlob} from './globs';
@@ -27,5 +26,5 @@ export const testFeatures = () => {
     }));
 };
 
-gulp.task('test', gulp.series(gulp.parallel('copy', 'sass', 'bundle',
-  'selenium'), gulp.parallel(test, testFeatures)));
+gulp.task('test', gulp.series(gulp.parallel('copy', 'sass', 'bundle'),
+  gulp.parallel(test, testFeatures)));
