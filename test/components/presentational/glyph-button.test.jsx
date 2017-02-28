@@ -1,5 +1,5 @@
 import React from 'react';
-import {shallow} from 'enzyme';
+import {shallow, mount} from 'enzyme';
 import {expect} from 'chai';
 import chaiEnzyme from 'chai-enzyme';
 import GlyphButton from
@@ -14,5 +14,22 @@ describe('Testing GlyphButton component', function () {
     );
     expect(wrapper.find('button')).to.have.length(1);
     expect(wrapper.find('i')).to.have.length(1);
+  });
+
+  it('can be clicked', function () {
+    let isClicked = false;
+
+    const wrapper = mount(
+      <GlyphButton
+        glyphicon="save"
+        onClick={() => {
+          isClicked = true;
+        }}
+      />
+    );
+
+    expect(isClicked).to.be.false;
+    wrapper.find('button').simulate('click');
+    expect(isClicked).to.be.true;
   });
 });
