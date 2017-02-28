@@ -5,6 +5,7 @@ import {spawn} from 'child_process';
 
 import {srcDir, bundleBuildGlob, cssBuildGlob} from './globs';
 import './bundle';
+import browserSyncClientClose from './browser-sync-client-close';
 
 let p;
 
@@ -32,6 +33,13 @@ export const serve = done => {
 export const sync = done => {
   let bs = browserSync.create('server');
 
+  bs.use({
+    plugin () {},
+    hooks: {
+      'client:js': browserSyncClientClose,
+    },
+  });
+
   bs.init({
     ui: false,
     port: 3000,
@@ -49,6 +57,7 @@ export const sync = done => {
 
     p.stdout.on('data', data => {
       if (data.toString().match(/Server started on port 5000/)) {
+        bs.sockets.emit('inhibit-close');
         bs.reload(...args);
       }
     });
