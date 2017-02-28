@@ -51,7 +51,7 @@
     "gulp-rename": "^1.2.2",
     "gulp-sourcemaps": "^2.4.1",
     "mocha": "^3.2.0",
-    "muter": "^0.5.2",
+    "muter": "^0.6.0",
     "plumb-gulp": "^0.1.0",
     "ps-tree": "^1.1.0",
     "react-addons-test-utils": "^15.4.2",
