@@ -1,8 +1,8 @@
 import React from 'react';
 import ActionGlyphCheckbox from '../container/action-glyph-checkbox';
 import {selectItem, unselectItem} from '../../actions';
-import {itemWithRequiredProps} from './proptypes';
-import {makeHandleChange, makeIsProp} from '../../helpers';
+import {extendItemPropType} from './proptypes';
+import {makeHandleChange, makeIsProp, setFuncName} from '../../helpers';
 
 const getClassHintFromGlyph = glyphicon => {
   switch (glyphicon) {
@@ -39,13 +39,14 @@ const makeItemCheckbox = ({glyphicon, makeHandleChange}) => {
       addClass={addClass}
       glyphicon={glyphicon}
       checked={item[isProp]}
+      itemId={item._id}
     />
   );
 
   const requiredProps = {};
   requiredProps[isProp] = 'bool';
   ItemCheckbox.propTypes = {
-    item: itemWithRequiredProps(requiredProps).isRequired,
+    item: extendItemPropType(requiredProps).isRequired,
   };
 
   return ItemCheckbox;
@@ -64,5 +65,8 @@ const ScheduleItemCkeckbox = makeItemCheckbox({
     dispatch(unfocusCurrentItem());
   },
 });
+
+setFuncName(SelectItemCheckbox, 'SelectItemCheckbox');
+setFuncName(ScheduleItemCkeckbox, 'ScheduleItemCkeckbox');
 
 export {SelectItemCheckbox, ScheduleItemCkeckbox};

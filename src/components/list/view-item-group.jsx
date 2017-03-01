@@ -1,5 +1,5 @@
-import React, {PropTypes} from 'react';
-import {itemPropType} from './proptypes';
+import React from 'react';
+import {itemPropType, itemUiPropType, itemUiDefaultProps} from './proptypes';
 import ButtonGroup from '../presentational/button-group';
 
 const makeButtonComponent = (Component, item, key) => (
@@ -11,7 +11,6 @@ const makeButtonComponent = (Component, item, key) => (
 
 const makeCheckboxComponent = (Component, item, key) => (
   <Component
-    addClass="col"
     item={item}
     key={key}
   />
@@ -49,17 +48,9 @@ const ViewItemGroup = ({item, ui: {buttons, checkboxes}}) => {
 
 ViewItemGroup.propTypes = {
   item: itemPropType.isRequired,
-  ui: PropTypes.shape({
-    buttons: PropTypes.array.isRequired,
-    checkboxes: PropTypes.array.isRequired,
-  }),
+  ui: itemUiPropType,
 };
 
-ViewItemGroup.defaultProps = {
-  ui: {
-    buttons: [],
-    checkboxes: [],
-  },
-};
+ViewItemGroup.defaultProps = itemUiDefaultProps;
 
 export default ViewItemGroup;

@@ -2,20 +2,28 @@ import React, {PropTypes} from 'react';
 import classnames from 'classnames';
 
 const GlyphCheckbox = ({onChange, addClass, glyphicon, checked,
-  exposeInputNode}) => (
-  <span className="glyph-checkbox">
-    <input
-      type="checkbox"
-      className={classnames('fa fa-' + glyphicon, addClass)}
-      onChange={onChange}
-      checked={checked}
-      ref={node => {
-        exposeInputNode(node);
-      }}
+  exposeInputNode, itemId}) => {
+  const name= glyphicon + itemId;
 
-    />
-  </span>
-);
+  return (
+    <span className="glyph-checkbox">
+      <input
+        id={name}
+        name={name}
+        type="checkbox"
+        onChange={onChange}
+        checked={checked}
+        ref={node => {
+          exposeInputNode(node);
+        }}
+      />
+      <label
+        htmlFor={name}
+        className={classnames('fa fa-' + glyphicon, addClass)}
+      ></label>
+    </span>
+  );
+};
 
 GlyphCheckbox.propTypes = {
   exposeInputNode: PropTypes.func.isRequired,

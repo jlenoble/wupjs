@@ -27,11 +27,11 @@ export function items (state = {
     });
 
   case CREATE_ITEM:
+    items = Object.assign({}, state.items);
+    items[action.item._id] = action.item;
     return Object.assign({}, state, {
       isFetching: true,
-      items: Object.assign({
-        _id: action.item,
-      }, state.items),
+      items,
     });
 
   case CREATE_ITEM_SUCCESS:

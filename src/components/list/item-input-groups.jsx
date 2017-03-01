@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import {newItem, updateItem, unfocusCurrentItem} from '../../actions';
 import ActionGlyphInputGroup from '../container/action-glyph-input-group';
 import {itemPropType} from './proptypes';
+import {setFuncName} from '../../helpers';
 
 const makeItemInputGroup = ({
   glyphicon, autoFocus, placeholder, handleFocus, makeHandleSubmit,
@@ -63,5 +64,8 @@ const AddItemInputGroup = makeItemInputGroup({
     clearInput();
   },
 });
+
+setFuncName(AddItemInputGroup, 'AddItemInputGroup');
+setFuncName(ModifyItemInputGroup, 'ModifyItemInputGroup');
 
 export {AddItemInputGroup, ModifyItemInputGroup};

@@ -1,11 +1,11 @@
 import React from 'react';
-import Item from './item';
-import {itemsPropType, itemUiPropType} from './proptypes';
+import {ListItem} from './item';
+import {itemsPropType, itemUiPropType, itemUiDefaultProps} from './proptypes';
 
 const List = ({items, ui}) => (
   <ul className="list-group">
     {items.map(item =>
-      <Item
+      <ListItem
         key={item._id}
         item={item}
         ui={ui}
@@ -16,7 +16,9 @@ const List = ({items, ui}) => (
 
 List.propTypes = {
   items: itemsPropType.isRequired,
-  ui: itemUiPropType.isRequired,
+  ui: itemUiPropType,
 };
+
+List.defaultProps = itemUiDefaultProps;
 
 export default List;
