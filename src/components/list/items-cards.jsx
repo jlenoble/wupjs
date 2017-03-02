@@ -6,8 +6,6 @@ import {AddItemInputGroup} from './item-input-groups';
 import {EditItemButton, DeleteItemButton, UnselectItemButton,
   SaveCurrentSelectionButton} from './item-buttons';
 import {SelectItemCheckbox, ScheduleItemCkeckbox} from './item-checkboxes';
-import {EditSwitchButton, DeleteSwitchButton, SelectSwitchButton,
-  ScheduleSwitchButton} from './switch-buttons';
 import {setFuncName} from '../../helpers';
 import CardHeader from './card-header';
 
@@ -47,6 +45,10 @@ const makeCard = ({mapStateToProps, headerUi, itemUi}) => {
 const CurrentSelectionCard = makeCard({
   headerUi: {
     noItemUi: [SaveCurrentSelectionButton],
+    itemUi: {
+      buttons: [EditItemButton],
+      checkboxes: [],
+    },
   },
   itemUi: {
     buttons: [EditItemButton, UnselectItemButton],
@@ -56,12 +58,24 @@ const CurrentSelectionCard = makeCard({
     const props = Object.assign({}, state.items);
     const items = props.items;
     const selection = state.currentSelection.items;
+    const {_id, isBeingEdited, cardName} = state.currentItem;
 
-    props.items = Object.keys(items).filter(_id => {
-      return selection[_id];
-    }).map(_id => Object.assign({
+    let item = Object.assign({}, state.currentSelection.item);
+    if (item._id) {
+      item = Object.assign({}, items[item._id]);
+    }
+    item.isBeingNamed = state.currentSelection.isBeingNamed;
+
+    props.items = Object.keys(items).filter(key => {
+      return selection[key];
+    }).map(key => Object.assign({
+      isBeingEdited: isBeingEdited && key === _id &&
+        CurrentSelectionCard.name === cardName,
       isSelected: true,
-    }, items[_id]));
+      cardName: CurrentSelectionCard.name,
+    }, items[key]));
+
+    props.item = item;
 
     return props;
   },
@@ -70,8 +84,7 @@ const CurrentSelectionCard = makeCard({
 const AllItemsCard = makeCard({
   headerUi: {
     InputComponent: AddItemInputGroup,
-    switches: [SelectSwitchButton, ScheduleSwitchButton, EditSwitchButton,
-      DeleteSwitchButton],
+    switches: [],
   },
   itemUi: {
     buttons: [EditItemButton, DeleteItemButton],
@@ -81,14 +94,16 @@ const AllItemsCard = makeCard({
     const props = Object.assign({}, state.items);
     const items = props.items;
 
-    const {_id, isBeingEdited} = state.currentItem;
+    const {_id, isBeingEdited, cardName} = state.currentItem;
     const selection = state.currentSelection.items;
 
     props.items = Object.keys(items).map(key => {
       const item = items[key];
       return Object.assign({
-        isBeingEdited: isBeingEdited && item._id === _id,
+        isBeingEdited: isBeingEdited && item._id === _id &&
+          AllItemsCard.name === cardName,
         isSelected: selection[item._id] ? true : false,
+        cardName: AllItemsCard.name,
       }, item);
     });
 

@@ -1,6 +1,6 @@
 import React, {PropTypes} from 'react';
 import ActionGlyphButton from '../container/action-glyph-button';
-import {editItem, deleteItem, unselectItem,
+import {editItem, deleteItem, unselectItem, startNamingSelection,
   unfocusCurrentItem} from '../../actions';
 import {itemPropType} from './proptypes';
 import {setFuncName} from '../../helpers';
@@ -30,7 +30,8 @@ export default makeItemButton;
 const EditItemButton = makeItemButton(editItem, 'pencil');
 const UnselectItemButton = makeItemButton(unselectItem, 'close');
 const DeleteItemButton = makeItemButton(deleteItem, 'trash-o');
-const SaveCurrentSelectionButton = makeItemButton(() => {}, 'save');
+const SaveCurrentSelectionButton = makeItemButton(
+  startNamingSelection, 'save');
 
 setFuncName(EditItemButton, 'EditItemButton');
 setFuncName(UnselectItemButton, 'UnselectItemButton');
