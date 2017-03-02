@@ -42,6 +42,10 @@ const makeCard = ({mapStateToProps, headerUi, itemUi}) => {
   return connect(mapStateToProps)(Card);
 };
 
+const checkIfEditedItem = (item, card, {_id, isBeingEdited, cardName}) => {
+  return isBeingEdited && item._id === _id && card.name === cardName;
+};
+
 const CurrentSelectionCard = makeCard({
   headerUi: {
     noItemUi: [SaveCurrentSelectionButton],
@@ -58,22 +62,27 @@ const CurrentSelectionCard = makeCard({
     const props = Object.assign({}, state.items);
     const items = props.items;
     const selection = state.currentSelection.items;
-    const {_id, isBeingEdited, cardName} = state.currentItem;
 
     let item = Object.assign({}, state.currentSelection.item);
     if (item._id) {
       item = Object.assign({}, items[item._id]);
     }
     item.isBeingNamed = state.currentSelection.isBeingNamed;
+    item.isBeingEdited = checkIfEditedItem(item, CurrentSelectionCard,
+        state.currentItem);
+    item.cardName = CurrentSelectionCard.name;
 
     props.items = Object.keys(items).filter(key => {
       return selection[key];
-    }).map(key => Object.assign({
-      isBeingEdited: isBeingEdited && key === _id &&
-        CurrentSelectionCard.name === cardName,
-      isSelected: true,
-      cardName: CurrentSelectionCard.name,
-    }, items[key]));
+    }).map(key => {
+      const item = items[key];
+      return Object.assign({
+        isBeingEdited: checkIfEditedItem(item, CurrentSelectionCard,
+          state.currentItem),
+        isSelected: true,
+        cardName: CurrentSelectionCard.name,
+      }, item);
+    });
 
     props.item = item;
 
@@ -93,15 +102,12 @@ const AllItemsCard = makeCard({
   mapStateToProps: state => {
     const props = Object.assign({}, state.items);
     const items = props.items;
-
-    const {_id, isBeingEdited, cardName} = state.currentItem;
     const selection = state.currentSelection.items;
 
     props.items = Object.keys(items).map(key => {
       const item = items[key];
       return Object.assign({
-        isBeingEdited: isBeingEdited && item._id === _id &&
-          AllItemsCard.name === cardName,
+        isBeingEdited: checkIfEditedItem(item, AllItemsCard, state.currentItem),
         isSelected: selection[item._id] ? true : false,
         cardName: AllItemsCard.name,
       }, item);
