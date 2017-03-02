@@ -1,7 +1,5 @@
 import fetch from '../../server/fetch';
-
-let _tmpId = 0;
-const tmpId = () => 'itemTmpId' + (_tmpId++);
+import tmpId from './tmp-id';
 
 export const CREATE_ITEM = 'CREATE_ITEM';
 function createItem (item) {
@@ -27,7 +25,7 @@ function createItemError (item, _id, error) {
   };
 }
 
-export function newItem (title) {
+export function newItem (title, nextActionOnSuccess, nextActionOnError) {
   const _id = tmpId();
   const item = {title, _id};
 
@@ -45,8 +43,14 @@ export function newItem (title) {
       .then(json => {
         if (!json._id || !json.title) {
           dispatch(createItemError(item, _id, json));
+          if (nextActionOnError) {
+            dispatch(nextActionOnError(item));
+          }
         } else {
           dispatch(createItemSuccess(json, _id));
+          if (nextActionOnSuccess) {
+            dispatch(nextActionOnSuccess(json));
+          }
         }
       });
   };
