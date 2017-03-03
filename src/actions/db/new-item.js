@@ -25,7 +25,7 @@ function createItemError (item, _id, error) {
   };
 }
 
-export function newItem (title, nextActionOnSuccess, nextActionOnError) {
+export function newItem (title) {
   const _id = tmpId();
   const item = {title, _id};
 
@@ -43,14 +43,10 @@ export function newItem (title, nextActionOnSuccess, nextActionOnError) {
       .then(json => {
         if (!json._id || !json.title) {
           dispatch(createItemError(item, _id, json));
-          if (nextActionOnError) {
-            dispatch(nextActionOnError(item));
-          }
+          throw new Error(json);
         } else {
           dispatch(createItemSuccess(json, _id));
-          if (nextActionOnSuccess) {
-            dispatch(nextActionOnSuccess(json));
-          }
+          return json;
         }
       });
   };
