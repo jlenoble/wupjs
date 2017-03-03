@@ -18,10 +18,8 @@ export function stopNamingSelection () {
 
 export const DISPLAY_SELECTION_NAME = 'DISPLAY_SELECTION_NAME';
 export function displaySelectionName (item) {
-  return dispatch => {
-    dispatch({
-      type: DISPLAY_SELECTION_NAME,
-      item,
-    });
-  };
+  return dispatch => dispatch({
+    type: DISPLAY_SELECTION_NAME,
+    item,
+  });
 }
