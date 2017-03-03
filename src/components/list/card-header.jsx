@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import Item from './item';
-import {itemPropType} from './proptypes';
 import {NameSelectionInputGroup} from './item-input-groups';
 
 class CardHeader extends Component {
@@ -50,9 +49,5 @@ class CardHeader extends Component {
     );
   }
 }
-
-CardHeader.propTypes = {
-  item: itemPropType,
-};
 
 export default CardHeader;
