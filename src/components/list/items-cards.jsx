@@ -1,6 +1,6 @@
 import React, {Component, PropTypes} from 'react';
 import {connect} from 'react-redux';
-import {fetchItemsIfNeeded} from '../../actions';
+import {fetchItemsIfNeeded, fetchSelectionsIfNeeded} from '../../actions';
 import CardBlock from './card-block';
 import {AddItemInputGroup} from './item-input-groups';
 import {EditItemButton, DeleteItemButton, UnselectItemButton,
@@ -13,6 +13,7 @@ const makeCard = ({mapStateToProps, headerUi, itemUi}) => {
   class Card extends Component {
     componentDidMount () {
       this.props.dispatch(fetchItemsIfNeeded());
+      this.props.dispatch(fetchSelectionsIfNeeded());
     }
 
     render () {
