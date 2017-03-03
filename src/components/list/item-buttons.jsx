@@ -1,11 +1,11 @@
 import React, {PropTypes} from 'react';
 import ActionGlyphButton from '../container/action-glyph-button';
-import {editItem, deleteItem, unselectItem,
+import {editItem, deleteItem, unselectItem, startNamingSelection,
   unfocusCurrentItem} from '../../actions';
 import {itemPropType} from './proptypes';
 import {setFuncName} from '../../helpers';
 
-const makeItemButton = (applyToItem, glyphicon) => {
+const makeItemButton = (applyToItem, glyphicon, propTypes) => {
   const ItemButton = ({item, addClass}) => (
     <ActionGlyphButton
       handleClick={dispatch => {
@@ -17,7 +17,7 @@ const makeItemButton = (applyToItem, glyphicon) => {
     />
   );
 
-  ItemButton.propTypes = {
+  ItemButton.propTypes = propTypes || {
     item: itemPropType.isRequired,
     addClass: PropTypes.string,
   };
@@ -30,7 +30,8 @@ export default makeItemButton;
 const EditItemButton = makeItemButton(editItem, 'pencil');
 const UnselectItemButton = makeItemButton(unselectItem, 'close');
 const DeleteItemButton = makeItemButton(deleteItem, 'trash-o');
-const SaveCurrentSelectionButton = makeItemButton(() => {}, 'save');
+const SaveCurrentSelectionButton = makeItemButton(startNamingSelection, 'save',
+  {item: itemPropType});
 
 setFuncName(EditItemButton, 'EditItemButton');
 setFuncName(UnselectItemButton, 'UnselectItemButton');

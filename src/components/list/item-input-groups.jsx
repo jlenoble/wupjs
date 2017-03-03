@@ -1,6 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {newItem, updateItem, unfocusCurrentItem} from '../../actions';
+import {newItem, updateItem, unfocusCurrentItem, displaySelectionName,
+  stopNamingSelection, newSelection} from '../../actions';
 import ActionGlyphInputGroup from '../container/action-glyph-input-group';
 import {itemPropType} from './proptypes';
 import {setFuncName} from '../../helpers';
@@ -65,7 +66,29 @@ const AddItemInputGroup = makeItemInputGroup({
   },
 });
 
+const NameSelectionInputGroup = makeItemInputGroup({
+  glyphicon: 'save',
+  placeholder: 'Enter a name',
+  autoFocus: true,
+  handleFocus: dispatch => dispatch(unfocusCurrentItem()),
+  makeHandleSubmit: () => (input, clearInput, dispatch) => {
+    if (!input.value.trim()) {
+      return;
+    }
+    dispatch(newItem(input.value))
+      .then(
+        item => dispatch(displaySelectionName(item)),
+        () => dispatch(stopNamingSelection())
+      )
+      .then(
+        ({item}) => dispatch(newSelection(item))
+      );
+    clearInput();
+  },
+});
+
 setFuncName(AddItemInputGroup, 'AddItemInputGroup');
 setFuncName(ModifyItemInputGroup, 'ModifyItemInputGroup');
+setFuncName(NameSelectionInputGroup, 'NameSelectionInputGroup');
 
-export {AddItemInputGroup, ModifyItemInputGroup};
+export {AddItemInputGroup, ModifyItemInputGroup, NameSelectionInputGroup};

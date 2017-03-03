@@ -1,7 +1,5 @@
 import fetch from '../../server/fetch';
-
-let _tmpId = 0;
-const tmpId = () => 'itemTmpId' + (_tmpId++);
+import tmpId from './tmp-id';
 
 export const CREATE_ITEM = 'CREATE_ITEM';
 function createItem (item) {
@@ -45,8 +43,10 @@ export function newItem (title) {
       .then(json => {
         if (!json._id || !json.title) {
           dispatch(createItemError(item, _id, json));
+          throw new Error(json);
         } else {
           dispatch(createItemSuccess(json, _id));
+          return json;
         }
       });
   };

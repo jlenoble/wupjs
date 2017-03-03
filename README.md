@@ -1,7 +1,14 @@
 # wupjs
+ 
+
+## Usage
+
+```js
+import Wupjs from 'wupjs';
+```
 
 ## License
 
-wupjs is [GPL-3.0 licensed](./LICENSE).
+wupjs is [MIT licensed](./LICENSE).
 
 © 2016-2017 [Jason Lenoble](mailto:jason.lenoble@gmail.com)

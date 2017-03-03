@@ -10,10 +10,10 @@ import {sass} from './sass';
 export const watch = done => {
   gulp.watch(allSrcGlob, build);
   gulp.watch(srcBuildGlob, bundle);
-  gulp.watch(allBuildGlob, testBundle);
-  gulp.watch(testBundleBuildGlob, test);
+  // gulp.watch(allBuildGlob, testBundle);
+  // gulp.watch(testBundleBuildGlob, test);
   gulp.watch(allSassGlob, sass);
-  gulp.watch(allCucumberBuildGlob, testFeatures);
+  // gulp.watch(allCucumberBuildGlob, testFeatures);
   done();
 };
 

@@ -26,5 +26,5 @@ export const testFeatures = () => {
     }));
 };
 
-gulp.task('test', gulp.series(gulp.parallel('copy', 'sass', 'bundle'),
-  gulp.parallel(test, testFeatures)));
+gulp.task('test', gulp.series(gulp.parallel('copy', 'sass', 'bundle')/* ,
+gulp.parallel(test, testFeatures)*/));

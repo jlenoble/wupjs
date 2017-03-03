@@ -1,9 +1,9 @@
 export const EDIT_ITEM = 'EDIT_ITEM';
-export function editItem ({_id, title}) {
+export function editItem ({_id, title, cardName}) {
   return dispatch => {
     dispatch({
       type: EDIT_ITEM,
-      _id, title,
+      _id, title, cardName,
     });
   };
 }

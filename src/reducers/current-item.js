@@ -6,6 +6,7 @@ export function currentItem (state = {
   isBeingEdited: false,
   _id: '',
   title: '',
+  cardName: '',
 }, action) {
   switch (action.type) {
   case EDIT_ITEM:
@@ -13,6 +14,7 @@ export function currentItem (state = {
       isBeingEdited: true,
       _id: action._id,
       title: action.title,
+      cardName: action.cardName,
     });
 
   case UNFOCUS_CURRENT_ITEM:
@@ -20,6 +22,7 @@ export function currentItem (state = {
       isBeingEdited: false,
       _id: '',
       title: '',
+      cardName: '',
     });
 
   default:

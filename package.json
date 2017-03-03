@@ -16,7 +16,7 @@
     "email": "jason.lenoble@gmail.com"
   },
   "contributors": [],
-  "license": "GPL-3.0",
+  "license": "MIT",
   "engines": {
     "node": ">=6.3.0"
   },

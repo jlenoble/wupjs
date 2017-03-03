@@ -1,13 +1,11 @@
 import React, {Component, PropTypes} from 'react';
 import {connect} from 'react-redux';
-import {fetchItemsIfNeeded} from '../../actions';
+import {fetchItemsIfNeeded, fetchSelectionsIfNeeded} from '../../actions';
 import CardBlock from './card-block';
 import {AddItemInputGroup} from './item-input-groups';
 import {EditItemButton, DeleteItemButton, UnselectItemButton,
   SaveCurrentSelectionButton} from './item-buttons';
 import {SelectItemCheckbox, ScheduleItemCkeckbox} from './item-checkboxes';
-import {EditSwitchButton, DeleteSwitchButton, SelectSwitchButton,
-  ScheduleSwitchButton} from './switch-buttons';
 import {setFuncName} from '../../helpers';
 import CardHeader from './card-header';
 
@@ -15,6 +13,7 @@ const makeCard = ({mapStateToProps, headerUi, itemUi}) => {
   class Card extends Component {
     componentDidMount () {
       this.props.dispatch(fetchItemsIfNeeded());
+      this.props.dispatch(fetchSelectionsIfNeeded());
     }
 
     render () {
@@ -44,9 +43,17 @@ const makeCard = ({mapStateToProps, headerUi, itemUi}) => {
   return connect(mapStateToProps)(Card);
 };
 
+const checkIfEditedItem = (item, card, {_id, isBeingEdited, cardName}) => {
+  return isBeingEdited && item._id === _id && card.name === cardName;
+};
+
 const CurrentSelectionCard = makeCard({
   headerUi: {
     noItemUi: [SaveCurrentSelectionButton],
+    itemUi: {
+      buttons: [EditItemButton],
+      checkboxes: [],
+    },
   },
   itemUi: {
     buttons: [EditItemButton, UnselectItemButton],
@@ -57,11 +64,28 @@ const CurrentSelectionCard = makeCard({
     const items = props.items;
     const selection = state.currentSelection.items;
 
-    props.items = Object.keys(items).filter(_id => {
-      return selection[_id];
-    }).map(_id => Object.assign({
-      isSelected: true,
-    }, items[_id]));
+    let item = Object.assign({}, state.currentSelection.item);
+    if (item._id) {
+      item = Object.assign({}, items[item._id]);
+    }
+    item.isBeingNamed = state.currentSelection.isBeingNamed;
+    item.isBeingEdited = checkIfEditedItem(item, CurrentSelectionCard,
+        state.currentItem);
+    item.cardName = CurrentSelectionCard.name;
+
+    props.items = Object.keys(items).filter(key => {
+      return selection[key];
+    }).map(key => {
+      const item = items[key];
+      return Object.assign({
+        isBeingEdited: checkIfEditedItem(item, CurrentSelectionCard,
+          state.currentItem),
+        isSelected: true,
+        cardName: CurrentSelectionCard.name,
+      }, item);
+    });
+
+    props.item = item;
 
     return props;
   },
@@ -70,8 +94,7 @@ const CurrentSelectionCard = makeCard({
 const AllItemsCard = makeCard({
   headerUi: {
     InputComponent: AddItemInputGroup,
-    switches: [SelectSwitchButton, ScheduleSwitchButton, EditSwitchButton,
-      DeleteSwitchButton],
+    switches: [],
   },
   itemUi: {
     buttons: [EditItemButton, DeleteItemButton],
@@ -80,15 +103,14 @@ const AllItemsCard = makeCard({
   mapStateToProps: state => {
     const props = Object.assign({}, state.items);
     const items = props.items;
-
-    const {_id, isBeingEdited} = state.currentItem;
     const selection = state.currentSelection.items;
 
     props.items = Object.keys(items).map(key => {
       const item = items[key];
       return Object.assign({
-        isBeingEdited: isBeingEdited && item._id === _id,
+        isBeingEdited: checkIfEditedItem(item, AllItemsCard, state.currentItem),
         isSelected: selection[item._id] ? true : false,
+        cardName: AllItemsCard.name,
       }, item);
     });
 
