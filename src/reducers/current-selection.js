@@ -12,7 +12,8 @@ export function currentSelection (state = {
 
   switch (action.type) {
   case SELECT_ITEM:
-    if (state.items[_id]) {
+    if (state.items[_id] || (state.item &&
+      state.item._id === action.item._id)) { // Don't add oneself to selection
       return state;
     }
     items[_id] = action.item;
