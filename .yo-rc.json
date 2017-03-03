@@ -1,11 +1,11 @@
 {
   "generator-wupjs": {
     "module": "wupjs",
-    "description": "My pet project",
+    "description": " ",
     "author": "Jason Lenoble",
     "email": "jason.lenoble@gmail.com",
     "github": "jlenoble",
-    "license": "GPL-3.0",
+    "license": "MIT",
     "transpile": "es2017",
     "addons": [
       "React"
