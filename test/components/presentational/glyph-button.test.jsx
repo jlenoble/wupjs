@@ -2,8 +2,7 @@ import React from 'react';
 import {shallow, mount} from 'enzyme';
 import {expect} from 'chai';
 import chaiEnzyme from 'chai-enzyme';
-import GlyphButton from
-  '../../../src/components/presentational/glyph-button';
+import {GlyphButton} from 'wupjs-glyph-button';
 
 chai.use(chaiEnzyme());
 
@@ -21,7 +20,7 @@ describe('Testing GlyphButton component', function () {
 
     const wrapper = mount(
       <GlyphButton
-        glyphicon="save"
+        glyph="save"
         onClick={() => {
           isClicked = true;
         }}
