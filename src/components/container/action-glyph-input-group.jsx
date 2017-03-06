@@ -1,6 +1,6 @@
 import React, {Component, PropTypes} from 'react';
 import {connect} from 'react-redux';
-import GlyphInputGroup from '../presentational/glyph-input-group';
+import {GlyphInputText} from 'wupjs-glyph-input-text';
 
 class ActionGlyphInputGroup extends Component {
   componentWillMount () {
@@ -25,9 +25,9 @@ class ActionGlyphInputGroup extends Component {
     const {placeholder, glyphicon, autoFocus, defaultValue} = this.props;
 
     return (
-      <GlyphInputGroup
+      <GlyphInputText
         placeholder={placeholder}
-        glyphicon={glyphicon}
+        glyph={glyphicon}
         exposeInputNode={inputNode => {
           this._inputNode = inputNode;
         }}

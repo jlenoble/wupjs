@@ -1,6 +1,6 @@
 import React, {Component, PropTypes} from 'react';
 import {connect} from 'react-redux';
-import GlyphButton from '../presentational/glyph-button';
+import {GlyphButton} from 'wupjs-glyph-button';
 
 class ActionGlyphButton extends Component {
   componentWillMount () {
@@ -14,7 +14,7 @@ class ActionGlyphButton extends Component {
   render () {
     return (
       <GlyphButton
-        glyphicon={this.props.glyphicon}
+        glyph={this.props.glyphicon}
         onClick={this._handleClick}
       />
     );
