@@ -2,22 +2,31 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {newItem, updateItem, unfocusCurrentItem, displaySelectionName,
   stopNamingSelection, newSelection} from '../../actions';
-import ActionGlyphInputGroup from '../container/action-glyph-input-group';
+import {GlyphInputText} from 'wupjs-glyph-input-text';
 import {itemPropType} from './proptypes';
 import {setFuncName} from '../../helpers';
+import {dispatch} from '../../server/store';
 
 const makeItemInputGroup = ({
-  glyphicon, autoFocus, placeholder, handleFocus, makeHandleSubmit,
+  glyphicon, autoFocus, autoClear, placeholder, handleFocus, handleSubmit,
 }) => {
-  const ItemInputGroup = ({item = {}, dispatch}) => {
+  const ItemInputGroup = ({item = {}}) => {
+    let inputNode;
     return (
-      <ActionGlyphInputGroup
-        glyphicon={glyphicon}
-        autoFocus={autoFocus}
+      <GlyphInputText
         placeholder={placeholder}
-        handleFocus={handleFocus}
-        handleSubmit={makeHandleSubmit(item)}
+        glyph={glyphicon}
+        exposeInputNode={node => {
+          inputNode = node;
+        }}
+        autoFocus={autoFocus}
+        autoClear={autoClear}
         defaultValue={item.title}
+        onFocus={handleFocus && (() => handleFocus(dispatch))}
+        onSubmit={e => {
+          e.preventDefault();
+          handleSubmit(inputNode, item);
+        }}
       />
     );
   };
@@ -39,7 +48,7 @@ export default makeItemInputGroup;
 const ModifyItemInputGroup = makeItemInputGroup({
   glyphicon: 'save',
   autoFocus: true,
-  makeHandleSubmit: item => (input, clearInput, dispatch) => {
+  handleSubmit: (input, item) => {
     const trimmed = input.value.trim();
     if (!trimmed) {
       return;
@@ -48,7 +57,6 @@ const ModifyItemInputGroup = makeItemInputGroup({
       title: trimmed,
       _id: item._id,
     }, item));
-    clearInput();
     dispatch(unfocusCurrentItem());
   },
 });
@@ -56,13 +64,13 @@ const ModifyItemInputGroup = makeItemInputGroup({
 const AddItemInputGroup = makeItemInputGroup({
   glyphicon: 'plus',
   placeholder: 'Enter an item',
+  autoClear: true,
   handleFocus: dispatch => dispatch(unfocusCurrentItem()),
-  makeHandleSubmit: () => (input, clearInput, dispatch) => {
+  handleSubmit: (input, item) => {
     if (!input.value.trim()) {
       return;
     }
     dispatch(newItem(input.value));
-    clearInput();
   },
 });
 
@@ -71,7 +79,7 @@ const NameSelectionInputGroup = makeItemInputGroup({
   placeholder: 'Enter a name',
   autoFocus: true,
   handleFocus: dispatch => dispatch(unfocusCurrentItem()),
-  makeHandleSubmit: () => (input, clearInput, dispatch) => {
+  handleSubmit: (input, item) => {
     if (!input.value.trim()) {
       return;
     }
@@ -83,7 +91,6 @@ const NameSelectionInputGroup = makeItemInputGroup({
       .then(
         ({item}) => dispatch(newSelection(item))
       );
-    clearInput();
   },
 });
 
