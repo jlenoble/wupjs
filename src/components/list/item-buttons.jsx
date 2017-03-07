@@ -1,19 +1,19 @@
 import React, {PropTypes} from 'react';
-import ActionGlyphButton from '../container/action-glyph-button';
+import {GlyphButton} from 'wupjs-glyph-button';
 import {editItem, deleteItem, unselectItem, startNamingSelection,
   unfocusCurrentItem} from '../../actions';
 import {itemPropType} from './proptypes';
 import {setFuncName} from '../../helpers';
+import {dispatch} from '../../server/store';
 
 const makeItemButton = (applyToItem, glyphicon, propTypes) => {
-  const ItemButton = ({item, addClass}) => (
-    <ActionGlyphButton
-      handleClick={dispatch => {
+  const ItemButton = ({item}) => (
+    <GlyphButton
+      onClick={() => {
         dispatch(unfocusCurrentItem());
         dispatch(applyToItem(item));
       }}
-      glyphicon={glyphicon}
-      addClass={addClass}
+      glyph={glyphicon}
     />
   );
 
