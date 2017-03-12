@@ -1,8 +1,9 @@
 import React from 'react';
-import ActionGlyphCheckbox from '../container/action-glyph-checkbox';
-import {selectItem, unselectItem} from '../../actions';
+import {GlyphCheckbox} from 'wupjs-glyph-checkbox';
+import {selectItem, unselectItem, unfocusCurrentItem} from '../../actions';
 import {extendItemPropType} from './proptypes';
-import {makeHandleChange, makeIsProp, setFuncName} from '../../helpers';
+import {makeIsProp, setFuncName} from '../../helpers';
+import {dispatch} from '../../server/store';
 
 const getClassHintFromGlyph = glyphicon => {
   switch (glyphicon) {
@@ -29,19 +30,27 @@ const getClassHintFromGlyph = glyphicon => {
   }
 };
 
-const makeItemCheckbox = ({glyphicon, makeHandleChange}) => {
+const makeItemCheckbox = ({glyphicon, handleChange}) => {
   const classHint = getClassHintFromGlyph(glyphicon);
   const isProp = makeIsProp(classHint);
 
-  const ItemCheckbox = ({item, addClass}) => (
-    <ActionGlyphCheckbox
-      handleChange={makeHandleChange(item)}
-      addClass={addClass}
-      glyphicon={glyphicon}
-      checked={item[isProp]}
-      itemId={item._id}
-    />
-  );
+  const ItemCheckbox = ({item}) => {
+    let inputNode;
+
+    return (
+      <GlyphCheckbox
+        onChange={e => {
+          handleChange(item, inputNode);
+        }}
+        glyph={glyphicon}
+        exposeInputNode={node => {
+          inputNode = node;
+        }}
+        defaultChecked={item[isProp]}
+        itemId={item._id}
+      />
+    );
+  };
 
   const requiredProps = {};
   requiredProps[isProp] = 'bool';
@@ -56,12 +65,20 @@ export default makeItemCheckbox;
 
 const SelectItemCheckbox = makeItemCheckbox({
   glyphicon: 'check',
-  makeHandleChange: makeHandleChange(selectItem, unselectItem),
+  handleChange: (obj, input) => {
+    dispatch(unfocusCurrentItem());
+
+    if (input.checked) {
+      dispatch(selectItem(obj));
+    } else {
+      dispatch(unselectItem(obj));
+    }
+  },
 });
 
 const ScheduleItemCkeckbox = makeItemCheckbox({
   glyphicon: 'clock-o',
-  makeHandleChange: item => (input, dispatch) => {
+  handleChange: (item, input) => {
     dispatch(unfocusCurrentItem());
   },
 });
