@@ -1,10 +1,7 @@
 import React from 'react';
 import {shallow, mount} from 'enzyme';
 import {expect} from 'chai';
-import chaiEnzyme from 'chai-enzyme';
 import {GlyphButton} from 'wupjs-glyph-button';
-
-chai.use(chaiEnzyme());
 
 describe('Testing GlyphButton component', function () {
   it('contains a <button> and an <i>', function () {

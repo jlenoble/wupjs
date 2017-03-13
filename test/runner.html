@@ -4,16 +4,10 @@
     <meta charset="utf-8">
   </head>
   <body>
-    <script src="../node_modules/babel-polyfill/dist/polyfill.js"></script>
     <script src="../node_modules/mocha/mocha.js"></script>
-    <script src="../node_modules/chai/chai.js"></script>
     <script>
-      var expect = chai.expect;
       mocha.setup('bdd');
     </script>
-    <div id="mocha"><p><a href=".">Index</a></p></div>
-    <div id="messages"></div>
-    <div id="fixtures"></div>
     <script src="../build/test_bundle.js"></script>
     <script>
       mocha.run();
