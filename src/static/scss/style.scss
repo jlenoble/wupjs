@@ -1,4 +1,4 @@
-@import "mixins/_check-button";
+@import "wupjs-glyph-checkbox/lib/_glyph-checkbox";
 
 button, li {
   .vertical-align {
@@ -6,31 +6,31 @@ button, li {
     align-items: center;
   }
 
-  @include checkButton(
+  @include glyphCheckbox(
     $parent-selector: ".glyph-checkbox",
     $button-selector: ".fa-check"
   );
-  @include checkButton(
+  @include glyphCheckbox(
     $parent-selector: ".glyph-checkbox",
     $button-selector: ".fa-pencil"
   );
-  @include checkButton(
+  @include glyphCheckbox(
     $parent-selector: ".glyph-checkbox",
     $button-selector: ".fa-trash-o"
   );
-  @include checkButton(
+  @include glyphCheckbox(
     $parent-selector: ".glyph-checkbox",
     $button-selector: ".fa-bomb"
   );
-  @include checkButton(
+  @include glyphCheckbox(
     $parent-selector: ".glyph-checkbox",
     $button-selector: ".fa-close"
   );
-  @include checkButton(
+  @include glyphCheckbox(
     $parent-selector: ".glyph-checkbox",
     $button-selector: ".fa-clock-o"
   );
-  @include checkButton(
+  @include glyphCheckbox(
     $parent-selector: ".glyph-checkbox",
     $button-selector: ".fa-save"
   );
