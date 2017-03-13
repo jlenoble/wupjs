@@ -1,6 +1,7 @@
 import React from 'react';
 import {itemPropType, itemUiPropType, itemUiDefaultProps} from './proptypes';
 import ButtonGroup from '../presentational/button-group';
+import InlineItem from '../layouts/inline-item';
 
 const makeButtonComponent = (Component, item, key) => (
   <Component
@@ -32,17 +33,17 @@ const ViewItemGroup = ({item, ui: {buttons, checkboxes}}) => {
   const checkboxComponents = makeCheckboxComponents(checkboxes, _item);
 
   return (
-    <div className="col">
-      <span className="row vertical-align">
+    <InlineItem>
+      <span>
         {checkboxComponents}
-        <span className="col">
-          {_item.title}
-        </span>
-        <ButtonGroup addClass="col justify-content-end">
-          {buttonComponents}
-        </ButtonGroup>
       </span>
-    </div>
+      <span>
+        {_item.title}
+      </span>
+      <ButtonGroup>
+        {buttonComponents}
+      </ButtonGroup>
+    </InlineItem>
   );
 };
 
