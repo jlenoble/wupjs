@@ -30,23 +30,21 @@ const getClassHintFromGlyph = glyphicon => {
   }
 };
 
-const makeItemCheckbox = ({glyphicon, handleChange}) => {
+const makeItemCheckbox = ({glyphicon, handleCheck, handleUncheck}) => {
   const classHint = getClassHintFromGlyph(glyphicon);
   const isProp = makeIsProp(classHint);
 
   const ItemCheckbox = ({item}) => {
-    let inputNode;
-
     return (
       <GlyphCheckbox
-        onChange={e => {
-          handleChange(item, inputNode);
+        onCheck={() => {
+          handleCheck(item);
+        }}
+        onUncheck={() => {
+          handleUncheck(item);
         }}
         glyph={glyphicon}
-        exposeInputNode={node => {
-          inputNode = node;
-        }}
-        defaultChecked={item[isProp]}
+        checked={item[isProp]}
         itemId={item._id}
       />
     );
@@ -65,20 +63,22 @@ export default makeItemCheckbox;
 
 const SelectItemCheckbox = makeItemCheckbox({
   glyphicon: 'check',
-  handleChange: (obj, input) => {
+  handleCheck: obj => {
     dispatch(unfocusCurrentItem());
-
-    if (input.checked) {
-      dispatch(selectItem(obj));
-    } else {
-      dispatch(unselectItem(obj));
-    }
+    dispatch(selectItem(obj));
+  },
+  handleUncheck: obj => {
+    dispatch(unfocusCurrentItem());
+    dispatch(unselectItem(obj));
   },
 });
 
 const ScheduleItemCkeckbox = makeItemCheckbox({
   glyphicon: 'clock-o',
-  handleChange: (item, input) => {
+  handleCheck: () => {
+    dispatch(unfocusCurrentItem());
+  },
+  handleUncheck: () => {
     dispatch(unfocusCurrentItem());
   },
 });
