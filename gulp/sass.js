@@ -15,6 +15,7 @@ export const sass = () => {
     project: path.join(__dirname, '..'),
     css: cssDir,
     sass: sassDir,
+    import_path: 'node_modules',
   }))
   .pipe(sourcemaps.write())
   .pipe(gulp.dest(cssDir));
