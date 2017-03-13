@@ -77,6 +77,7 @@
     "redux-thunk": "^2.2.0",
     "url-parse": "^1.1.8",
     "wupjs-glyph-button": "^0.1.0",
+    "wupjs-glyph-checkbox": "^0.2.0",
     "wupjs-glyph-input-text": "^0.1.0"
   }
 }
