@@ -2,6 +2,9 @@ button .vertical-align, li .vertical-align {
   display: flex;
   align-items: center;
 }
+button .grow, li .grow {
+  flex-grow: 1;
+}
 button .glyph-checkbox, li .glyph-checkbox {
   display: inline-block;
   text-align: center;
