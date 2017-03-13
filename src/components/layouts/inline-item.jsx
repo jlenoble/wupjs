@@ -5,9 +5,9 @@ export default ({children}) => {
 
   return (
     <div className="vertical-align grow">
-      <span>{leftContent}</span>
+      {leftContent}
       <span className="grow">{middleContent}</span>
-      <span>{rightContent}</span>
+      {rightContent}
     </div>
   );
 };

@@ -6,6 +6,10 @@ button, li {
     align-items: center;
   }
 
+  .grow {
+    flex-grow: 1;
+  }
+
   @include glyphCheckbox(
     $parent-selector: ".glyph-checkbox",
     $button-selector: ".fa-check"
