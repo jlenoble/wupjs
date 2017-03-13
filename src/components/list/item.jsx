@@ -19,7 +19,7 @@ const Item = ({item, ui, addClass}) => (
 );
 
 const ListItem = ({item, ui}) => (
-  <li className="list-group-item row">
+  <li className="list-group-item">
     {getGroup(item, ui)}
   </li>
 );
