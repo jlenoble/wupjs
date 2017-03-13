@@ -1,7 +1,6 @@
 import React, {PropTypes} from 'react';
 import {GlyphButton} from 'wupjs-glyph-button';
-import {editItem, deleteItem, unselectItem, startNamingSelection,
-  unfocusCurrentItem} from '../../actions';
+import {startNamingSelection, unfocusCurrentItem} from '../../actions';
 import {itemPropType} from './proptypes';
 import {setFuncName} from '../../helpers';
 import {dispatch} from '../../server/store';
@@ -27,16 +26,9 @@ const makeItemButton = (applyToItem, glyphicon, propTypes) => {
 
 export default makeItemButton;
 
-const EditItemButton = makeItemButton(editItem, 'pencil');
-const UnselectItemButton = makeItemButton(unselectItem, 'close');
-const DeleteItemButton = makeItemButton(deleteItem, 'trash-o');
 const SaveCurrentSelectionButton = makeItemButton(startNamingSelection, 'save',
   {item: itemPropType});
 
-setFuncName(EditItemButton, 'EditItemButton');
-setFuncName(UnselectItemButton, 'UnselectItemButton');
-setFuncName(DeleteItemButton, 'DeleteItemButton');
 setFuncName(SaveCurrentSelectionButton, 'SaveCurrentSelectionButton');
 
-export {EditItemButton, UnselectItemButton, DeleteItemButton,
-  SaveCurrentSelectionButton};
+export {SaveCurrentSelectionButton};

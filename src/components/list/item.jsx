@@ -1,7 +1,7 @@
 import React from 'react';
 import ViewItemGroup from './view-item-group';
 import {ModifyItemInputGroup} from './item-input-groups';
-import {itemPropType, itemUiPropType, itemUiDefaultProps} from './proptypes';
+import {itemPropType} from './proptypes';
 
 const getGroup = (item, ui) => {
   return item.isBeingEdited ?
@@ -26,10 +26,7 @@ const ListItem = ({item, ui}) => (
 
 Item.propTypes = ListItem.propTypes = {
   item: itemPropType.isRequired,
-  ui: itemUiPropType,
 };
-
-Item.defaultProps = ListItem.defaultProps = itemUiDefaultProps;
 
 export default Item;
 export {ListItem};

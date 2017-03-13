@@ -3,9 +3,7 @@ import {connect} from 'react-redux';
 import {fetchItemsIfNeeded, fetchSelectionsIfNeeded} from '../../actions';
 import CardBlock from './card-block';
 import {AddItemInputGroup} from './item-input-groups';
-import {EditItemButton, DeleteItemButton, UnselectItemButton,
-  SaveCurrentSelectionButton} from './item-buttons';
-import {SelectItemCheckbox, ScheduleItemCkeckbox} from './item-checkboxes';
+import {SaveCurrentSelectionButton} from './item-buttons';
 import {setFuncName} from '../../helpers';
 import CardHeader from './card-header';
 
@@ -51,13 +49,11 @@ const CurrentSelectionCard = makeCard({
   headerUi: {
     noItemUi: [SaveCurrentSelectionButton],
     itemUi: {
-      buttons: [EditItemButton],
-      checkboxes: [],
+      edit: true,
     },
   },
   itemUi: {
-    buttons: [EditItemButton, UnselectItemButton],
-    checkboxes: [],
+    remove: true,
   },
   mapStateToProps: state => {
     const props = Object.assign({}, state.items);
@@ -97,8 +93,8 @@ const AllItemsCard = makeCard({
     switches: [],
   },
   itemUi: {
-    buttons: [EditItemButton, DeleteItemButton],
-    checkboxes: [SelectItemCheckbox, ScheduleItemCkeckbox],
+    delete: true,
+    select: true,
   },
   mapStateToProps: state => {
     const props = Object.assign({}, state.items);

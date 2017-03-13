@@ -1,57 +1,29 @@
-import React from 'react';
-import {itemPropType, itemUiPropType, itemUiDefaultProps} from './proptypes';
-import ButtonGroup from '../presentational/button-group';
+import React, {PropTypes} from 'react';
+import {itemPropType} from './proptypes';
 import InlineItem from '../layouts/inline-item';
+import SelectGroup from '../groups/select-group';
+import TitleGroup from '../groups/title-group';
+import EditGroup from '../groups/edit-group';
+import DeleteGroup from '../groups/delete-group';
+import RemoveGroup from '../groups/remove-group';
 
-const makeButtonComponent = (Component, item, key) => (
-  <Component
-    item={item}
-    key={key}
-  />
-);
-
-const makeCheckboxComponent = (Component, item, key) => (
-  <Component
-    item={item}
-    key={key}
-  />
-);
-
-const makeButtonComponents = (Components, item) => Components
-  .map((Component, i) => makeButtonComponent(Component, item, i));
-
-const makeCheckboxComponents = (Components, item) => Components
-  .map((Component, i) => makeCheckboxComponent(Component, item, i));
-
-const ViewItemGroup = ({item, ui: {buttons, checkboxes}}) => {
-  const _item = Object.assign({
-    isSelected: false,
-    isScheduled: false,
-  }, item);
-
-  const buttonComponents = makeButtonComponents(buttons, _item);
-  const checkboxComponents = makeCheckboxComponents(checkboxes, _item);
-
+const ViewItemGroup = ({item, ui = {}}) => {
   return (
     <InlineItem>
-      <span>
-        {checkboxComponents}
-      </span>
-      <span>
-        {_item.title}
-      </span>
-      <ButtonGroup>
-        {buttonComponents}
-      </ButtonGroup>
+      {ui.select && <SelectGroup item={item}/>}
+      <TitleGroup item={item}/>
+      {
+        ui.edit && <EditGroup item={item}/> ||
+        ui.delete && <DeleteGroup item={item}/> ||
+        ui.remove && <RemoveGroup item={item}/>
+      }
     </InlineItem>
   );
 };
 
 ViewItemGroup.propTypes = {
   item: itemPropType.isRequired,
-  ui: itemUiPropType,
+  ui: PropTypes.object,
 };
-
-ViewItemGroup.defaultProps = itemUiDefaultProps;
 
 export default ViewItemGroup;

@@ -1,0 +1,228 @@
+button .vertical-align, li .vertical-align {
+  display: flex;
+  align-items: center;
+}
+button .glyph-checkbox, li .glyph-checkbox {
+  display: inline-block;
+  text-align: center;
+  vertical-align: middle;
+  width: 1.5rem;
+  padding: 0 0.25rem 0 0.05rem;
+}
+button .glyph-checkbox input[type="checkbox"], li .glyph-checkbox input[type="checkbox"] {
+  display: none;
+}
+button .glyph-checkbox label, li .glyph-checkbox label {
+  margin: 0;
+}
+button .glyph-checkbox input[type="checkbox"] + .fa-check::before, li .glyph-checkbox input[type="checkbox"] + .fa-check::before {
+  outline: none;
+  color: rgba(40, 40, 40, 0.4);
+  font-size: 1.25em;
+  background-color: transparent;
+  -moz-transition: all 0.1s;
+  -o-transition: all 0.1s;
+  -webkit-transition: all 0.1s;
+  transition: all 0.1s;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+}
+button .glyph-checkbox input[type="checkbox"]:checked + .fa-check::before, li .glyph-checkbox input[type="checkbox"]:checked + .fa-check::before {
+  color: #282828;
+  font-size: 1.5em;
+}
+button .glyph-checkbox input[type="checkbox"] + .fa-check::before:hover, li .glyph-checkbox input[type="checkbox"] + .fa-check::before:hover {
+  cursor: pointer;
+}
+button .glyph-checkbox, li .glyph-checkbox {
+  display: inline-block;
+  text-align: center;
+  vertical-align: middle;
+  width: 1.5rem;
+  padding: 0 0.25rem 0 0.05rem;
+}
+button .glyph-checkbox input[type="checkbox"], li .glyph-checkbox input[type="checkbox"] {
+  display: none;
+}
+button .glyph-checkbox label, li .glyph-checkbox label {
+  margin: 0;
+}
+button .glyph-checkbox input[type="checkbox"] + .fa-pencil::before, li .glyph-checkbox input[type="checkbox"] + .fa-pencil::before {
+  outline: none;
+  color: rgba(40, 40, 40, 0.4);
+  font-size: 1.25em;
+  background-color: transparent;
+  -moz-transition: all 0.1s;
+  -o-transition: all 0.1s;
+  -webkit-transition: all 0.1s;
+  transition: all 0.1s;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+}
+button .glyph-checkbox input[type="checkbox"]:checked + .fa-pencil::before, li .glyph-checkbox input[type="checkbox"]:checked + .fa-pencil::before {
+  color: #282828;
+  font-size: 1.5em;
+}
+button .glyph-checkbox input[type="checkbox"] + .fa-pencil::before:hover, li .glyph-checkbox input[type="checkbox"] + .fa-pencil::before:hover {
+  cursor: pointer;
+}
+button .glyph-checkbox, li .glyph-checkbox {
+  display: inline-block;
+  text-align: center;
+  vertical-align: middle;
+  width: 1.5rem;
+  padding: 0 0.25rem 0 0.05rem;
+}
+button .glyph-checkbox input[type="checkbox"], li .glyph-checkbox input[type="checkbox"] {
+  display: none;
+}
+button .glyph-checkbox label, li .glyph-checkbox label {
+  margin: 0;
+}
+button .glyph-checkbox input[type="checkbox"] + .fa-trash-o::before, li .glyph-checkbox input[type="checkbox"] + .fa-trash-o::before {
+  outline: none;
+  color: rgba(40, 40, 40, 0.4);
+  font-size: 1.25em;
+  background-color: transparent;
+  -moz-transition: all 0.1s;
+  -o-transition: all 0.1s;
+  -webkit-transition: all 0.1s;
+  transition: all 0.1s;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+}
+button .glyph-checkbox input[type="checkbox"]:checked + .fa-trash-o::before, li .glyph-checkbox input[type="checkbox"]:checked + .fa-trash-o::before {
+  color: #282828;
+  font-size: 1.5em;
+}
+button .glyph-checkbox input[type="checkbox"] + .fa-trash-o::before:hover, li .glyph-checkbox input[type="checkbox"] + .fa-trash-o::before:hover {
+  cursor: pointer;
+}
+button .glyph-checkbox, li .glyph-checkbox {
+  display: inline-block;
+  text-align: center;
+  vertical-align: middle;
+  width: 1.5rem;
+  padding: 0 0.25rem 0 0.05rem;
+}
+button .glyph-checkbox input[type="checkbox"], li .glyph-checkbox input[type="checkbox"] {
+  display: none;
+}
+button .glyph-checkbox label, li .glyph-checkbox label {
+  margin: 0;
+}
+button .glyph-checkbox input[type="checkbox"] + .fa-bomb::before, li .glyph-checkbox input[type="checkbox"] + .fa-bomb::before {
+  outline: none;
+  color: rgba(40, 40, 40, 0.4);
+  font-size: 1.25em;
+  background-color: transparent;
+  -moz-transition: all 0.1s;
+  -o-transition: all 0.1s;
+  -webkit-transition: all 0.1s;
+  transition: all 0.1s;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+}
+button .glyph-checkbox input[type="checkbox"]:checked + .fa-bomb::before, li .glyph-checkbox input[type="checkbox"]:checked + .fa-bomb::before {
+  color: #282828;
+  font-size: 1.5em;
+}
+button .glyph-checkbox input[type="checkbox"] + .fa-bomb::before:hover, li .glyph-checkbox input[type="checkbox"] + .fa-bomb::before:hover {
+  cursor: pointer;
+}
+button .glyph-checkbox, li .glyph-checkbox {
+  display: inline-block;
+  text-align: center;
+  vertical-align: middle;
+  width: 1.5rem;
+  padding: 0 0.25rem 0 0.05rem;
+}
+button .glyph-checkbox input[type="checkbox"], li .glyph-checkbox input[type="checkbox"] {
+  display: none;
+}
+button .glyph-checkbox label, li .glyph-checkbox label {
+  margin: 0;
+}
+button .glyph-checkbox input[type="checkbox"] + .fa-close::before, li .glyph-checkbox input[type="checkbox"] + .fa-close::before {
+  outline: none;
+  color: rgba(40, 40, 40, 0.4);
+  font-size: 1.25em;
+  background-color: transparent;
+  -moz-transition: all 0.1s;
+  -o-transition: all 0.1s;
+  -webkit-transition: all 0.1s;
+  transition: all 0.1s;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+}
+button .glyph-checkbox input[type="checkbox"]:checked + .fa-close::before, li .glyph-checkbox input[type="checkbox"]:checked + .fa-close::before {
+  color: #282828;
+  font-size: 1.5em;
+}
+button .glyph-checkbox input[type="checkbox"] + .fa-close::before:hover, li .glyph-checkbox input[type="checkbox"] + .fa-close::before:hover {
+  cursor: pointer;
+}
+button .glyph-checkbox, li .glyph-checkbox {
+  display: inline-block;
+  text-align: center;
+  vertical-align: middle;
+  width: 1.5rem;
+  padding: 0 0.25rem 0 0.05rem;
+}
+button .glyph-checkbox input[type="checkbox"], li .glyph-checkbox input[type="checkbox"] {
+  display: none;
+}
+button .glyph-checkbox label, li .glyph-checkbox label {
+  margin: 0;
+}
+button .glyph-checkbox input[type="checkbox"] + .fa-clock-o::before, li .glyph-checkbox input[type="checkbox"] + .fa-clock-o::before {
+  outline: none;
+  color: rgba(40, 40, 40, 0.4);
+  font-size: 1.25em;
+  background-color: transparent;
+  -moz-transition: all 0.1s;
+  -o-transition: all 0.1s;
+  -webkit-transition: all 0.1s;
+  transition: all 0.1s;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+}
+button .glyph-checkbox input[type="checkbox"]:checked + .fa-clock-o::before, li .glyph-checkbox input[type="checkbox"]:checked + .fa-clock-o::before {
+  color: #282828;
+  font-size: 1.5em;
+}
+button .glyph-checkbox input[type="checkbox"] + .fa-clock-o::before:hover, li .glyph-checkbox input[type="checkbox"] + .fa-clock-o::before:hover {
+  cursor: pointer;
+}
+button .glyph-checkbox, li .glyph-checkbox {
+  display: inline-block;
+  text-align: center;
+  vertical-align: middle;
+  width: 1.5rem;
+  padding: 0 0.25rem 0 0.05rem;
+}
+button .glyph-checkbox input[type="checkbox"], li .glyph-checkbox input[type="checkbox"] {
+  display: none;
+}
+button .glyph-checkbox label, li .glyph-checkbox label {
+  margin: 0;
+}
+button .glyph-checkbox input[type="checkbox"] + .fa-save::before, li .glyph-checkbox input[type="checkbox"] + .fa-save::before {
+  outline: none;
+  color: rgba(40, 40, 40, 0.4);
+  font-size: 1.25em;
+  background-color: transparent;
+  -moz-transition: all 0.1s;
+  -o-transition: all 0.1s;
+  -webkit-transition: all 0.1s;
+  transition: all 0.1s;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+}
+button .glyph-checkbox input[type="checkbox"]:checked + .fa-save::before, li .glyph-checkbox input[type="checkbox"]:checked + .fa-save::before {
+  color: #282828;
+  font-size: 1.5em;
+}
+button .glyph-checkbox input[type="checkbox"] + .fa-save::before:hover, li .glyph-checkbox input[type="checkbox"] + .fa-save::before:hover {
+  cursor: pointer;
+}

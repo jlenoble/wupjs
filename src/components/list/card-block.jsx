@@ -1,6 +1,6 @@
 import React from 'react';
 import List from './list';
-import {itemsPropType, itemUiPropType, itemUiDefaultProps} from './proptypes';
+import {itemsPropType} from './proptypes';
 
 const CardBlock = ({items, isFetching, ui}) => (
   <div className="card-block">
@@ -21,9 +21,6 @@ const CardBlock = ({items, isFetching, ui}) => (
 
 CardBlock.propTypes = {
   items: itemsPropType.isRequired,
-  ui: itemUiPropType,
 };
-
-CardBlock.defaultProps = itemUiDefaultProps;
 
 export default CardBlock;
