@@ -8,7 +8,9 @@
     "license": "MIT",
     "transpile": "es2017",
     "addons": [
-      "React"
+      "React",
+      "Enzyme",
+      "Sass"
     ],
     "Class": "Wupjs",
     "updated": 2017,

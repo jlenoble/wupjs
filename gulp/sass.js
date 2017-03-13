@@ -3,7 +3,7 @@ import path from 'path';
 import compass from 'gulp-compass';
 import sourcemaps from 'gulp-sourcemaps';
 
-import {sassDir, cssDir, sassGlob} from './globs';
+import {sassDir, cssDir, sassGlob, sassImportDir} from './globs';
 
 export const sass = () => {
   return gulp.src(sassGlob, {
@@ -15,7 +15,7 @@ export const sass = () => {
     project: path.join(__dirname, '..'),
     css: cssDir,
     sass: sassDir,
-    import_path: 'node_modules',
+    import_path: sassImportDir,
   }))
   .pipe(sourcemaps.write())
   .pipe(gulp.dest(cssDir));
