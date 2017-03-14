@@ -4,7 +4,6 @@ import {newItem, updateItem, unfocusCurrentItem, displaySelectionName,
   stopNamingSelection, newSelection} from '../../actions';
 import {GlyphInputText} from 'wupjs-glyph-input-text';
 import {itemPropType} from './proptypes';
-import {setFuncName} from '../../helpers';
 import {dispatch} from '../../server/store';
 
 const makeItemInputGroup = ({
@@ -61,19 +60,6 @@ const ModifyItemInputGroup = makeItemInputGroup({
   },
 });
 
-const AddItemInputGroup = makeItemInputGroup({
-  glyphicon: 'plus',
-  placeholder: 'Enter an item',
-  autoClear: true,
-  handleFocus: dispatch => dispatch(unfocusCurrentItem()),
-  handleSubmit: (input, item) => {
-    if (!input.value.trim()) {
-      return;
-    }
-    dispatch(newItem(input.value));
-  },
-});
-
 const NameSelectionInputGroup = makeItemInputGroup({
   glyphicon: 'save',
   placeholder: 'Enter a name',
@@ -94,8 +80,4 @@ const NameSelectionInputGroup = makeItemInputGroup({
   },
 });
 
-setFuncName(AddItemInputGroup, 'AddItemInputGroup');
-setFuncName(ModifyItemInputGroup, 'ModifyItemInputGroup');
-setFuncName(NameSelectionInputGroup, 'NameSelectionInputGroup');
-
-export {AddItemInputGroup, ModifyItemInputGroup, NameSelectionInputGroup};
+export {ModifyItemInputGroup, NameSelectionInputGroup};
