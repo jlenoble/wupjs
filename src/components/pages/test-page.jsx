@@ -1,7 +1,8 @@
 import React from 'react';
 import Content from '../layouts/content';
-import {AllItemsCard, CurrentSelectionCard, AllSelectionsCard}
-  from '../list/items-cards';
+import AllItemsCard from '../cards/all-items-card';
+import AllSelectionsCard from '../cards/all-selections-card';
+import CurrentSelectionCard from '../cards/current-selection-card';
 
 export default () => (
   <Content>
