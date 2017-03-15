@@ -1,11 +1,11 @@
 import React from 'react';
-import ViewItemGroup from './view-item-group';
-import {ModifyItemInputGroup} from './item-input-groups';
+import ViewItemGroup from '../groups/view-item-group';
+import ModifyGroup from '../groups/modify-group';
 import {itemPropType} from './proptypes';
 
 const getGroup = (item, ui) => {
   return item.isBeingEdited ?
-    <ModifyItemInputGroup item={item}/> :
+    <ModifyGroup item={item}/> :
     <ViewItemGroup
       item={item}
       ui={ui}
