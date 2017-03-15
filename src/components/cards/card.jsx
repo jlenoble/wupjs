@@ -45,8 +45,3 @@ Card.defaultProps = {
 };
 
 export default Card;
-
-export const itemIsEditedWithinCard = (item, card, {
-  _id, isBeingEdited, cardName}) => {
-  return isBeingEdited && item._id === _id && card.name === cardName;
-};
