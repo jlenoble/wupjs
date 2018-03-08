@@ -1,0 +1,22 @@
+version: "3.5"
+services:
+
+  mongo:
+    image: mongo
+    ports:
+      - "27017:27017"
+    volumes:
+      - /opt/mongodb/db:/data/db
+    networks:
+      - organic
+
+  adminmongo:
+    image: mrvautin/adminmongo
+    ports:
+      - "1234:1234"
+    networks:
+      - organic
+
+networks:
+  organic:
+    driver: bridge
