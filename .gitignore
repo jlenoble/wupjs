@@ -1,6 +1,7 @@
 # Build
 build
 .sass-cache
+private
 
 # Logs
 logs
