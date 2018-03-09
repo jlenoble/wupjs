@@ -14,7 +14,6 @@ export default function makeMarkup (renderProps) {
     </Provider>);
   } else {
     markup = renderToString(<PageNotFound/>);
-    res.status(404);
   }
   return markup;
 }
