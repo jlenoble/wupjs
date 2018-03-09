@@ -1,4 +1,5 @@
-import React, {Component, PropTypes} from 'react';
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import CardHeader from './card-header';
 import CardBlock from './card-block';
 import {itemPropType, itemsPropType} from '../list/proptypes';

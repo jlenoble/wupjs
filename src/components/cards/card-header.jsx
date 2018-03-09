@@ -1,4 +1,5 @@
-import React, {PropTypes} from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import Item from '../list/item';
 import {itemPropType} from '../list/proptypes';
 import AddGroup from '../groups/add-group';

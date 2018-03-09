@@ -1,4 +1,5 @@
-import React, {PropTypes} from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import {itemPropType} from '../list/proptypes';
 import InlineItem from '../layouts/inline-item';
 import SelectGroup from './select-group';
