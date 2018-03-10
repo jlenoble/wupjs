@@ -1,7 +1,4 @@
-import './get-items';
-import './post-items';
-import './put-item';
-import './delete-item';
-
-import './get-selections';
-import './post-selections';
+import './get';
+import './post';
+import './put';
+import './delete';
