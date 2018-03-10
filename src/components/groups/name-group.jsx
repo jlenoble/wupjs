@@ -17,13 +17,13 @@ const NameGroup = () => (
         return;
       }
       dispatch(newItem(value))
-      .then(
-        item => dispatch(displaySelectionName(item)),
-        () => dispatch(stopNamingSelection())
-      )
-      .then(
-        ({item}) => dispatch(newSelection(item))
-      );
+        .then(
+          item => dispatch(displaySelectionName(item)),
+          () => dispatch(stopNamingSelection())
+        )
+        .then(
+          ({item}) => dispatch(newSelection(item))
+        );
     }}
   />
 );
