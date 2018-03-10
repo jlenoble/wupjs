@@ -1,4 +1,4 @@
-import {PropTypes} from 'react';
+import PropTypes from 'prop-types';
 
 // Schema: {_id: 'string'}
 // Shape: {_id: PropTypes.string}
@@ -50,26 +50,26 @@ const itemSchema = {
 };
 
 export const itemPropType = makeCheckerFromSchemas(itemSchema);
-export const extendItemPropType = schema => makeCheckerFromSchemas(
-  itemSchema, schema);
+// export const extendItemPropType = schema => makeCheckerFromSchemas(
+//   itemSchema, schema);
 
 // List of Items
 
 export const itemsPropType = PropTypes.arrayOf(itemPropType.isRequired);
-export const extendItemsPropType = schema => PropTypes.arrayOf(
-  extendItemPropType(schema).isRequired);
-
-// Item UI
-
-const itemUiSchema = {
-  buttons: 'funcs',
-  checkboxes: 'funcs',
-};
-
-export const itemUiPropType = makeCheckerFromSchemas(itemUiSchema);
-export const itemUiDefaultProps = {
-  ui: {
-    buttons: [],
-    checkboxes: [],
-  },
-};
+// export const extendItemsPropType = schema => PropTypes.arrayOf(
+//   extendItemPropType(schema).isRequired);
+//
+// // Item UI
+//
+// const itemUiSchema = {
+//   buttons: 'funcs',
+//   checkboxes: 'funcs',
+// };
+//
+// export const itemUiPropType = makeCheckerFromSchemas(itemUiSchema);
+// export const itemUiDefaultProps = {
+//   ui: {
+//     buttons: [],
+//     checkboxes: [],
+//   },
+// };
