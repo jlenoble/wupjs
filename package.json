@@ -61,6 +61,7 @@
     "babel-preset-env": "^1.6.1",
     "body-parser": "^1.16.1",
     "bootstrap": "^4.0.0-alpha",
+    "camelize": "^1.0.0",
     "classnames": "^2.2.5",
     "express": "^4.14.1",
     "font-awesome": "^4.7.0",
