@@ -1,0 +1,23 @@
+import {createActions} from '../db';
+import {displaySelectionName, stopNamingSelection} from '../ui';
+
+const newItem = createActions.newItem;
+const _newSelection = createActions.newSelection;
+
+export function newSelection ({title}) {
+  return async (dispatch, getState) => {
+    try {
+      const item = await dispatch(newItem({title}));
+      await dispatch(displaySelectionName(item));
+
+      const items = Object.keys(getState().currentSelection.items);
+      const itemId = item._id;
+
+      await dispatch(_newSelection({itemId, items}, json => {
+        return !json.itemId || !Array.isArray(json.items);
+      }));
+    } catch (e) {
+      await dispatch(stopNamingSelection());
+    }
+  };
+}
