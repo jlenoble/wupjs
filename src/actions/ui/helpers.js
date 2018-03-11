@@ -16,7 +16,7 @@ export const addAction = (MESSAGE, itemArg) => {
         return dispatch => {
           dispatch({
             type: MESSAGE,
-            ...item,
+            ..._item,
           });
         };
       }
