@@ -1,7 +1,7 @@
 import React from 'react';
 import Card from './card';
 import {connect} from 'react-redux';
-import {getMapOfAllItems, getItemsFromItemMap, itemIsEditedWithinCard}
+import {getMapOfAllItems, getItemsFromItemMap, updateEditedFlags}
   from './helpers';
 
 const AllItemsCard = ({items, isFetching}) => {
@@ -25,15 +25,13 @@ const AllItemsCard = ({items, isFetching}) => {
 };
 
 const mapStateToProps = state => {
-  const items = getItemsFromItemMap(getMapOfAllItems());
-  const currentItem = state.currentItem;
-
   return {
     isFetching: state.items.isFetching,
-    items: items.map(item => Object.assign({
-      isBeingEdited: itemIsEditedWithinCard(item, AllItemsCard, currentItem),
-      cardName: AllItemsCard.name,
-    }, item)),
+    items: updateEditedFlags(
+      getItemsFromItemMap(getMapOfAllItems()),
+      state.currentItem,
+      AllItemsCard
+    ),
   };
 };
 

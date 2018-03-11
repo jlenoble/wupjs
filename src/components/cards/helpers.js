@@ -37,3 +37,9 @@ export const itemIsEditedWithinCard = (item, card, {
   _id, isBeingEdited, cardName}) => {
   return isBeingEdited && item._id === _id && card.name === cardName;
 };
+
+export const updateEditedFlags = (items, currentItem, Card) => items.map(
+  item => Object.assign({
+    isBeingEdited: itemIsEditedWithinCard(item, Card, currentItem),
+    cardName: Card.name,
+  }, item));
