@@ -11,11 +11,11 @@ const AddGroup = () => (
     autoClear
     onFocus={() => dispatch(unfocusCurrentItem())}
     onSubmit={e => {
-      const value = e.target.value.trim();
-      if (!value) {
+      const title = e.target.value.trim();
+      if (!title) {
         return;
       }
-      dispatch(newItem(value));
+      dispatch(newItem({title}));
     }}
   />
 );
