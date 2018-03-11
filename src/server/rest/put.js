@@ -6,7 +6,14 @@ Object.keys(collections).forEach(key => {
 
   app.put(`/api/${key}/:id`, (req, res) => {
     const _id = req.params.id;
-    const title = req.body.title;
+    const body = req.body;
+    const keys = Object.keys(Collection.schema.paths).filter(key => {
+      return body[key] !== undefined && key !== '_id' && key !== '__v';
+    });
+    const item = {};
+    keys.forEach(key => {
+      item[key] = body[key];
+    });
 
     if (_id !== req.body._id) {
       return res.json({
@@ -15,7 +22,7 @@ Object.keys(collections).forEach(key => {
       });
     }
 
-    Collection.update({_id}, {$set: {title}}, err => {
+    Collection.update({_id}, {$set: item}, err => {
       if (err) {
         return res.json({
           status: err.status || 500,

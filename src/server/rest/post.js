@@ -6,7 +6,13 @@ Object.keys(collections).forEach(key => {
 
   app.post(`/api/${key}`, (req, res) => {
     const item = new Collection();
-    item.title = req.body.title;
+    const body = req.body;
+    const keys = Object.keys(Collection.schema.paths).filter(key => {
+      return body[key] !== undefined && key !== '_id' && key !== '__v';
+    });
+    keys.forEach(key => {
+      item[key] = body[key];
+    });
 
     item.save(err => {
       if (err) {
