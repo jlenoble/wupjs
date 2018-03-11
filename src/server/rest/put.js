@@ -30,7 +30,7 @@ Object.keys(collections).forEach(key => {
         });
       }
 
-      res.json({_id, title});
+      res.json({_id, ...item});
     });
   });
 });
