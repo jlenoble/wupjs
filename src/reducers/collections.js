@@ -48,7 +48,7 @@ collections.forEach(key => {
 
     case DELETE_ITEM:
       items = {...state.items};
-      delete items[action._id];
+      delete items[action.item._id];
       return {isFetching: true, items};
 
     case DELETE_ITEM_ERROR:

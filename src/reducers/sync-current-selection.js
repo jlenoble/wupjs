@@ -20,7 +20,7 @@ export const syncCurrentSelection = (state, action) => {
 
   case DELETE_ITEM:
     if (currentSelection.item) {
-      if (currentSelection.item._id === action._id) {
+      if (currentSelection.item._id === action.item._id) {
         return {...state, currentSelection: {...currentSelection,
           item: undefined, items: []}};
       }

@@ -24,7 +24,7 @@ collections.forEach(key => {
   function requestDeleteItem (_id) {
     return {
       type: DELETE_ITEM,
-      _id,
+      item: {_id},
     };
   }
 
