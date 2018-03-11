@@ -1,10 +1,12 @@
 import {fetchActions, createActions} from '../db';
-import {displaySelectionName, stopNamingSelection} from '../ui';
+import {uiActions} from '../ui/helpers';
 
 const newItem = createActions.newItem;
 
 const _fetchSelections = fetchActions.fetchSelectionsIfNeeded;
 const _newSelection = createActions.newSelection;
+
+const {displaySelectionName, stopNamingSelection} = uiActions;
 
 export function fetchSelectionsIfNeeded () {
   return _fetchSelections();

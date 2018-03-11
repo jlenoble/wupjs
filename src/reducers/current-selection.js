@@ -1,9 +1,7 @@
-import {
-  uiActions, START_NAMING_SELECTION, STOP_NAMING_SELECTION,
-  DISPLAY_SELECTION_NAME,
-} from '../actions';
+import {uiActions} from '../actions';
 
-const {SELECT_ITEM, UNSELECT_ITEM} = uiActions;
+const {SELECT_ITEM, UNSELECT_ITEM, START_NAMING_SELECTION,
+  STOP_NAMING_SELECTION, DISPLAY_SELECTION_NAME} = uiActions;
 
 export function currentSelection (state = {
   isBeingNamed: false,

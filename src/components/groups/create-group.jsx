@@ -1,9 +1,9 @@
 import React from 'react';
 import {GlyphButtonGroup} from 'wupjs-glyph-button';
-import {startNamingSelection, uiActions} from '../../actions';
+import {uiActions} from '../../actions';
 import {dispatch} from '../../server/store';
 
-const {unfocusCurrentItem} = uiActions;
+const {startNamingSelection, unfocusCurrentItem} = uiActions;
 
 const CreateGroup = () => {
   return (
