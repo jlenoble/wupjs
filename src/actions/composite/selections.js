@@ -1,8 +1,14 @@
-import {createActions} from '../db';
+import {fetchActions, createActions} from '../db';
 import {displaySelectionName, stopNamingSelection} from '../ui';
 
 const newItem = createActions.newItem;
+
+const _fetchSelections = fetchActions.fetchSelectionsIfNeeded;
 const _newSelection = createActions.newSelection;
+
+export function fetchSelectionsIfNeeded () {
+  return _fetchSelections();
+}
 
 export function newSelection ({title}) {
   return async (dispatch, getState) => {

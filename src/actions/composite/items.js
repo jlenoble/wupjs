@@ -1,10 +1,15 @@
-import {createActions, updateActions, deleteActions} from '../db';
+import {fetchActions, createActions, updateActions, deleteActions} from '../db';
 
+const _fetchItems = fetchActions.fetchItemsIfNeeded;
 const _newItem = createActions.newItem;
 const _updateItem = updateActions.updateItem;
 const _deleteItem = deleteActions.deleteItem;
 
 const deleteSelection = deleteActions.deleteSelection;
+
+export function fetchItemsIfNeeded (item, fail) {
+  return _fetchItems(item, fail);
+}
 
 export function newItem (item, fail) {
   return _newItem(item, fail);
