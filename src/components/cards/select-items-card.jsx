@@ -2,9 +2,9 @@ import React from 'react';
 import Card from './card';
 import {connect} from 'react-redux';
 import {getMapOfAllItems, getItemsFromItemMap, getCurrentSelectionMap,
-  itemIsEditedWithinCard} from './helpers';
+  updateEditedFlags} from './helpers';
 
-const AllItemsCard = ({items, isFetching}) => {
+const SelectItemsCard = ({items, isFetching}) => {
   return (
     <Card
       item={{
@@ -26,18 +26,16 @@ const AllItemsCard = ({items, isFetching}) => {
 };
 
 const mapStateToProps = state => {
-  const items = getItemsFromItemMap(getMapOfAllItems());
   const selectionMap = getCurrentSelectionMap();
-  const currentItem = state.currentItem;
 
   return {
     isFetching: state.items.isFetching,
-    items: items.map(item => Object.assign({
-      isBeingEdited: itemIsEditedWithinCard(item, AllItemsCard, currentItem),
-      isSelected: selectionMap[item._id] ? true : false,
-      cardName: AllItemsCard.name,
-    }, item)),
+    items: updateEditedFlags(
+      getItemsFromItemMap(getMapOfAllItems()),
+      state.currentItem,
+      SelectItemsCard
+    ).map(item => ({...item, isSelected: !!selectionMap[item._id]})),
   };
 };
 
-export default connect(mapStateToProps)(AllItemsCard);
+export default connect(mapStateToProps)(SelectItemsCard);
