@@ -1,7 +1,7 @@
 import React from 'react';
 import Card from './card';
 import {connect} from 'react-redux';
-import {getItemsFromItemMap, getCurrentSelectionMap, itemIsEditedWithinCard}
+import {getItemsFromItemMap, getCurrentSelectionMap, updateEditedFlags}
   from './helpers';
 
 const CurrentSelectionCard = ({item, items, isFetching, headerUi}) => {
@@ -19,9 +19,7 @@ const CurrentSelectionCard = ({item, items, isFetching, headerUi}) => {
 };
 
 const mapStateToProps = state => {
-  const items = getItemsFromItemMap(getCurrentSelectionMap());
   const currentSelection = state.currentSelection;
-  const currentItem = state.currentItem;
 
   let item = currentSelection.item;
   let headerUi;
@@ -46,13 +44,13 @@ const mapStateToProps = state => {
 
   return {
     isFetching: state.items.isFetching,
-    items: items.map(item => Object.assign({
-      isBeingEdited: itemIsEditedWithinCard(item, CurrentSelectionCard,
-        currentItem),
-      isSelected: true,
-      cardName: CurrentSelectionCard.name,
-    }, item)),
-    item, headerUi,
+    items: updateEditedFlags(
+      getItemsFromItemMap(getCurrentSelectionMap()),
+      state.currentItem,
+      CurrentSelectionCard
+    ).map(item => ({...item, isSelected: true})),
+    item,
+    headerUi,
   };
 };
 

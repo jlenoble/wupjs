@@ -1,7 +1,8 @@
 import React from 'react';
 import Card from './card';
 import {connect} from 'react-redux';
-import {getMapOfAllSelections, getItemsFromSelectionMap} from './helpers';
+import {getMapOfAllSelections, getItemsFromSelectionMap, updateEditedFlags}
+  from './helpers';
 
 const AllSelectionsCard = ({items, isFetching}) => {
   return (
@@ -25,7 +26,11 @@ const AllSelectionsCard = ({items, isFetching}) => {
 const mapStateToProps = state => {
   return {
     isFetching: state.items.isFetching,
-    items: getItemsFromSelectionMap(getMapOfAllSelections()),
+    items: updateEditedFlags(
+      getItemsFromSelectionMap(getMapOfAllSelections()),
+      state.currentItem,
+      AllSelectionsCard
+    ),
   };
 };
 
