@@ -1,5 +1,5 @@
 import {fetchActions, createActions} from '../db';
-import {uiActions} from '../ui/helpers';
+import {uiActions} from '../ui';
 
 const newItem = createActions.newItem;
 
