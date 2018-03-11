@@ -1,8 +1,10 @@
 import React from 'react';
 import {itemPropType} from '../list/proptypes';
 import {GlyphCheckboxGroup} from 'wupjs-glyph-checkbox';
-import {selectItem, unselectItem, unfocusCurrentItem} from '../../actions';
+import {uiActions, unfocusCurrentItem} from '../../actions';
 import {dispatch} from '../../server/store';
+
+const {selectItem, unselectItem} = uiActions;
 
 const SelectGroup = ({item}) => {
   return (
