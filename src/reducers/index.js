@@ -6,9 +6,6 @@ import {currentSelection} from './current-selection';
 import {syncCurrentSelection} from './sync-current-selection';
 
 export default reduceReducers(
-  combineReducers(Object.assign({
-    currentItem,
-    currentSelection,
-  }, collectionReducers)),
+  combineReducers({currentItem, currentSelection, ...collectionReducers}),
   syncCurrentSelection
 );

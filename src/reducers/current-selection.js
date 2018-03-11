@@ -17,9 +17,7 @@ export function currentSelection (state = {
       return state;
     }
     items[_id] = action.item;
-    return Object.assign({}, state, {
-      items: Object.assign({}, state.items, items),
-    });
+    return {...state, items: {...state.items, ...items}};
 
   case UNSELECT_ITEM:
     if (!state.items[_id]) {
@@ -27,23 +25,16 @@ export function currentSelection (state = {
     }
     Object.assign(items, state.items);
     delete items[_id];
-    return Object.assign({}, state, {items});
+    return {...state, items};
 
   case START_NAMING_SELECTION:
-    return Object.assign({}, state, {
-      isBeingNamed: true,
-    });
+    return {...state, isBeingNamed: true};
 
   case STOP_NAMING_SELECTION:
-    return Object.assign({}, state, {
-      isBeingNamed: false,
-    });
+    return {...state, isBeingNamed: false};
 
   case DISPLAY_SELECTION_NAME:
-    return Object.assign({}, state, {
-      isBeingNamed: false,
-      item: Object.assign({}, action.item),
-    });
+    return {...state, isBeingNamed: false, item: {...action.item}};
 
   default:
     return state;

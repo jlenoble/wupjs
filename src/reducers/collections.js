@@ -21,82 +21,55 @@ collections.forEach(key => {
 
     switch (action.type) {
     case REQUEST_ITEMS:
-      return Object.assign({}, state, {
-        isFetching: true,
-      });
+      return {...state, isFetching: true};
 
     case RECEIVE_ITEMS_SUCCESS:
-      return Object.assign({}, state, {
-        isFetching: false,
-        items: action.items.reduce((obj, item) => {
-          obj[item._id] = item; // eslint-disable-line no-param-reassign
-          return obj;
-        }, {}),
+      items = {};
+      action.items.forEach(item => {
+        items[item._id] = item;
       });
+      return {...state, isFetching: false, items};
 
     case CREATE_ITEM:
-      items = Object.assign({}, state.items);
+      items = {...state.items};
       items[action.item._id] = action.item;
-      return Object.assign({}, state, {
-        isFetching: true,
-        items,
-      });
+      return {...state, isFetching: true, items};
 
     case CREATE_ITEM_SUCCESS:
-      items = Object.assign({}, state.items);
+      items = {...state.items};
       delete items[action._id];
       items[action.item._id] = action.item;
-      return {
-        isFetching: false,
-        items,
-      };
+      return {isFetching: false, items};
 
     case CREATE_ITEM_ERROR:
-      items = Object.assign({}, state.items);
+      items = {...state.items};
       delete items[action._id];
-      return {
-        isFetching: false,
-        items,
-      };
+      return {isFetching: false, items};
 
     case DELETE_ITEM:
-      items = Object.assign({}, state.items);
+      items = {...state.items};
       delete items[action._id];
-      return {
-        isFetching: true,
-        items,
-      };
+      return {isFetching: true, items};
 
     case DELETE_ITEM_ERROR:
-      items = Object.assign({}, state.items);
+      items = {...state.items};
       items[action.item._id] = action.item;
-      return {
-        isFetching: false,
-        items,
-      };
+      return {isFetching: false, items};
 
     case UPDATE_ITEM:
-      items = Object.assign({}, state.items);
+      items = {...state.items};
       items[action.item._id] = action.item;
-      return {
-        isFetching: true,
-        items,
-      };
+      return {isFetching: true, items};
 
     case UPDATE_ITEM_ERROR:
-      items = Object.assign({}, state.items);
+      items = {...state.items};
       items[action.item._id] = action.item;
-      return {
-        isFetching: false,
-        items,
-      };
+      return {isFetching: false, items};
 
     case RECEIVE_ITEMS_ERROR:
     case UPDATE_ITEM_SUCCESS:
     case DELETE_ITEM_SUCCESS:
-      return Object.assign({}, state, {
-        isFetching: false,
-      });
+      return {...state, isFetching: false};
 
     default:
       return state;

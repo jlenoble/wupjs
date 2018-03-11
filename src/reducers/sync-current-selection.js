@@ -12,11 +12,8 @@ export const syncCurrentSelection = (state, action) => {
   case DELETE_ITEM_ERROR:
     if (currentSelection.item) {
       if (currentSelection.item._id === action.item._id) {
-        return Object.assign({}, state, {
-          currentSelection: Object.assign({}, currentSelection, {
-            item: action.item,
-          }),
-        });
+        return {...state, currentSelection: {...currentSelection,
+          item: action.item}};
       }
     }
     break;
@@ -24,11 +21,8 @@ export const syncCurrentSelection = (state, action) => {
   case DELETE_ITEM:
     if (currentSelection.item) {
       if (currentSelection.item._id === action._id) {
-        return Object.assign({}, state, {
-          currentSelection: Object.assign({}, currentSelection, {
-            item: undefined,
-          }),
-        });
+        return {...state, currentSelection: {...currentSelection,
+          item: undefined, items: []}};
       }
     }
     break;
