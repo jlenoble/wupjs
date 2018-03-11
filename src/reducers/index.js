@@ -1,17 +1,14 @@
 import {combineReducers} from 'redux';
 import reduceReducers from 'reduce-reducers';
-import {items} from './items';
+import collectionReducers from './collections';
 import {currentItem} from './current-item';
 import {currentSelection} from './current-selection';
-import {selections} from './selections';
-import {syncSelections} from './sync-selections';
+import {syncCurrentSelection} from './sync-current-selection';
 
 export default reduceReducers(
-  combineReducers({
-    items,
+  combineReducers(Object.assign({
     currentItem,
     currentSelection,
-    selections,
-  }),
-  syncSelections
+  }, collectionReducers)),
+  syncCurrentSelection
 );
