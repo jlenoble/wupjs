@@ -1,8 +1,10 @@
 import React from 'react';
 import {itemPropType} from '../list/proptypes';
 import {GlyphButtonGroup} from 'wupjs-glyph-button';
-import {editItem, deleteItem, unfocusCurrentItem} from '../../actions';
+import {deleteItem, uiActions} from '../../actions';
 import {dispatch} from '../../server/store';
+
+const {editItem, unfocusCurrentItem} = uiActions;
 
 const DeleteGroup = ({item}) => {
   return (

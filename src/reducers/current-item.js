@@ -1,6 +1,6 @@
-import {
-  EDIT_ITEM, UNFOCUS_CURRENT_ITEM,
-} from '../actions';
+import {uiActions} from '../actions';
+
+const {EDIT_ITEM, UNFOCUS_CURRENT_ITEM} = uiActions;
 
 export function currentItem (state = {
   isBeingEdited: false,

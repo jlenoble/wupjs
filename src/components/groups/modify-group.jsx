@@ -1,7 +1,9 @@
 import React from 'react';
-import {updateItem, unfocusCurrentItem} from '../../actions';
+import {updateItem, uiActions} from '../../actions';
 import {GlyphInputText} from 'wupjs-glyph-input-text';
 import {dispatch} from '../../server/store';
+
+const {unfocusCurrentItem} = uiActions;
 
 const ModifyGroup = ({item}) => (
   <GlyphInputText

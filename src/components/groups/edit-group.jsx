@@ -1,8 +1,10 @@
 import React from 'react';
 import {itemPropType} from '../list/proptypes';
 import {GlyphButtonGroup} from 'wupjs-glyph-button';
-import {editItem, unfocusCurrentItem} from '../../actions';
+import {uiActions} from '../../actions';
 import {dispatch} from '../../server/store';
+
+const {editItem, unfocusCurrentItem} = uiActions;
 
 const EditGroup = ({item}) => {
   return (
