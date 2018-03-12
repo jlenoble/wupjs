@@ -3,7 +3,8 @@ import PropTypes from 'prop-types';
 import CardHeader from './card-header';
 import CardBlock from './card-block';
 import {itemPropType, itemsPropType} from '../list/proptypes';
-import {fetchItemsIfNeeded, fetchSelectionIfNeeded} from '../../actions';
+import {fetchItemsIfNeeded, fetchSelectionIfNeeded, fetchSelectionsIfNeeded}
+  from '../../actions';
 import {dispatch} from '../../server/store';
 
 class Card extends Component {
@@ -14,6 +15,7 @@ class Card extends Component {
       dispatch(fetchSelectionIfNeeded(selectionId));
     } else {
       dispatch(fetchItemsIfNeeded());
+      dispatch(fetchSelectionsIfNeeded());
     }
   }
 

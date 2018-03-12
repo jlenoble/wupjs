@@ -1,10 +1,9 @@
 import React from 'react';
 import Card from './card';
 import {connect} from 'react-redux';
-import {getItemsFromItemMap, getItemsFromItemIds, updateEditedFlags}
-  from './helpers';
+import {updateEditedFlags} from './helpers';
 
-const CardFactory = (headerUi, blockUi) => {
+const CardFactory = (headerUi, blockUi, options = {}) => {
   const GenericCard = ({
     selectionId, item, items, isFetching}) => {
     return (
@@ -29,11 +28,11 @@ const CardFactory = (headerUi, blockUi) => {
       const selections = state.selections.items;
       const selection = selections[selectionId];
       item = items[selection.itemId];
-      items = getItemsFromItemIds(selection.items);
+      items = options.filter(selection);
       isFetching = selections.isFetching;
     } else {
-      item = {_id: 'all-items', title: 'All items'};
-      items = getItemsFromItemMap(items);
+      item = {_id: options._id, title: options.title};
+      items = options.filter(items);
       isFetching = items.isFetching;
     }
 
