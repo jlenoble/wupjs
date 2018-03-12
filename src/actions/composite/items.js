@@ -1,5 +1,6 @@
 import {fetchActions, createActions, updateActions, deleteActions} from '../db';
 
+const _fetchItem = fetchActions.fetchItemIfNeeded;
 const _fetchItems = fetchActions.fetchItemsIfNeeded;
 const _newItem = createActions.newItem;
 const _updateItem = updateActions.updateItem;
@@ -7,8 +8,12 @@ const _deleteItem = deleteActions.deleteItem;
 
 const deleteSelection = deleteActions.deleteSelection;
 
-export function fetchItemsIfNeeded (item, fail) {
-  return _fetchItems(item, fail);
+export function fetchItemIfNeeded (item, reload) {
+  return _fetchItem(item, reload);
+}
+
+export function fetchItemsIfNeeded (reload) {
+  return _fetchItems(reload);
 }
 
 export function newItem (item, fail) {

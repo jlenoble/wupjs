@@ -5,9 +5,12 @@ const messages = {};
 const actions = {};
 
 collections.forEach(key => {
+  const skey = key.slice(0, key.length - 1);
   const ITEMS = key.toUpperCase();
-  const Name = key[0].toUpperCase() + key.slice(1);
-  const action = `fetch${Name}IfNeeded`;
+  const Name = skey[0].toUpperCase() + skey.slice(1);
+  const Names = key[0].toUpperCase() + key.slice(1);
+  const itemAction = `fetch${Name}IfNeeded`;
+  const itemsAction = `fetch${Names}IfNeeded`;
   const uri = `/api/${key}`;
 
   const REQUEST_ITEMS = `REQUEST_${ITEMS}`;
@@ -40,11 +43,11 @@ collections.forEach(key => {
     };
   }
 
-  function fetchItems () {
+  function fetchItems (_id) {
     return dispatch => {
       dispatch(requestItems());
 
-      return fetch(uri)
+      return fetch(!_id ? uri : `${uri}/${_id}`)
         .then(response => response.json())
         .then(json => {
           if (!Array.isArray(json)) {
@@ -62,9 +65,16 @@ collections.forEach(key => {
       !items.isFetching);
   }
 
-  actions[action] = function () {
+  actions[itemAction] = function (_id, reload) {
     return (dispatch, getState) => {
-      if (shouldFetchItems(getState())) {
+      return reload || !getState()[key][_id] ? dispatch(fetchItems(_id))
+        : [];
+    };
+  };
+
+  actions[itemsAction] = function (reload) {
+    return (dispatch, getState) => {
+      if (reload || shouldFetchItems(getState())) {
         return dispatch(fetchItems());
       }
     };
