@@ -1,13 +1,11 @@
 import React from 'react';
 
-export default ({children}) => {
-  const [leftContent, middleContent, rightContent] = children;
-
+export default ({children = []}) => {
   return (
     <div className="vertical-align grow">
-      {leftContent}
-      <span className="grow">{middleContent}</span>
-      {rightContent}
+      {children[0]}
+      <span className="grow">{children[1]}</span>
+      {children[2]}
     </div>
   );
 };
