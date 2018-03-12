@@ -3,13 +3,18 @@ import PropTypes from 'prop-types';
 import CardHeader from './card-header';
 import CardBlock from './card-block';
 import {itemPropType, itemsPropType} from '../list/proptypes';
-import {fetchItemsIfNeeded, fetchSelectionsIfNeeded} from '../../actions';
+import {fetchItemsIfNeeded, fetchSelectionIfNeeded} from '../../actions';
 import {dispatch} from '../../server/store';
 
 class Card extends Component {
   componentDidMount () {
-    dispatch(fetchItemsIfNeeded());
-    dispatch(fetchSelectionsIfNeeded());
+    const {selectionId} = this.props;
+
+    if (selectionId) {
+      dispatch(fetchSelectionIfNeeded(selectionId));
+    } else {
+      dispatch(fetchItemsIfNeeded());
+    }
   }
 
   render () {

@@ -3,19 +3,19 @@ import PropTypes from 'prop-types';
 import Item from '../list/item';
 import {itemPropType} from '../list/proptypes';
 import AddGroup from '../groups/add-group';
-import CreateGroup from '../groups/create-group';
-import NameGroup from '../groups/name-group';
+// import CreateGroup from '../groups/create-group';
+// import NameGroup from '../groups/name-group';
 
 const CardHeader = ({item, ui}) => {
+  // {ui.create && <CreateGroup/>}
+  // {ui.name && <NameGroup/>}
   return (
     <div className="card-header">
-      {ui.create && <CreateGroup/>}
-      {ui.name && <NameGroup/>}
       {ui.title && <Item
         item={item}
         ui={ui.itemUi}
       />}
-      {ui.add && <AddGroup/>}
+      {ui.createItem && <AddGroup/>}
     </div>
   );
 };

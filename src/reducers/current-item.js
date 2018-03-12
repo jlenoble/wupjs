@@ -14,7 +14,7 @@ export function currentItem (state = {
       isBeingEdited: true,
       _id: action._id,
       title: action.title,
-      cardName: action.cardName,
+      selectionId: action.selectionId || 'all-items',
     });
 
   case UNFOCUS_CURRENT_ITEM:
@@ -22,7 +22,7 @@ export function currentItem (state = {
       isBeingEdited: false,
       _id: '',
       title: '',
-      cardName: '',
+      selectionId: '',
     });
 
   default:

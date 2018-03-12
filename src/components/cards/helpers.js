@@ -10,9 +10,15 @@ export const getMapOfAllSelections = () => {
   return getState().selections.items;
 };
 
-// Get map of all currently selected {_id, title}
-export const getCurrentSelectionMap = () => {
-  return getState().currentSelection.items;
+// // Get map of all currently selected {_id, title}
+// export const getCurrentSelectionMap = () => {
+//   return getState().currentSelection.items;
+// };
+
+// Get array of {_id, title} from array [..._ids]
+export const getItemsFromItemIds = itemIds => {
+  const itemMap = getMapOfAllItems();
+  return itemIds.map(_id => itemMap[_id]);
 };
 
 // Get array of {_id, title} from map of {_id, title}
@@ -27,41 +33,41 @@ export const getItemsFromSelectionMap = selectionMap => {
     selectionMap[_id].itemId]);
 };
 
-// Get array of {_id, title} using items from single {_id, itemId, items}
-export const getItemsFromSelection = selection => {
-  const itemMap = getMapOfAllItems();
-  return selection.items.map(_id => itemMap[_id]);
+// // Get array of {_id, title} using items from single {_id, itemId, items}
+// export const getItemsFromSelection = selection => {
+//   const itemMap = getMapOfAllItems();
+//   return selection.items.map(_id => itemMap[_id]);
+// };
+//
+// export const getItemMapFromSelection = selection => {
+//   const itemMap = getMapOfAllItems();
+//   let items = {};
+//   selection.items.forEach(_id => {
+//     items[_id] = itemMap[_id];
+//   });
+//   return items;
+// };
+//
+// export const getSelectionFromItem = item => {
+//   const selections = getMapOfAllSelections();
+//   let selection;
+//   Object.keys(selections).some(key => {
+//     if (selections[key].itemId === item._id) {
+//       selection = selections[key];
+//       return true;
+//     }
+//   });
+//   return selection;
+// };
+
+export const itemIsEditedWithinCard = (item, {_id, isBeingEdited, selectionId},
+  refSelectionId) => {
+  return isBeingEdited && item._id === _id && refSelectionId === selectionId;
 };
 
-export const getItemMapFromSelection = selection => {
-  const itemMap = getMapOfAllItems();
-  let items = {};
-  selection.items.forEach(_id => {
-    items[_id] = itemMap[_id];
-  });
-  return items;
-};
-
-export const getSelectionFromItem = item => {
-  const selections = getMapOfAllSelections();
-  let selection;
-  Object.keys(selections).some(key => {
-    if (selections[key].itemId === item._id) {
-      selection = selections[key];
-      return true;
-    }
-  });
-  return selection;
-};
-
-export const itemIsEditedWithinCard = (item, card, {
-  _id, isBeingEdited, cardName}) => {
-  return isBeingEdited && item._id === _id && card.name === cardName;
-};
-
-export const updateEditedFlags = (items, currentItem, Card) => items.map(
+export const updateEditedFlags = (items, currentItem, selectionId) => items.map(
   item => ({
     ...item,
-    isBeingEdited: itemIsEditedWithinCard(item, Card, currentItem),
-    cardName: Card.name,
+    isBeingEdited: itemIsEditedWithinCard(item, currentItem, selectionId),
+    selectionId,
   }));
