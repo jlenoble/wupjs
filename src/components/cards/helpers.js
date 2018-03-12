@@ -26,12 +26,33 @@ export const getItemsFromSelectionMap = selectionMap => {
   return Object.keys(selectionMap).map(_id => itemMap[
     selectionMap[_id].itemId]);
 };
-//
-// // Get array of {_id, title} using items from single {_id, itemId, items}
-// export const getItemsFromSelection = selection => {
-//   const itemMap = getMapOfAllItems();
-//   return selection.items.map(_id => itemMap[_id]);
-// };
+
+// Get array of {_id, title} using items from single {_id, itemId, items}
+export const getItemsFromSelection = selection => {
+  const itemMap = getMapOfAllItems();
+  return selection.items.map(_id => itemMap[_id]);
+};
+
+export const getItemMapFromSelection = selection => {
+  const itemMap = getMapOfAllItems();
+  let items = {};
+  selection.items.forEach(_id => {
+    items[_id] = itemMap[_id];
+  });
+  return items;
+};
+
+export const getSelectionFromItem = item => {
+  const selections = getMapOfAllSelections();
+  let selection;
+  Object.keys(selections).some(key => {
+    if (selections[key].itemId === item._id) {
+      selection = selections[key];
+      return true;
+    }
+  });
+  return selection;
+};
 
 export const itemIsEditedWithinCard = (item, card, {
   _id, isBeingEdited, cardName}) => {

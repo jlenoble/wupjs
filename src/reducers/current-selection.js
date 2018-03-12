@@ -1,6 +1,6 @@
 import {uiActions} from '../actions';
 
-const {SELECT_ITEM, UNSELECT_ITEM, START_NAMING_SELECTION,
+const {SELECT_ITEM, UNSELECT_ITEM, EDIT_SELECTION, START_NAMING_SELECTION,
   STOP_NAMING_SELECTION, DISPLAY_SELECTION_NAME} = uiActions;
 
 export function currentSelection (state = {
@@ -26,6 +26,9 @@ export function currentSelection (state = {
     Object.assign(items, state.items);
     delete items[_id];
     return {...state, items};
+
+  case EDIT_SELECTION:
+    return {...action.item};
 
   case START_NAMING_SELECTION:
     return {...state, isBeingNamed: true};

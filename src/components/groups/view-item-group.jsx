@@ -5,6 +5,7 @@ import InlineItem from '../layouts/inline-item';
 import SelectGroup from './select-group';
 import TitleGroup from './title-group';
 import EditGroup from './edit-group';
+import UpdateGroup from './update-group';
 import DeleteGroup from './delete-group';
 import RemoveGroup from './remove-group';
 
@@ -15,6 +16,7 @@ const ViewItemGroup = ({item, ui = {}}) => {
       <TitleGroup item={item}/>
       {
         ui.edit && <EditGroup item={item}/> ||
+        ui.update && <UpdateGroup item={item}/> ||
         ui.delete && <DeleteGroup item={item}/> ||
         ui.remove && <RemoveGroup item={item}/>
       }
