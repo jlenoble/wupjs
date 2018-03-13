@@ -5,7 +5,7 @@ import {dispatch} from '../../server/store';
 
 const {unfocusCurrentItem} = uiActions;
 
-const AddGroup = () => (
+const AddItemGroup = () => (
   <GlyphInputText
     placeholder="Enter an item"
     glyph="plus"
@@ -22,4 +22,4 @@ const AddGroup = () => (
   />
 );
 
-export default AddGroup;
+export default AddItemGroup;

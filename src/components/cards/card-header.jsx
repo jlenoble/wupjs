@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Item from '../list/item';
 import {itemPropType} from '../list/proptypes';
-import AddGroup from '../groups/add-group';
+import AddItemGroup from '../groups/add-item-group';
 // import CreateGroup from '../groups/create-group';
 // import NameGroup from '../groups/name-group';
 
@@ -15,7 +15,7 @@ const CardHeader = ({item, ui}) => {
         item={item}
         ui={ui.itemUi}
       />}
-      {ui.createItem && <AddGroup/>}
+      {ui.createItem && <AddItemGroup/>}
     </div>
   );
 };
