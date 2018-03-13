@@ -7,8 +7,8 @@ const blockUi = {inlineRight: ['editItem', 'removeItem']};
 const options = {
   _id: 'current-selection',
   title: 'Current selection',
-  filter: () => {
-    return getItemsFromItemMap(getCurrentSelectionMap())
+  filter: state => {
+    return getItemsFromItemMap(getCurrentSelectionMap(state))
       .map(item => ({...item, isSelected: true}));
   },
 };

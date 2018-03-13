@@ -28,11 +28,11 @@ const CardFactory = (headerUi, blockUi, options = {}) => {
       const selections = state.selections.items;
       const selection = selections[selectionId];
       item = items[selection.itemId];
-      items = options.filter(selection);
+      items = options.filter(state, selection);
       isFetching = selections.isFetching;
     } else {
       item = {_id: options._id, title: options.title};
-      items = options.filter(items);
+      items = options.filter(state, items);
       isFetching = items.isFetching;
     }
 

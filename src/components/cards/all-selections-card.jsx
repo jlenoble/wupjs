@@ -4,7 +4,7 @@ import {getMapOfAllSelections, getItemsFromSelectionMap} from './helpers';
 export default CardFactory(
   {title: true},
   {inlineRight: ['editItem', 'deleteItem']},
-  {_id: 'all-selections', title: 'All selections', filter: () => {
-    return getItemsFromSelectionMap(getMapOfAllSelections());
+  {_id: 'all-selections', title: 'All selections', filter: state => {
+    return getItemsFromSelectionMap(state, getMapOfAllSelections(state));
   }}
 );
