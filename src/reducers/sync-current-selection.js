@@ -27,9 +27,7 @@ export const syncCurrentSelection = (state, action) => {
         break;
       }
     }
-  }
 
-  if (currentSelection.item && action.item) {
     if (currentSelection.item._id === action.item.itemId) {
       switch (action.type) {
       case CREATE_SELECTION_SUCCESS:
@@ -41,6 +39,27 @@ export const syncCurrentSelection = (state, action) => {
         break;
       }
     }
+  }
+
+  if (action.item && currentSelection.items[action.item._id]) {
+    const items = [...currentSelection.items];
+
+    switch (action.type) {
+    case UPDATE_ITEM:
+    case UPDATE_ITEM_ERROR:
+    case DELETE_ITEM_ERROR:
+      items[action.item._id] = action.item;
+      break;
+
+    case DELETE_ITEM:
+      delete items[action.item._id];
+      break;
+
+    default:
+      return state;
+    }
+
+    return {...state, currentSelection: {...currentSelection, items}};
   }
 
   return state;
