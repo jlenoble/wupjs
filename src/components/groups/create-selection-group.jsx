@@ -5,7 +5,7 @@ import {dispatch} from '../../server/store';
 
 const {startNamingSelection, unfocusCurrentItem} = uiActions;
 
-const CreateGroup = () => {
+const CreateSelectionGroup = () => {
   return (
     <GlyphButtonGroup
       glyphs={['save']}
@@ -19,4 +19,4 @@ const CreateGroup = () => {
   );
 };
 
-export default CreateGroup;
+export default CreateSelectionGroup;

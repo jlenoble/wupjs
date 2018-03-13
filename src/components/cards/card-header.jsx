@@ -3,12 +3,10 @@ import PropTypes from 'prop-types';
 import Item from '../list/item';
 import {itemPropType} from '../list/proptypes';
 import AddItemGroup from '../groups/add-item-group';
-// import CreateGroup from '../groups/create-group';
-// import NameGroup from '../groups/name-group';
+import CreateSelectionGroup from '../groups/create-selection-group';
+import NameSelectionGroup from '../groups/name-selection-group';
 
 const CardHeader = ({item, ui}) => {
-  // {ui.create && <CreateGroup/>}
-  // {ui.name && <NameGroup/>}
   return (
     <div className="card-header">
       {ui.title && <Item
@@ -16,6 +14,8 @@ const CardHeader = ({item, ui}) => {
         ui={ui.itemUi}
       />}
       {ui.createItem && <AddItemGroup/>}
+      {ui.createSelection && <CreateSelectionGroup/>}
+      {ui.nameSelection && <NameSelectionGroup/>}
     </div>
   );
 };

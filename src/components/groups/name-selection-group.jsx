@@ -5,7 +5,7 @@ import {dispatch} from '../../server/store';
 
 const {unfocusCurrentItem} = uiActions;
 
-const NameGroup = () => (
+const NameSelectionGroup = () => (
   <GlyphInputText
     placeholder="Name this selection"
     glyph="save"
@@ -22,4 +22,4 @@ const NameGroup = () => (
   />
 );
 
-export default NameGroup;
+export default NameSelectionGroup;
