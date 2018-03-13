@@ -1,41 +1,12 @@
-import React from 'react';
-import Card from './card';
-import {connect} from 'react-redux';
-import {getMapOfAllItems, getItemsFromItemMap, getCurrentSelectionMap,
-  updateEditedFlags} from './helpers';
+import CardFactory from './card-factory';
+import {getItemsFromItemMap, getCurrentSelectionMap} from './helpers';
 
-const SelectItemsCard = ({items, isFetching}) => {
-  return (
-    <Card
-      item={{
-        _id: 'all-items',
-        title: 'All items',
-      }}
-      items={items}
-      isFetching={isFetching}
-      headerUi={{
-        add: true,
-        title: true,
-      }}
-      blockUi={{
-        select: true,
-        delete: true,
-      }}
-    />
-  );
-};
-
-const mapStateToProps = state => {
-  const selectionMap = getCurrentSelectionMap();
-
-  return {
-    isFetching: state.items.isFetching,
-    items: updateEditedFlags(
-      getItemsFromItemMap(getMapOfAllItems()),
-      state.currentItem,
-      SelectItemsCard
-    ).map(item => ({...item, isSelected: !!selectionMap[item._id]})),
-  };
-};
-
-export default connect(mapStateToProps)(SelectItemsCard);
+export default CardFactory(
+  {title: true, createItem: true},
+  {inlineLeft: ['selectItem'], inlineRight: ['editItem', 'deleteItem']},
+  {_id: 'select-items', title: 'Select items', filter: itemMap => {
+    const currentSelection = getCurrentSelectionMap();
+    return getItemsFromItemMap(itemMap).map(item => ({...item,
+      isSelected: !!currentSelection[item._id]}));
+  }},
+);
