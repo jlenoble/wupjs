@@ -21,10 +21,10 @@ collections.forEach(key => {
   messages[key].UPDATE_ITEM_SUCCESS = UPDATE_ITEM_SUCCESS;
   messages[key].UPDATE_ITEM_ERROR = UPDATE_ITEM_ERROR;
 
-  function requestUpdateItem ({title, _id}) {
+  function requestUpdateItem (item) {
     return {
       type: UPDATE_ITEM,
-      item: {title, _id}, _id,
+      item, _id: item._id,
     };
   }
 
@@ -34,10 +34,10 @@ collections.forEach(key => {
     };
   }
 
-  function updateItemError ({title, _id}, error) {
+  function updateItemError (item, error) {
     return {
       type: UPDATE_ITEM_ERROR,
-      item: {title, _id}, _id, error,
+      item, _id: item._id, error,
     };
   }
 
