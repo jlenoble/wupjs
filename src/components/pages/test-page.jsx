@@ -1,15 +1,13 @@
 import React from 'react';
 import Content from '../layouts/content';
-import AllItemsCard from '../cards/all-items-card';
-// import SelectItemsCard from '../cards/select-items-card';
-// import OpenSelectionsCard from '../cards/open-selections-card';
-// import CurrentSelectionCard from '../cards/current-selection-card';
+import UpdateSelectionsCard from '../cards/update-selections-card';
+import SelectItemsCard from '../cards/select-items-card';
+import CurrentSelectionCard from '../cards/current-selection-card';
 
-// <SelectItemsCard/>
-// <CurrentSelectionCard/>
-// <OpenSelectionsCard/>
 export default () => (
   <Content>
-    <AllItemsCard/>
+    <SelectItemsCard/>
+    <CurrentSelectionCard/>
+    <UpdateSelectionsCard/>
   </Content>
 );
