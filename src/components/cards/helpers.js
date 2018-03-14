@@ -31,11 +31,16 @@ export const getItemsFromSelectionMap = (state, selectionMap) => {
     selectionMap[_id].itemId]);
 };
 
-// // Get array of {_id, title} using items from single {_id, itemId, items}
-// export const getItemsFromSelection = selection => {
-//   const itemMap = getMapOfAllItems();
-//   return selection.items.map(_id => itemMap[_id]);
-// };
+// Get {_id, title} using itemId from single {_id, itemId, items}
+export const getItemFromSelection = (state, selection) => {
+  return getMapOfAllItems(state)[selection.itemId];
+};
+
+// Get array of {_id, title} using items from single {_id, itemId, items}
+export const getItemsFromSelection = (state, selection) => {
+  const itemMap = getMapOfAllItems(state);
+  return selection.items.map(_id => itemMap[_id]);
+};
 
 // Get map of items from {items: array of {_id, title}}
 export const getItemMapFromSelection = (state, selection) => {

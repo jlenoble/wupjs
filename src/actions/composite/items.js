@@ -1,4 +1,7 @@
 import {fetchActions, createActions, updateActions, deleteActions} from '../db';
+import {uiActions} from '../ui';
+import {updateSelection} from './selections';
+import {getItemFromSelection} from '../../components/cards/helpers';
 
 const _fetchItem = fetchActions.fetchItemIfNeeded;
 const _fetchItems = fetchActions.fetchItemsIfNeeded;
@@ -7,6 +10,9 @@ const _updateItem = updateActions.updateItem;
 const _deleteItem = deleteActions.deleteItem;
 
 const deleteSelection = deleteActions.deleteSelection;
+
+const editSelection = uiActions.editSelection;
+const unselectItem = uiActions.unselectItem;
 
 export function fetchItemIfNeeded (item, reload) {
   return _fetchItem(item, reload);
@@ -30,12 +36,17 @@ export function deleteItem (item) {
     const _id = item._id;
 
     for (let key of Object.keys(selections)) {
-      const {itemId, items} = selections[key];
+      const selection = selections[key];
+      const {itemId, items} = selection;
 
       if (itemId === _id) {
         await dispatch(deleteSelection(selections[key]));
       } else if (items.indexOf(_id) !== -1) {
-        throw new Error('UNHANDLED UNSELECT');
+        const _item = getItemFromSelection(getState(), selection);
+        _item.selectionId = selection._id;
+        await dispatch(editSelection(_item));
+        await dispatch(unselectItem(item));
+        await dispatch(updateSelection(_item));
       }
     }
 
