@@ -67,7 +67,7 @@ collections.forEach(key => {
 
   actions[itemAction] = function (_id, reload) {
     return (dispatch, getState) => {
-      return reload || !getState()[key][_id] ? dispatch(fetchItems(_id))
+      return reload || !getState()[key].items[_id] ? dispatch(fetchItems(_id))
         : [];
     };
   };
