@@ -1,8 +1,15 @@
 import {uiActions} from '../actions';
 
-const {SELECT_ITEM, UNSELECT_ITEM, EDIT_SELECTION, CLOSE_SELECTION,
-  START_NAMING_SELECTION, STOP_NAMING_SELECTION, DISPLAY_SELECTION_NAME} =
-  uiActions;
+const {
+  ADD_SELECTION,
+  CLOSE_SELECTION,
+  DISPLAY_SELECTION_NAME,
+  EDIT_SELECTION,
+  SELECT_ITEM,
+  START_NAMING_SELECTION,
+  UNSELECT_ITEM,
+  STOP_NAMING_SELECTION,
+} = uiActions;
 
 export const resetCurrentSelection = () => {
   return {selectionId: '', item: undefined, items: [], isBeingNamed: false,
@@ -19,6 +26,18 @@ export function currentSelection (state = {
   const items = {};
 
   switch (action.type) {
+  case ADD_SELECTION:
+    return resetCurrentSelection();
+
+  case CLOSE_SELECTION:
+    return resetCurrentSelection();
+
+  case DISPLAY_SELECTION_NAME:
+    return {...state, isBeingNamed: false, item: {...action.item}};
+
+  case EDIT_SELECTION:
+    return {...state, ...action, isBeingUpdated: true, itemsChanged: false};
+
   case SELECT_ITEM:
     if (state.items[_id] || (state.item &&
       state.item._id === action.item._id)) { // Don't add oneself to selection
@@ -27,6 +46,12 @@ export function currentSelection (state = {
     items[_id] = action.item;
     return {...state, items: {...state.items, ...items}, itemsChanged: true};
 
+  case START_NAMING_SELECTION:
+    return {...state, isBeingNamed: true};
+
+  case STOP_NAMING_SELECTION:
+    return {...state, isBeingNamed: false};
+
   case UNSELECT_ITEM:
     if (!state.items[_id]) {
       return state;
@@ -34,21 +59,6 @@ export function currentSelection (state = {
     Object.assign(items, state.items);
     delete items[_id];
     return {...state, items, itemsChanged: true};
-
-  case EDIT_SELECTION:
-    return {...state, ...action, isBeingUpdated: true, itemsChanged: false};
-
-  case CLOSE_SELECTION:
-    return resetCurrentSelection();
-
-  case START_NAMING_SELECTION:
-    return {...state, isBeingNamed: true};
-
-  case STOP_NAMING_SELECTION:
-    return {...state, isBeingNamed: false};
-
-  case DISPLAY_SELECTION_NAME:
-    return {...state, isBeingNamed: false, item: {...action.item}};
 
   default:
     return state;
