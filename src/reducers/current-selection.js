@@ -3,6 +3,11 @@ import {uiActions} from '../actions';
 const {SELECT_ITEM, UNSELECT_ITEM, EDIT_SELECTION, START_NAMING_SELECTION,
   STOP_NAMING_SELECTION, DISPLAY_SELECTION_NAME} = uiActions;
 
+export const resetCurrentSelection = () => {
+  return {selectionId: '', item: undefined, items: [], isBeingNamed: false,
+    isBeingUpdated: false, itemsChanged: false};
+};
+
 export function currentSelection (state = {
   selectionId: '',
   isBeingNamed: false,

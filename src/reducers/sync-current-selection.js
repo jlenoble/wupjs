@@ -1,4 +1,5 @@
 import {createMessages, updateMessages, deleteMessages} from '../actions';
+import {resetCurrentSelection as resetCS} from './current-selection';
 
 const CREATE_SELECTION_SUCCESS = createMessages.selections.CREATE_ITEM_SUCCESS;
 const UPDATE_SELECTION = updateMessages.selections.UPDATE_ITEM;
@@ -6,9 +7,8 @@ const DELETE_SELECTION = deleteMessages.selections.DELETE_ITEM;
 const {UPDATE_ITEM, UPDATE_ITEM_ERROR} = updateMessages.items;
 const {DELETE_ITEM, DELETE_ITEM_ERROR} = deleteMessages.items;
 
-const resetCurrentSelection = (state, currentSelection) => {
-  return {...state, currentSelection: {isBeingUpdated: false, selectionId: '',
-    item: undefined, items: [], isBeingNamed: false, itemsChanged: false}};
+const resetCurrentSelection = state => {
+  return {...state, currentSelection: resetCS()};
 };
 
 export const syncCurrentSelection = (state, action) => {
@@ -28,7 +28,7 @@ export const syncCurrentSelection = (state, action) => {
 
       case CREATE_SELECTION_SUCCESS:
       case DELETE_ITEM:
-        return resetCurrentSelection(state, currentSelection);
+        return resetCurrentSelection(state);
         break;
 
       default:
@@ -39,7 +39,7 @@ export const syncCurrentSelection = (state, action) => {
     if (currentSelection.item._id === action.item.itemId) {
       switch (action.type) {
       case CREATE_SELECTION_SUCCESS:
-        return resetCurrentSelection(state, currentSelection);
+        return resetCurrentSelection(state);
         break;
 
       default:
@@ -80,7 +80,7 @@ export const syncCurrentSelection = (state, action) => {
   case UPDATE_SELECTION:
   case DELETE_SELECTION:
     if (action.item._id === currentSelection.selectionId) {
-      return resetCurrentSelection(state, currentSelection);
+      return resetCurrentSelection(state);
     }
 
   default:
