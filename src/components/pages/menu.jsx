@@ -15,6 +15,10 @@ export default class Menu extends Component {
       <Link key="selections" to="/selections" activeClassName="active">
         All selections
       </Link>
+      <br/>
+      <Link key="selection-crud" to="/selection-crud" activeClassName="active">
+        Create new selections
+      </Link>
     </nav>;
   }
 }
