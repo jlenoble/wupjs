@@ -1,6 +1,7 @@
 import {createMessages, updateMessages, deleteMessages} from '../actions';
 
 const CREATE_SELECTION_SUCCESS = createMessages.selections.CREATE_ITEM_SUCCESS;
+const UPDATE_SELECTION_SUCCESS = updateMessages.selections.UPDATE_ITEM_SUCCESS;
 const {UPDATE_ITEM, UPDATE_ITEM_ERROR} = updateMessages.items;
 const {DELETE_ITEM, DELETE_ITEM_ERROR} = deleteMessages.items;
 
