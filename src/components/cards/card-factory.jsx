@@ -1,7 +1,7 @@
 import React from 'react';
 import Card from './card';
 import {connect} from 'react-redux';
-import {updateEditedFlags} from './helpers';
+import {updateEditedFlags, itemIsEditedWithinCard} from './helpers';
 
 const CardFactory = (headerUi, blockUi, options = {}) => {
   const GenericCard = ({
@@ -27,9 +27,11 @@ const CardFactory = (headerUi, blockUi, options = {}) => {
     if (selectionId) {
       const selections = state.selections.items;
       const selection = selections[selectionId];
-      item = items[selection.itemId];
+      item = {...items[selection.itemId], selectionId, state};
       items = options.filter(state, selection);
       isFetching = selections.isFetching;
+      item.isBeingEdited = itemIsEditedWithinCard(item, state.currentItem,
+        selectionId);
     } else {
       item = {_id: options._id, title: options.title};
       items = options.filter(state, items);
