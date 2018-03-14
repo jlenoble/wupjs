@@ -34,6 +34,7 @@ export function deleteItem (item) {
   return async (dispatch, getState) => {
     const selections = getState().selections.items;
     const _id = item._id;
+    const selection0 = selections[getState().currentSelection.selectionId];
 
     for (let key of Object.keys(selections)) {
       const selection = selections[key];
@@ -48,6 +49,11 @@ export function deleteItem (item) {
         await dispatch(unselectItem(item));
         await dispatch(updateSelection(_item));
       }
+    }
+
+    if (selection0) {
+      await dispatch(editSelection(getItemFromSelection(getState(),
+        selection0)));
     }
 
     return dispatch(_deleteItem(item));
