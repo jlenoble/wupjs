@@ -9,13 +9,15 @@ export const syncCurrentSelection = (state, action) => {
   const {currentSelection} = state;
 
   if (currentSelection.item && action.item) {
+    // Dealing with the header item
+
     if (currentSelection.item._id === action.item._id) {
       switch (action.type) {
       case UPDATE_ITEM:
       case UPDATE_ITEM_ERROR:
       case DELETE_ITEM_ERROR:
         return {...state, currentSelection: {...currentSelection,
-          item: action.item}};
+          item: {...currentSelection.item, ...action.item}}};
         break;
 
       case CREATE_SELECTION_SUCCESS:
@@ -43,16 +45,22 @@ export const syncCurrentSelection = (state, action) => {
   }
 
   if (action.item && currentSelection.items[action.item._id]) {
+    // Dealing with a block item
+
     const items = [...currentSelection.items];
+    let itemsChanged = false;
 
     switch (action.type) {
+    case DELETE_ITEM_ERROR:
+      itemsChanged = true;
+    // Fall through
     case UPDATE_ITEM:
     case UPDATE_ITEM_ERROR:
-    case DELETE_ITEM_ERROR:
       items[action.item._id] = action.item;
       break;
 
     case DELETE_ITEM:
+      itemsChanged = true;
       delete items[action.item._id];
       break;
 
@@ -60,7 +68,17 @@ export const syncCurrentSelection = (state, action) => {
       return state;
     }
 
-    return {...state, currentSelection: {...currentSelection, items}};
+    return {...state, currentSelection: {...currentSelection, items,
+      itemsChanged}};
+  }
+
+  switch (action.type) {
+  case UPDATE_SELECTION_SUCCESS:
+    return {...state, currentSelection: {...currentSelection,
+      itemsChanged: false}};
+
+  default:
+    break;
   }
 
   return state;
