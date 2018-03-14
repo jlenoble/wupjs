@@ -20,13 +20,22 @@ export const addAction = (MESSAGE, itemArg) => {
           });
         };
       }
-      : function (item) {
-        return dispatch => {
-          dispatch({
-            type: MESSAGE,
-            item,
-          });
-        };
-      },
+      : typeof itemArg === 'function'
+        ? function (item) {
+          return dispatch => {
+            dispatch({
+              type: MESSAGE,
+              ...itemArg(item),
+            });
+          };
+        }
+        : function (item) {
+          return dispatch => {
+            dispatch({
+              type: MESSAGE,
+              item,
+            });
+          };
+        },
   });
 };
