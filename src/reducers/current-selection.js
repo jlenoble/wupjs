@@ -1,7 +1,8 @@
 import {uiActions} from '../actions';
 
-const {SELECT_ITEM, UNSELECT_ITEM, EDIT_SELECTION, START_NAMING_SELECTION,
-  STOP_NAMING_SELECTION, DISPLAY_SELECTION_NAME} = uiActions;
+const {SELECT_ITEM, UNSELECT_ITEM, EDIT_SELECTION, CLOSE_SELECTION,
+  START_NAMING_SELECTION, STOP_NAMING_SELECTION, DISPLAY_SELECTION_NAME} =
+  uiActions;
 
 export const resetCurrentSelection = () => {
   return {selectionId: '', item: undefined, items: [], isBeingNamed: false,
@@ -36,6 +37,9 @@ export function currentSelection (state = {
 
   case EDIT_SELECTION:
     return {...state, ...action, isBeingUpdated: true};
+
+  case CLOSE_SELECTION:
+    return resetCurrentSelection();
 
   case START_NAMING_SELECTION:
     return {...state, isBeingNamed: true};

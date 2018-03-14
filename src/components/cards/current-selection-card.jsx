@@ -49,13 +49,14 @@ const NameCard = CardFactory(
 
 // U2
 const UnmodifiedCard = CardFactory(
-  {title: true, itemUi: {inlineRight: ['editItem']}},
+  {title: true, itemUi: {inlineRight: ['editItem', 'closeSelection']}},
   blockUi, options
 );
 
 // U3
 const ModifiedCard = CardFactory(
-  {title: true, itemUi: {inlineRight: ['editItem', 'updateSelection']}},
+  {title: true, itemUi: {inlineRight: ['editItem', 'updateSelection',
+    'closeSelection']}},
   blockUi, options
 );
 

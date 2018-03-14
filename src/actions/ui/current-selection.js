@@ -9,6 +9,7 @@ addAction('EDIT_SELECTION', (item, state) => {
   return {selectionId, item: {...item, selectionId}, items};
 });
 
+addAction('CLOSE_SELECTION');
 addAction('START_NAMING_SELECTION');
 addAction('STOP_NAMING_SELECTION');
 addAction('DISPLAY_SELECTION_NAME');
