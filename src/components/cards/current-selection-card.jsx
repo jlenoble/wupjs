@@ -16,7 +16,7 @@ const options = {
 /*
 Logic flow:
   Creation
-  C1 Card is new, currentSelection is unnamed, empty, unsaved
+  C1 Card is new, currentSelection is unnamed, empty, unsaved -> no display
   C2 An elt is added: cS must be named, Card is namable, extensible, unsavable
   C3 other elts added: C2
   C4 Card is being named: any blur returns to C2
@@ -28,12 +28,6 @@ Logic flow:
   U4 Selection is renamed: U2 or U3, depending on changes already
   U5 cS is Saved: C1
 */
-
-// C1
-const NewCard = CardFactory(
-  {title: true},
-  blockUi, options
-);
 
 // C2
 const CreateCard = CardFactory(
@@ -63,7 +57,7 @@ const ModifiedCard = CardFactory(
 class CurrentSelectionCard extends Component {
   render () {
     const {Card, selectionId} = this.props;
-    return <Card selectionId={selectionId}/>;
+    return Card ? <Card selectionId={selectionId}/> : <span/>;
   }
 }
 
@@ -74,12 +68,10 @@ const mapStateToProps = (state, props) => {
   let Card;
 
   if (!item) {
-    if (Object.keys(items).length === 0) { // C1
-      Card = NewCard;
+    if (Object.keys(items).length) { // C2, C3
+      Card = CreateCard;
     } else if (isBeingNamed) { // C4
       Card = NameCard;
-    } else { // C2, C3
-      Card = CreateCard;
     }
   } else if (isBeingUpdated) {
     if (itemsChanged) { // U3
@@ -87,8 +79,6 @@ const mapStateToProps = (state, props) => {
     } else { // U2
       Card = UnmodifiedCard;
     }
-  } else { // C5
-    Card = NewCard;
   }
 
   return {Card, selectionId};
