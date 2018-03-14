@@ -1,12 +1,18 @@
-import {fetchActions, createActions} from '../db';
+import {fetchActions, createActions, updateActions} from '../db';
 import {uiActions} from '../ui';
 
 const newItem = createActions.newItem;
 
+const _fetchSelection = fetchActions.fetchSelectionIfNeeded;
 const _fetchSelections = fetchActions.fetchSelectionsIfNeeded;
 const _newSelection = createActions.newSelection;
+const _updateSelection = updateActions.updateSelection;
 
 const {displaySelectionName, stopNamingSelection} = uiActions;
+
+export function fetchSelectionIfNeeded (item, reload) {
+  return _fetchSelection(item, reload);
+}
 
 export function fetchSelectionsIfNeeded () {
   return _fetchSelections();
@@ -28,4 +34,13 @@ export function newSelection ({title}) {
       await dispatch(stopNamingSelection());
     }
   };
+}
+
+export function updateSelection (item) {
+  const selectionId = item.selectionId;
+  const {selections, currentSelection} = item.state;
+  const previousSelection = selections[selectionId];
+  const items = Object.keys(currentSelection.items);
+  return _updateSelection({_id: selectionId, itemId: item._id, items},
+    previousSelection);
 }
