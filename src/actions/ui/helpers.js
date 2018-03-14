@@ -22,10 +22,10 @@ export const addAction = (MESSAGE, itemArg) => {
       }
       : typeof itemArg === 'function'
         ? function (item) {
-          return dispatch => {
+          return (dispatch, getState) => {
             dispatch({
               type: MESSAGE,
-              ...itemArg(item),
+              ...itemArg(item, getState()),
             });
           };
         }

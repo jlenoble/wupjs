@@ -27,7 +27,7 @@ const CardFactory = (headerUi, blockUi, options = {}) => {
     if (selectionId) {
       const selections = state.selections.items;
       const selection = selections[selectionId];
-      item = {...items[selection.itemId], selectionId, state};
+      item = {...items[selection.itemId], selectionId};
       items = options.filter(state, selection);
       isFetching = selections.isFetching;
       item.isBeingEdited = itemIsEditedWithinCard(item, state.currentItem,

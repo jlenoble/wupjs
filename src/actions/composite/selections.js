@@ -37,10 +37,12 @@ export function newSelection ({title}) {
 }
 
 export function updateSelection (item) {
-  const selectionId = item.selectionId;
-  const {selections, currentSelection} = item.state;
-  const previousSelection = selections[selectionId];
-  const items = Object.keys(currentSelection.items);
-  return _updateSelection({_id: selectionId, itemId: item._id, items},
-    previousSelection);
+  return (dispatch, getState) => {
+    const selectionId = item.selectionId;
+    const {selections, currentSelection} = getState();
+    const previousSelection = selections[selectionId];
+    const items = Object.keys(currentSelection.items);
+    return dispatch(_updateSelection({_id: selectionId, itemId: item._id,
+      items}, previousSelection));
+  };
 }
