@@ -24,7 +24,7 @@ collections.forEach(key => {
       return {...state, isFetching: true};
 
     case RECEIVE_ITEMS_SUCCESS:
-      items = {};
+      items = {...state.items};
       action.items.forEach(item => {
         items[item._id] = item;
       });
