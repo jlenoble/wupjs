@@ -6,6 +6,8 @@ const {selectItem, unselectItem, editItem, unfocusCurrentItem,
 
 export const getGlyphs = ui => ui && ui.map(action => {
   switch (action) {
+  case 'addSelection':
+    return 'plus';
   case 'closeSelection':
     return 'close';
   case 'deleteItem':
@@ -28,6 +30,7 @@ export const getActions = (ui, glyphs) => {
 
   ui && ui.forEach((action, i) => {
     switch (action) {
+    case 'addSelection':
     case 'closeSelection':
       actions[glyphs[i]] = closeSelection;
       break;
