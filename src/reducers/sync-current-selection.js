@@ -51,7 +51,7 @@ export const syncCurrentSelection = (state, action) => {
   if (action.item && currentSelection.items[action.item._id]) {
     // Dealing with a block item
 
-    const items = [...currentSelection.items];
+    const items = {...currentSelection.items};
     let itemsChanged = false;
 
     switch (action.type) {
