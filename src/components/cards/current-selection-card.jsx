@@ -66,15 +66,16 @@ const mapStateToProps = (state, props) => {
   const {item, items, selectionId, isBeingNamed, isBeingUpdated, itemsChanged} =
     currentSelection;
   let Card;
+  const hasElements = Object.keys(items).length > 0;
 
   if (!item) {
-    if (Object.keys(items).length) { // C2, C3
+    if (hasElements) { // C2, C3
       Card = CreateCard;
     } else if (isBeingNamed) { // C4
       Card = NameCard;
     }
   } else if (isBeingUpdated) {
-    if (itemsChanged) { // U3
+    if (itemsChanged && hasElements) { // U3
       Card = ModifiedCard;
     } else { // U2
       Card = UnmodifiedCard;
