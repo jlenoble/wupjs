@@ -36,29 +36,29 @@ export const getItemsFromSelectionMap = (state, selectionMap) => {
 //   const itemMap = getMapOfAllItems();
 //   return selection.items.map(_id => itemMap[_id]);
 // };
-//
-// // Get map of items from {items: array of {_id, title}}
-// export const getItemMapFromSelection = selection => {
-//   const itemMap = getMapOfAllItems();
-//   let items = {};
-//   selection.items.forEach(_id => {
-//     items[_id] = itemMap[_id];
-//   });
-//   return items;
-// };
-//
-// // Find selection with itemId matching item._id
-// export const getSelectionFromItem = item => {
-//   const selections = getMapOfAllSelections();
-//   let selection;
-//   Object.keys(selections).some(key => {
-//     if (selections[key].itemId === item._id) {
-//       selection = selections[key];
-//       return true;
-//     }
-//   });
-//   return selection;
-// };
+
+// Get map of items from {items: array of {_id, title}}
+export const getItemMapFromSelection = (state, selection) => {
+  const itemMap = getMapOfAllItems(state);
+  let items = {};
+  selection.items.forEach(_id => {
+    items[_id] = itemMap[_id];
+  });
+  return items;
+};
+
+// Find selection with itemId matching item._id
+export const getSelectionFromItem = (state, item) => {
+  const selections = getMapOfAllSelections(state);
+  let selection;
+  Object.keys(selections).some(key => {
+    if (selections[key].itemId === item._id) {
+      selection = selections[key];
+      return true;
+    }
+  });
+  return selection;
+};
 
 export const itemIsEditedWithinCard = (item, {_id, isBeingEdited, selectionId},
   refSelectionId) => {
