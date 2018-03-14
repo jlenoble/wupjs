@@ -1,7 +1,8 @@
-import {deleteItem, uiActions} from '../../actions';
+import {deleteItem, updateSelection, uiActions} from '../../actions';
 import {dispatch} from '../../server/store';
 
-const {selectItem, unselectItem, editItem, unfocusCurrentItem} = uiActions;
+const {selectItem, unselectItem, editItem, unfocusCurrentItem,
+  editSelection} = uiActions;
 
 export const getGlyphs = ui => ui && ui.map(action => {
   switch (action) {
@@ -9,10 +10,14 @@ export const getGlyphs = ui => ui && ui.map(action => {
     return 'trash-o';
   case 'editItem':
     return 'pencil';
+  case 'editSelection':
+    return 'pencil';
   case 'removeItem':
     return 'close';
   case 'selectItem':
     return 'check';
+  case 'updateSelection':
+    return 'save';
   }
 }) || [];
 
@@ -27,11 +32,17 @@ export const getActions = (ui, glyphs) => {
     case 'editItem':
       actions[glyphs[i]] = editItem;
       break;
+    case 'editSelection':
+      actions[glyphs[i]] = editSelection;
+      break;
     case 'removeItem':
       actions[glyphs[i]] = unselectItem;
       break;
     case 'selectItem':
       actions[glyphs[i]] = selectItem;
+      break;
+    case 'updateSelection':
+      actions[glyphs[i]] = updateSelection;
       break;
     }
   });
