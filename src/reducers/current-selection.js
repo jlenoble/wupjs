@@ -36,7 +36,7 @@ export function currentSelection (state = {
     return {...state, items, itemsChanged: true};
 
   case EDIT_SELECTION:
-    return {...state, ...action, isBeingUpdated: true};
+    return {...state, ...action, isBeingUpdated: true, itemsChanged: false};
 
   case CLOSE_SELECTION:
     return resetCurrentSelection();
