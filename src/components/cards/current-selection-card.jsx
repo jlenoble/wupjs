@@ -69,10 +69,10 @@ const mapStateToProps = (state, props) => {
   const hasElements = Object.keys(items).length > 0;
 
   if (!item) {
-    if (hasElements) { // C2, C3
-      Card = CreateCard;
-    } else if (isBeingNamed) { // C4
+    if (isBeingNamed) { // C4
       Card = NameCard;
+    } else if (hasElements) { // C2, C3
+      Card = CreateCard;
     }
   } else if (isBeingUpdated) {
     if (itemsChanged && hasElements) { // U3
