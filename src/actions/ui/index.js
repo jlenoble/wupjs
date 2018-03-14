@@ -1,6 +1,4 @@
-import './edit-item';
-import './edit-selection';
-import './name-selection';
-import './select-item';
+import './current-item';
+import './current-selection';
 
 export {uiActions} from './helpers';

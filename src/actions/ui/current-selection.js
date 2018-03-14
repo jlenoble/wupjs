@@ -8,3 +8,7 @@ addAction('EDIT_SELECTION', (item, state) => {
   const selectionId = selection._id;
   return {selectionId, item: {...item, selectionId}, items};
 });
+
+addAction('START_NAMING_SELECTION');
+addAction('STOP_NAMING_SELECTION');
+addAction('DISPLAY_SELECTION_NAME');
