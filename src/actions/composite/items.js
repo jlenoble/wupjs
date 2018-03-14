@@ -34,14 +34,17 @@ export function deleteItem (item) {
   return async (dispatch, getState) => {
     const selections = getState().selections.items;
     const _id = item._id;
-    const selection0 = selections[getState().currentSelection.selectionId];
+    const selectionId = getState().currentSelection.selectionId;
 
     for (let key of Object.keys(selections)) {
       const selection = selections[key];
       const {itemId, items} = selection;
 
       if (itemId === _id) {
-        await dispatch(deleteSelection(selections[key]));
+        const selections = getState().selections.items;
+        if (selections[key]) {
+          await dispatch(deleteSelection(selections[key]));
+        }
       } else if (items.indexOf(_id) !== -1) {
         const _item = getItemFromSelection(getState(), selection);
         _item.selectionId = selection._id;
@@ -51,11 +54,15 @@ export function deleteItem (item) {
       }
     }
 
-    if (selection0) {
-      await dispatch(editSelection(getItemFromSelection(getState(),
-        selection0)));
-    }
+    const result = await dispatch(_deleteItem(item));
 
-    return dispatch(_deleteItem(item));
+    if (selections[selectionId]) {
+      const item = getItemFromSelection(getState(), selections[selectionId]);
+      if (item) {
+        await dispatch(editSelection(item));
+      }
+    };
+
+    return result;
   };
 }
