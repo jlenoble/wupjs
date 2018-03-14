@@ -37,8 +37,8 @@ const NewCard = CardFactory(
 
 // C2
 const CreateCard = CardFactory(
-  {createSelection: true},
-  blockUi, options
+  {title: true, itemUi: {inlineRight: ['createSelection']}},
+  blockUi, {...options, title: 'New selection'}
 );
 
 // C4
