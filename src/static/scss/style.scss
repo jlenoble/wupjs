@@ -38,4 +38,12 @@ button, li {
     $parent-selector: ".glyph-checkbox",
     $button-selector: ".fa-save"
   );
+  @include glyphCheckbox(
+    $parent-selector: ".glyph-checkbox",
+    $button-selector: ".fa-bars"
+  );
+  @include glyphCheckbox(
+    $parent-selector: ".glyph-checkbox",
+    $button-selector: ".fa-sitemap"
+  );
 }
