@@ -1,8 +1,16 @@
 import {deleteItem, updateSelection, uiActions} from '../../actions';
 import {dispatch} from '../../server/store';
 
-const {selectItem, unselectItem, editItem, unfocusCurrentItem,
-  editSelection, closeSelection, startNamingSelection} = uiActions;
+const {
+  addSelection,
+  closeSelection,
+  editItem,
+  editSelection,
+  selectItem,
+  startNamingSelection,
+  unfocusCurrentItem,
+  unselectItem,
+} = uiActions;
 
 export const getGlyphs = ui => ui && ui.map(action => {
   switch (action) {
@@ -33,6 +41,8 @@ export const getActions = (ui, glyphs) => {
   ui && ui.forEach((action, i) => {
     switch (action) {
     case 'addSelection':
+      actions[glyphs[i]] = addSelection;
+      break;
     case 'closeSelection':
       actions[glyphs[i]] = closeSelection;
       break;

@@ -21,6 +21,7 @@ Logic flow:
   C3 other elts added: C2
   C4 Card is being named: any blur returns to C2
   C5 cS is named and autosaved: C1
+  C6 Explicit creation (addSelection): Displayed C1
   Update
   U1 = C1
   U2 A selection is recalled: Card is renamable, extensible, unsavable
@@ -39,6 +40,12 @@ const CreateCard = CardFactory(
 const NameCard = CardFactory(
   {nameSelection: true},
   blockUi, options
+);
+
+// C6
+const AddCard = CardFactory(
+  {title: true},
+  blockUi, {...options, title: 'Start adding items'}
 );
 
 // U2
@@ -63,13 +70,15 @@ class CurrentSelectionCard extends Component {
 
 const mapStateToProps = (state, props) => {
   const {currentSelection} = state;
-  const {item, items, selectionId, isBeingNamed, isBeingUpdated, itemsChanged} =
-    currentSelection;
+  const {item, items, selectionId, isBeingNamed, isBeingUpdated, itemsChanged,
+    isJustBeingCreated} = currentSelection;
   let Card;
   const hasElements = Object.keys(items).length > 0;
 
   if (!item) {
-    if (isBeingNamed) { // C4
+    if (isJustBeingCreated) { // C6
+      Card = hasElements ? CreateCard : AddCard;
+    } else if (isBeingNamed) { // C4
       Card = NameCard;
     } else if (hasElements) { // C2, C3
       Card = CreateCard;

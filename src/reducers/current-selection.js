@@ -13,7 +13,7 @@ const {
 
 export const resetCurrentSelection = () => {
   return {selectionId: '', item: undefined, items: [], isBeingNamed: false,
-    isBeingUpdated: false, itemsChanged: false};
+    isBeingUpdated: false, isJustBeingCreated: false, itemsChanged: false};
 };
 
 export function currentSelection (state = {
@@ -27,7 +27,7 @@ export function currentSelection (state = {
 
   switch (action.type) {
   case ADD_SELECTION:
-    return resetCurrentSelection();
+    return {...resetCurrentSelection(), isJustBeingCreated: true};
 
   case CLOSE_SELECTION:
     return resetCurrentSelection();
@@ -47,7 +47,7 @@ export function currentSelection (state = {
     return {...state, items: {...state.items, ...items}, itemsChanged: true};
 
   case START_NAMING_SELECTION:
-    return {...state, isBeingNamed: true};
+    return {...state, isBeingNamed: true, isJustBeingCreated: false};
 
   case STOP_NAMING_SELECTION:
     return {...state, isBeingNamed: false};
