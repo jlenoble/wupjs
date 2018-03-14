@@ -24,8 +24,9 @@ Logic flow:
   Update
   U1 = C1
   U2 A selection is recalled: Card is renamable, extensible, unsavable
-  U3 Modifications are made: Card is renamable, extensible, savable
-  U4 cS is Saved: C1
+  U3 Elements are changed: Card is renamable, extensible, savable
+  U4 Selection is renamed: U2 or U3, depending on changes already
+  U5 cS is Saved: C1
 */
 
 // C1
@@ -47,26 +48,28 @@ const NameCard = CardFactory(
 );
 
 // U2
-const UnsavableCard = CardFactory(
-  {title: true, nameSelection: true},
+const UnmodifiedCard = CardFactory(
+  {title: true, itemUi: {inlineRight: ['editItem']}},
   blockUi, options
 );
 
 // U3
 const ModifiedCard = CardFactory(
-  {title: true, nameSelection: true, updateSelection: true},
+  {title: true, itemUi: {inlineRight: ['editItem', 'updateSelection']}},
   blockUi, options
 );
 
 class CurrentSelectionCard extends Component {
   render () {
-    return <this.props.Card/>;
+    const {Card, selectionId} = this.props;
+    return <Card selectionId={selectionId}/>;
   }
 }
 
 const mapStateToProps = (state, props) => {
   const {currentSelection} = state;
-  const {item, items, isBeingNamed, isBeingUpdated} = currentSelection;
+  const {item, items, selectionId, isBeingNamed, isBeingUpdated, itemsChanged} =
+    currentSelection;
   let Card;
 
   if (!item) {
@@ -78,12 +81,16 @@ const mapStateToProps = (state, props) => {
       Card = CreateCard;
     }
   } else if (isBeingUpdated) {
-
+    if (itemsChanged) { // U3
+      Card = ModifiedCard;
+    } else { // U2
+      Card = UnmodifiedCard;
+    }
   } else { // C5
     Card = NewCard;
   }
 
-  return {Card};
+  return {Card, selectionId};
 };
 
 export default connect(mapStateToProps)(CurrentSelectionCard);
