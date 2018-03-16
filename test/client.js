@@ -2,9 +2,9 @@ import {remote} from 'webdriverio';
 
 const options = {
   desiredCapabilities: {
-    browserName: 'firefox',
+    browserName: 'chrome',
   },
-  host: 'debian',
+  host: 'localhost',
 };
 
 export default remote(options);

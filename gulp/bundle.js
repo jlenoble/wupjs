@@ -16,18 +16,18 @@ export const bundle = () => {
     .pipe(buffer())
     .pipe(gulp.dest(buildDir));
 };
+//
+// export const testBundle = () => {
+//   return browserify(testBundleRootGlob, {
+//     debug: true,
+//   })
+//     .external('react/addons')
+//     .external('react/lib/ReactContext')
+//     .external('react/lib/ExecutionEnvironment')
+//     .bundle()
+//     .pipe(source(testBundleGlob))
+//     .pipe(buffer())
+//     .pipe(gulp.dest(buildDir));
+// };
 
-export const testBundle = () => {
-  return browserify(testBundleRootGlob, {
-    debug: true,
-  })
-    .external('react/addons')
-    .external('react/lib/ReactContext')
-    .external('react/lib/ExecutionEnvironment')
-    .bundle()
-    .pipe(source(testBundleGlob))
-    .pipe(buffer())
-    .pipe(gulp.dest(buildDir));
-};
-
-gulp.task('bundle', gulp.series('build', bundle, testBundle));
+gulp.task('bundle', gulp.series('build', bundle/* , testBundle */));

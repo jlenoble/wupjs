@@ -17,6 +17,17 @@ services:
     networks:
       - organic
 
+  chrome:
+    image: selenium/standalone-chrome-debug
+    volumes:
+      - /dev/shm:/dev/shm
+    ports:
+      - "4444:4444"
+      - "5900:5900"
+    networks:
+      - organic
+
+
 networks:
   organic:
     driver: bridge
