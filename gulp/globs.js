@@ -71,8 +71,7 @@ export const allCucumberJsBuildGlob = [].concat(stepsBuildGlob,
 export const allSrcGlob = srcGlob.concat(allTestGlob);
 export const allBuildGlob = srcBuildGlob.concat(testBuildGlob,
   allCucumberJsBuildGlob);
-export const allCucumberBuildGlob = featuresGlob.concat(srcBuildGlob,
-  allCucumberJsBuildGlob);
+export const allCucumberBuildGlob = srcBuildGlob.concat(allCucumberJsBuildGlob);
 
 export const bundleRootGlob = join(buildDir, srcDir, 'demo.js');
 export const testBundleRootGlob = join(buildDir, testDir, 'index.test.js');
