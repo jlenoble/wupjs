@@ -9,3 +9,4 @@ const options = {
 
 export default remote(options);
 export const timeout = {timeout: 1000 * 60};
+export const baseUrl = 'http://localhost';
