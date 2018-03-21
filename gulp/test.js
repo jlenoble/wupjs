@@ -22,7 +22,7 @@ export const testFeatures = () => {
     .pipe(cucumber({
       'steps': stepsBuildGlob,
       'support': stepSupportBuildGlob.concat(stepHooksBuildGlob),
-      'format': 'summary',
+      'format': 'progress',
     }));
 };
 
