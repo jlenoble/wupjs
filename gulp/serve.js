@@ -1,11 +1,11 @@
 import gulp from 'gulp';
-import path from 'path';
-import browserSync from 'browser-sync';
+// import path from 'path';
+// import browserSync from 'browser-sync';
 import {spawn} from 'child_process';
 
-import {srcDir, bundleBuildGlob, cssBuildGlob} from './globs';
-import './bundle';
-import browserSyncClientClose from './browser-sync-client-close';
+// import {srcDir, bundleBuildGlob, cssBuildGlob} from './globs';
+// import './bundle';
+// import browserSyncClientClose from './browser-sync-client-close';
 
 let p;
 
@@ -29,39 +29,39 @@ export const serve = done => {
     done();
   }
 };
+//
+// export const sync = done => {
+//   let bs = browserSync.create('server');
+//
+//   bs.use({
+//     plugin () {},
+//     hooks: {
+//       'client:js': browserSyncClientClose,
+//     },
+//   });
+//
+//   bs.init({
+//     ui: false,
+//     port: 3000,
+//     proxy: {
+//       target: 'localhost:5000',
+//     },
+//   }, done);
+//
+//   gulp.watch([
+//     path.join(srcDir, 'index.html'),
+//     cssBuildGlob,
+//     bundleBuildGlob,
+//   ]).on('change', (...args) => {
+//     serve();
+//
+//     p.stdout.on('data', data => {
+//       if (data.toString().match(/Server started on port 5000/)) {
+//         bs.sockets.emit('inhibit-close');
+//         bs.reload(...args);
+//       }
+//     });
+//   });
+// };
 
-export const sync = done => {
-  let bs = browserSync.create('server');
-
-  bs.use({
-    plugin () {},
-    hooks: {
-      'client:js': browserSyncClientClose,
-    },
-  });
-
-  bs.init({
-    ui: false,
-    port: 3000,
-    proxy: {
-      target: 'localhost:5000',
-    },
-  }, done);
-
-  gulp.watch([
-    path.join(srcDir, 'index.html'),
-    cssBuildGlob,
-    bundleBuildGlob,
-  ]).on('change', (...args) => {
-    serve();
-
-    p.stdout.on('data', data => {
-      if (data.toString().match(/Server started on port 5000/)) {
-        bs.sockets.emit('inhibit-close');
-        bs.reload(...args);
-      }
-    });
-  });
-};
-
-gulp.task('serve', gulp.series(serve, sync));
+gulp.task('serve', gulp.series(serve/* , sync*/));
