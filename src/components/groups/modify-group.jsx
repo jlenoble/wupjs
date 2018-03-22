@@ -9,6 +9,7 @@ const ModifyGroup = ({item}) => (
   <GlyphInputText
     glyph="save"
     autoFocus
+    inhibitBlurOnSubmit
     defaultValue={item.title}
     onBlur={() => dispatch(unfocusCurrentItem())}
     onSubmit={e => {
