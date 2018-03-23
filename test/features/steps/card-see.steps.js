@@ -13,6 +13,11 @@ Then(/^I see a "(.*)" card$/, timeout, async function (cardTitle) {
   expect(card.type).not.to.equal('NoSuchElement');
 });
 
+Then(/^I don't see a "(.*)" card$/, timeout, async function (cardTitle) {
+  const card = await this.card(cardTitle);
+  expect(card.type).to.equal('NoSuchElement');
+});
+
 Then(/^I see an input box in the "(.*)" card header$/, timeout,
   async function (cardTitle) {
     const input = await this.cardHeaderInputBox(cardTitle);
