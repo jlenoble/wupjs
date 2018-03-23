@@ -86,6 +86,16 @@ export default class Finder extends XPaths {
     return this.cardBlockInputBox(cardTitle, itemTitle).$(xpath);
   }
 
+  cardBlockItemCheckBox (cardTitle, itemTitle, glyph) {
+    const xpath = this.descendant('input')
+      .where(this.attr('type').equals('checkbox'))
+      .nextSibling('label')
+      .where(this.attr('class').contains(`fa-${glyph}`))
+      .toString();
+
+    return this.cardBlockItem(cardTitle, itemTitle).$(xpath);
+  }
+
   cardBlockItemButton (cardTitle, itemTitle, glyph) {
     const xpath = this.descendant('button')
       .descendant('i')
