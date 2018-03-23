@@ -154,3 +154,61 @@ Feature: Selection CRUD
     And Item "baz" is selected in the "Select items" card block
     And Item "Sel3" is not selected in the "Select items" card block
     And Item "Sel2" is not selected in the "Select items" card block
+
+  Scenario: Updating a Selection
+    When I click on the "pencil" button of the "Sel1" Item in the "Selections" card block
+    And I toggle the "check" checkbox of Item "foo" in the "Select items" card block
+    And I click on the "save" button of the "Sel1" card header
+    Then I see 2 card(s) on the page
+    And I see a "Select items" card
+    And I see a "Selections" card
+    And I see 5 Item(s) in the "Select items" card block
+    And I see 2 Item(s) in the "Selections" card block
+    And Item "foo" is not selected in the "Select items" card block
+    And Item "bar" is not selected in the "Select items" card block
+    And Item "baz" is not selected in the "Select items" card block
+    And Item "Sel1" is not selected in the "Select items" card block
+    And Item "Sel2" is not selected in the "Select items" card block
+    Then I click on the "pencil" button of the "Sel2" Item in the "Selections" card block
+    Then I see 3 card(s) on the page
+    And I see 2 Item(s) in the "Sel2" card block
+    And Item "foo" is not selected in the "Select items" card block
+    And Item "bar" is selected in the "Select items" card block
+    And Item "baz" is selected in the "Select items" card block
+    And Item "Sel1" is not selected in the "Select items" card block
+    And Item "Sel2" is not selected in the "Select items" card block
+    Then I click on the "pencil" button of the "Sel1" Item in the "Selections" card block
+    Then I see 3 card(s) on the page
+    And I see 1 Item(s) in the "Sel1" card block
+    And Item "foo" is not selected in the "Select items" card block
+    And Item "bar" is not selected in the "Select items" card block
+    And Item "baz" is selected in the "Select items" card block
+    And Item "Sel1" is not selected in the "Select items" card block
+    And Item "Sel2" is not selected in the "Select items" card block
+    Then I refresh the page
+    Then I see 2 card(s) on the page
+    And I see a "Select items" card
+    And I see a "Selections" card
+    And I see 5 Item(s) in the "Select items" card block
+    And I see 2 Item(s) in the "Selections" card block
+    And Item "foo" is not selected in the "Select items" card block
+    And Item "bar" is not selected in the "Select items" card block
+    And Item "baz" is not selected in the "Select items" card block
+    And Item "Sel1" is not selected in the "Select items" card block
+    And Item "Sel2" is not selected in the "Select items" card block
+    Then I click on the "pencil" button of the "Sel2" Item in the "Selections" card block
+    Then I see 3 card(s) on the page
+    And I see 2 Item(s) in the "Sel2" card block
+    And Item "foo" is not selected in the "Select items" card block
+    And Item "bar" is selected in the "Select items" card block
+    And Item "baz" is selected in the "Select items" card block
+    And Item "Sel1" is not selected in the "Select items" card block
+    And Item "Sel2" is not selected in the "Select items" card block
+    Then I click on the "pencil" button of the "Sel1" Item in the "Selections" card block
+    Then I see 3 card(s) on the page
+    And I see 1 Item(s) in the "Sel1" card block
+    And Item "foo" is not selected in the "Select items" card block
+    And Item "bar" is not selected in the "Select items" card block
+    And Item "baz" is selected in the "Select items" card block
+    And Item "Sel1" is not selected in the "Select items" card block
+    And Item "Sel2" is not selected in the "Select items" card block
