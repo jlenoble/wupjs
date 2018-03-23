@@ -1,10 +1,11 @@
 import client, {timeout} from '../../client';
 import {Before, After, When} from 'cucumber';
 import Finder, {methods} from '../support/finder.support';
-import {Item} from '../../../src/server/db';
+import {Item, Selection} from '../../../src/server/db';
 
 Before(timeout, async function () {
   await Item.remove({});
+  await Selection.remove({});
   const finder = new Finder(client.init());
 
   methods.forEach(method => {
@@ -15,7 +16,8 @@ Before(timeout, async function () {
 });
 
 After(timeout, async function () {
-  await Item.remove({});
+  // await Item.remove({});
+  // await Selection.remove({});
   return this.client.end();
 });
 
