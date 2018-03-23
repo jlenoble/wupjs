@@ -10,7 +10,7 @@ export default class Finder extends XPaths {
   }
 
   card (cardTitle) {
-    let nth = cardTitle.match(/(\d+)(st|nd|rd|th)?/);
+    let nth = cardTitle.match(/^(\d+)(st|nd|rd|th)?$/);
     if (nth) {
       nth = parseInt(nth[1], 10) - 1;
       return this.client.$$('.card').then(cards => cards[nth]);
