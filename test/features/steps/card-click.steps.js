@@ -1,8 +1,8 @@
 import {timeout} from '../../client';
 import {When} from 'cucumber';
 
-When(/^I click on the "(.*)" button of the "(.*)" card header$/, timeout,
-  async function (glyph, cardTitle) {
+When(/^I click on the "(.*)" input box button of the "(.*)" card header$/,
+  timeout, async function (glyph, cardTitle) {
     return this.cardHeaderInputBoxButton(cardTitle, glyph).click();
   });
 

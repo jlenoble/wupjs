@@ -5,7 +5,7 @@ Feature: Full Item CRUD
     And I type "Hello world" in the input box of the "All items" card header
     And I press ENTER
     And I type "Bye world" in the input box of the "All items" card header
-    And I click on the "plus" button of the "All items" card header
+    And I click on the "plus" input box button of the "All items" card header
 
   Scenario: Creating Items (see Background)
     Then I see 2 Item(s) in the "All items" card block
