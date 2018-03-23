@@ -1,4 +1,4 @@
-Feature: Full Selection CRUD
+Feature: Selection CRUD
 
   Background:
     Given I go to URI "/selection-crud"
@@ -8,60 +8,98 @@ Feature: Full Selection CRUD
     And I press ENTER
     And I type "baz" in the input box of the "Select items" card header
     And I press ENTER
+    Given I toggle the "check" checkbox of Item "foo" in the "Select items" card block
+    And I toggle the "check" checkbox of Item "baz" in the "Select items" card block
+    Given I click on the "save" button of the "New selection" card header
+    Given I type "Sel1" in the input box of the "2nd" card header
+    And I press ENTER
+    Given I toggle the "check" checkbox of Item "bar" in the "Select items" card block
+    And I toggle the "check" checkbox of Item "baz" in the "Select items" card block
+    Given I click on the "save" button of the "New selection" card header
+    Given I type "Sel2" in the input box of the "2nd" card header
+    And I press ENTER
 
-  Scenario: Creating Items
+  Scenario: Persistance - Refreshing the page
+    Then I see 2 card(s) on the page
+    And I see a "Select items" card
+    And I see a "Selections" card
+    And I see 5 Item(s) in the "Select items" card block
+    And I see 2 Item(s) in the "Selections" card block
+    And I find Item "foo" in the "Select items" card block
+    And I find Item "bar" in the "Select items" card block
+    And I find Item "baz" in the "Select items" card block
+    And I find Item "Sel1" in the "Select items" card block
+    And I find Item "Sel2" in the "Select items" card block
+    And I find Item "Sel1" in the "Selections" card block
+    And I find Item "Sel2" in the "Selections" card block
+    And Item "foo" is not selected in the "Select items" card block
+    And Item "bar" is not selected in the "Select items" card block
+    And Item "baz" is not selected in the "Select items" card block
+    And Item "Sel1" is not selected in the "Select items" card block
+    And Item "Sel2" is not selected in the "Select items" card block
+    Then I refresh the page
+    Then I see 2 card(s) on the page
+    And I see a "Select items" card
+    And I see a "Selections" card
+    And I see 5 Item(s) in the "Select items" card block
+    And I see 2 Item(s) in the "Selections" card block
+    And I find Item "foo" in the "Select items" card block
+    And I find Item "bar" in the "Select items" card block
+    And I find Item "baz" in the "Select items" card block
+    And I find Item "Sel1" in the "Select items" card block
+    And I find Item "Sel2" in the "Select items" card block
+    And I find Item "Sel1" in the "Selections" card block
+    And I find Item "Sel2" in the "Selections" card block
+    And Item "foo" is not selected in the "Select items" card block
+    And Item "bar" is not selected in the "Select items" card block
+    And Item "baz" is not selected in the "Select items" card block
+    And Item "Sel1" is not selected in the "Select items" card block
+    And Item "Sel2" is not selected in the "Select items" card block
+
+  Scenario: Deleting a selection
+    When I click on the "trash-o" button of the "Sel1" Item in the "Selections" card block
+    Then I see 2 card(s) on the page
+    And I see 4 Item(s) in the "Select items" card block
+    And I see 1 Item(s) in the "Selections" card block
+    And I find Item "foo" in the "Select items" card block
+    And I find Item "bar" in the "Select items" card block
+    And I find Item "baz" in the "Select items" card block
+    And I don't find Item "Sel1" in the "Select items" card block
+    And I find Item "Sel2" in the "Select items" card block
+    And I don't find Item "Sel1" in the "Selections" card block
+    And I find Item "Sel2" in the "Selections" card block
+    When I click on the "trash-o" button of the "Sel2" Item in the "Selections" card block
     Then I see 1 card(s) on the page
     And I see 3 Item(s) in the "Select items" card block
     And I find Item "foo" in the "Select items" card block
     And I find Item "bar" in the "Select items" card block
     And I find Item "baz" in the "Select items" card block
 
-  Scenario: Selecting Items
-    When I toggle the "check" checkbox of Item "foo" in the "Select items" card block
-    And I toggle the "check" checkbox of Item "baz" in the "Select items" card block
+  Scenario: Deleting a selected item
+    When I click on the "trash-o" button of the "baz" Item in the "Select items" card block
     Then I see 2 card(s) on the page
-    And I see a "New selection" card
-    And I see 2 Item(s) in the "New selection" card block
-    And I find Item "foo" in the "New selection" card block
-    And I find Item "baz" in the "New selection" card block
-
-  Scenario: Unselecting Items
-    When I toggle the "check" checkbox of Item "foo" in the "Select items" card block
-    And I toggle the "check" checkbox of Item "baz" in the "Select items" card block
-    Then I see 2 card(s) on the page
-    And I see a "New selection" card
-    And I see 2 Item(s) in the "New selection" card block
-    Then I toggle the "check" checkbox of Item "foo" in the "Select items" card block
-    Then I see 2 card(s) on the page
-    And I see a "New selection" card
-    And I see 1 Item(s) in the "New selection" card block
-    And I find Item "baz" in the "New selection" card block
-    Then I toggle the "check" checkbox of Item "baz" in the "Select items" card block
-    Then I see 1 card(s) on the page
-    And I don't see a "New selection" card
-
-  Scenario: Refreshing the page before saving a selection
-    When I toggle the "check" checkbox of Item "foo" in the "Select items" card block
-    And I toggle the "check" checkbox of Item "baz" in the "Select items" card block
-    Then I see 2 card(s) on the page
-    And I see a "New selection" card
-    And I see 2 Item(s) in the "New selection" card block
-    Then I refresh the page
-    Then I see 1 card(s) on the page
-    And I don't see a "New selection" card
-    And Item "foo" is not selected in the "Select items" card block
-    And Item "baz" is not selected in the "Select items" card block
-
-  Scenario: Saving a selection
-    When I toggle the "check" checkbox of Item "foo" in the "Select items" card block
-    And I toggle the "check" checkbox of Item "baz" in the "Select items" card block
-    Then I click on the "save" button of the "New selection" card header
-    Then I see an input box in the "2nd" card header
-    And I type "Sel1" in the input box of the "2nd" card header
-    And I press ENTER
-    Then I see 2 card(s) on the page
-    And I see a "Selections" card
-    And I see 1 Item(s) in the "Selections" card block
-    And I find Item "Sel1" in the "Selections" card block
     And I see 4 Item(s) in the "Select items" card block
+    And I see 2 Item(s) in the "Selections" card block
+    And I find Item "foo" in the "Select items" card block
+    And I find Item "bar" in the "Select items" card block
     And I find Item "Sel1" in the "Select items" card block
+    And I find Item "Sel2" in the "Select items" card block
+    And I find Item "Sel1" in the "Selections" card block
+    And I find Item "Sel2" in the "Selections" card block
+    When I click on the "trash-o" button of the "foo" Item in the "Select items" card block
+    Then I see 2 card(s) on the page
+    And I see 3 Item(s) in the "Select items" card block
+    And I see 2 Item(s) in the "Selections" card block
+    And I find Item "bar" in the "Select items" card block
+    And I find Item "Sel1" in the "Select items" card block
+    And I find Item "Sel2" in the "Select items" card block
+    And I find Item "Sel1" in the "Selections" card block
+    And I find Item "Sel2" in the "Selections" card block
+    When I click on the "trash-o" button of the "bar" Item in the "Select items" card block
+    Then I see 2 card(s) on the page
+    And I see 2 Item(s) in the "Select items" card block
+    And I see 2 Item(s) in the "Selections" card block
+    And I find Item "Sel1" in the "Select items" card block
+    And I find Item "Sel2" in the "Select items" card block
+    And I find Item "Sel1" in the "Selections" card block
+    And I find Item "Sel2" in the "Selections" card block
