@@ -1,12 +1,5 @@
 Feature: Full Selection CRUD
 
-  Scenario: Entering the Selection CRUD page for the first time
-    Given I go to URI "/selection-crud"
-    Then I see 1 card(s) on the page
-    And I see a "Select items" card
-    And I see an input box in the "Select items" card header
-    And I see 0 Item(s) in the "Select items" card block
-
   Scenario: Creating Items
     Given I go to URI "/selection-crud"
     And I type "foo" in the input box of the "Select items" card header

@@ -1,11 +1,5 @@
 Feature: Full Item CRUD
 
-  Scenario: Entering the Items page for the first time
-    When I go to URI "/items"
-    Then I see a "All items" card
-    And I see an input box in the "All items" card header
-    And I see 0 Item(s) in the "All items" card block
-
   Scenario: Creating a first Item - pressing ENTER
     Given I go to URI "/items"
     And I see 0 Item(s) in the "All items" card block
