@@ -2,6 +2,12 @@ import {timeout} from '../../client';
 import {Then} from 'cucumber';
 import {expect} from 'chai';
 
+Then(/^I see (.*) card\(s\) on the page$/, timeout, async function (nCards) {
+  const n = parseInt(nCards, 10);
+  const cards = await this.client.$$('.card');
+  expect(cards).to.have.length(n);
+});
+
 Then(/^I see a "(.*)" card$/, timeout, async function (cardTitle) {
   const card = await this.card(cardTitle);
   expect(card.type).not.to.equal('NoSuchElement');
@@ -15,15 +21,16 @@ Then(/^I see an input box in the "(.*)" card header$/, timeout,
 
 Then(/^I see (.*) Item\(s\) in the "(.*)" card block$/, timeout,
   async function (nItems, cardTitle) {
-    const list = await this.cardBlockItemList(cardTitle);
+    const list = this.cardBlockItemList(cardTitle);
+    const type = (await list).type;
     const n = parseInt(nItems, 10);
 
     if (n > 0) {
-      expect(list.type).not.to.equal('NoSuchElement');
-      const elements = await this.client.$$('li');
+      expect(type).not.to.equal('NoSuchElement');
+      const elements = await list.$$('li');
       expect(elements).to.have.length(n);
     } else if (n === 0) {
-      expect(list.type).to.equal('NoSuchElement');
+      expect(type).to.equal('NoSuchElement');
     }
   });
 
