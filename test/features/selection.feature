@@ -103,3 +103,54 @@ Feature: Selection CRUD
     And I find Item "Sel2" in the "Select items" card block
     And I find Item "Sel1" in the "Selections" card block
     And I find Item "Sel2" in the "Selections" card block
+
+  Scenario: Editing a Selection
+    When I click on the "pencil" button of the "Sel1" Item in the "Selections" card block
+    Then I see 3 card(s) on the page
+    And I see a "Select items" card
+    And I see a "Sel1" card
+    And I see a "Selections" card
+    And I see 5 Item(s) in the "Select items" card block
+    And I see 2 Item(s) in the "Sel1" card block
+    And I see 2 Item(s) in the "Selections" card block
+    And I find Item "foo" in the "Select items" card block
+    And I find Item "bar" in the "Select items" card block
+    And I find Item "baz" in the "Select items" card block
+    And I find Item "Sel1" in the "Select items" card block
+    And I find Item "Sel2" in the "Select items" card block
+    And I find Item "foo" in the "Sel1" card block
+    And I find Item "baz" in the "Sel1" card block
+    And I find Item "Sel1" in the "Selections" card block
+    And I find Item "Sel2" in the "Selections" card block
+    And Item "foo" is selected in the "Select items" card block
+    And Item "bar" is not selected in the "Select items" card block
+    And Item "baz" is selected in the "Select items" card block
+    And Item "Sel1" is not selected in the "Select items" card block
+    And Item "Sel2" is not selected in the "Select items" card block
+
+  Scenario: Renaming a Selection on edit
+    When I click on the "pencil" button of the "Sel1" Item in the "Selections" card block
+    And I click on the "pencil" button of the "Sel1" card header
+    And I type "Sel3" in the input box of the "2nd" card header
+    And I press ENTER
+    Then I see 3 card(s) on the page
+    And I see a "Select items" card
+    And I see a "Sel3" card
+    And I see a "Selections" card
+    And I see 5 Item(s) in the "Select items" card block
+    And I see 2 Item(s) in the "Sel3" card block
+    And I see 2 Item(s) in the "Selections" card block
+    And I find Item "foo" in the "Select items" card block
+    And I find Item "bar" in the "Select items" card block
+    And I find Item "baz" in the "Select items" card block
+    And I find Item "Sel3" in the "Select items" card block
+    And I find Item "Sel2" in the "Select items" card block
+    And I find Item "foo" in the "Sel3" card block
+    And I find Item "baz" in the "Sel3" card block
+    And I find Item "Sel3" in the "Selections" card block
+    And I find Item "Sel2" in the "Selections" card block
+    And Item "foo" is selected in the "Select items" card block
+    And Item "bar" is not selected in the "Select items" card block
+    And Item "baz" is selected in the "Select items" card block
+    And Item "Sel3" is not selected in the "Select items" card block
+    And Item "Sel2" is not selected in the "Select items" card block
