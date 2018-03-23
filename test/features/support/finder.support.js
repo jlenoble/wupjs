@@ -10,6 +10,12 @@ export default class Finder extends XPaths {
   }
 
   card (cardTitle) {
+    let nth = cardTitle.match(/(\d+)(st|nd|rd|th)?/);
+    if (nth) {
+      nth = parseInt(nth[1], 10) - 1;
+      return this.client.$$('.card').then(cards => cards[nth]);
+    }
+
     const xpath = this.descendant('div')
       .where(this.attr('class').equals('card'))
       .where(
@@ -29,6 +35,17 @@ export default class Finder extends XPaths {
       .where(this.attr('class').equals('card-header'))
       .descendant('input')
       .where(this.attr('type').equals('text'))
+      .toString();
+
+    return this.card(cardTitle).$(xpath);
+  }
+
+  cardHeaderButton (cardTitle, glyph) {
+    const xpath = this.descendant('div')
+      .where(this.attr('class').equals('card-header'))
+      .descendant('button')
+      .descendant('i')
+      .where(this.attr('class').contains(`fa-${glyph}`))
       .toString();
 
     return this.card(cardTitle).$(xpath);
@@ -87,6 +104,18 @@ export default class Finder extends XPaths {
   }
 
   cardBlockItemCheckBox (cardTitle, itemTitle, glyph) {
+    const xpath = this.descendant('input')
+      .where(this.attr('type').equals('checkbox'))
+      .where(
+        this.nextSibling('label')
+          .where(this.attr('class').contains(`fa-${glyph}`))
+      )
+      .toString();
+
+    return this.cardBlockItem(cardTitle, itemTitle).$(xpath);
+  }
+
+  cardBlockItemCheckBoxLabel (cardTitle, itemTitle, glyph) {
     const xpath = this.descendant('input')
       .where(this.attr('type').equals('checkbox'))
       .nextSibling('label')
